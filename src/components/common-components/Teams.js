@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Teams = ({ event, isAdmin }) => {
   return (
@@ -13,6 +14,13 @@ const Teams = ({ event, isAdmin }) => {
       )}
     </div>
   )
+}
+
+Teams.propTypes = {
+  event: PropTypes.shape({
+    name: PropTypes.string
+  }),
+  isAdmin: PropTypes.bool
 }
 
 export default Teams

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const InputForm = ({ labelText, inputValue, onChangeHandler, inputType }) => {
   return (
@@ -16,6 +17,13 @@ const InputForm = ({ labelText, inputValue, onChangeHandler, inputType }) => {
       </label>
     </div>
   )
+}
+
+InputForm.propTypes = {
+  labelText: PropTypes.string,
+  inputValue: PropTypes.string,
+  onChangeHandler: PropTypes.func,
+  inputType: PropTypes.string
 }
 
 export default InputForm

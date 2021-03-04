@@ -9,7 +9,7 @@ const adminLogin = (userEmail, userPassword) => {
 
   const config = {
     method: 'post',
-    url: '{{URL}}/auth/login',
+    url: 'http://helios-hackjudgeapi.herokuapp.com/auth/login',
     headers: {},
     data: data
   }

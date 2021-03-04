@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const TeamMembersList = ({ members }) => {
   return (
@@ -8,6 +9,10 @@ const TeamMembersList = ({ members }) => {
       ))}
     </>
   )
+}
+
+TeamMembersList.propTypes = {
+  members: PropTypes.array
 }
 
 export default TeamMembersList

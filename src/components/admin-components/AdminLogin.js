@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import InputForm from '../common-components/InputForm'
 
@@ -34,6 +35,13 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       </div>
     </>
   )
+}
+
+AdminLogin.propTypes = {
+  userData: PropTypes.object,
+  handleUserEmail: PropTypes.func,
+  handleUserPassword: PropTypes.func,
+  handleUserType: PropTypes.func
 }
 
 export default AdminLogin

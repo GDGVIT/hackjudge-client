@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
@@ -40,6 +41,16 @@ const ParticipantLogin = ({
       </div>
     </>
   )
+}
+
+ParticipantLogin.propTypes = {
+  userData: PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string
+  }),
+  handleUserEmail: PropTypes.func,
+  handleUserType: PropTypes.bool,
+  handleUserPassword: PropTypes.func
 }
 
 export default ParticipantLogin

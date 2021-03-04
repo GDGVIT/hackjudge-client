@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Event from './Event'
 
@@ -20,6 +21,11 @@ const Events = ({ events, isAdmin }) => {
       )}
     </div>
   )
+}
+
+Events.propTypes = {
+  events: PropTypes.array,
+  isAdmin: PropTypes.bool
 }
 
 export default Events

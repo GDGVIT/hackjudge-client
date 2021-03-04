@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const CreateTeam = ({ creator }) => {
   return (
@@ -20,6 +21,10 @@ const CreateTeam = ({ creator }) => {
     </div>
 
   )
+}
+
+CreateTeam.propTypes = {
+  creator: PropTypes.string
 }
 
 export default CreateTeam

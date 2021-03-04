@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const Review = ({ n, event }) => {
   const [expanded, setExpanded] = useState(false)
@@ -22,6 +23,13 @@ const Review = ({ n, event }) => {
       )}
     </span>
   )
+}
+
+Review.propTypes = {
+  n: PropTypes.number,
+  event: PropTypes.shape({
+    name: PropTypes.number.isRequired
+  })
 }
 
 export default Review

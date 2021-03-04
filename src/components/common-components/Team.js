@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import TeamMembersList from './TeamMembersList'
 
 const Team = ({ isAdmin, isLeader, team }) => {
@@ -26,6 +28,15 @@ const Team = ({ isAdmin, isLeader, team }) => {
       )}
     </div>
   )
+}
+
+Team.propTypes = {
+  isAdmin: PropTypes.bool,
+  isLeader: PropTypes.bool,
+  team: PropTypes.shape({
+    name: PropTypes.string,
+    members: PropTypes.array
+  })
 }
 
 export default Team

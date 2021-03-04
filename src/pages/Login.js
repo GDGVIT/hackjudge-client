@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import AdminLogin from '../components/admin-components/AdminLogin'
 import ParticipantLogin from '../components/participant-components/ParticipantLogin'
@@ -72,6 +73,11 @@ const Login = ({ userData, handleUserData }) => {
       </div>
     </div>
   )
+}
+
+Login.propTypes = {
+  userData: PropTypes.object,
+  handleUserData: PropTypes.func
 }
 
 export default Login

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
@@ -41,6 +42,18 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
       </div>
     </>
   )
+}
+
+ParticipantRegister.propTypes = {
+  userData: PropTypes.shape({
+    email: PropTypes.string,
+    password: PropTypes.string,
+    name: PropTypes.string
+  }),
+  handleUserEmail: PropTypes.func,
+  handleUserType: PropTypes.bool,
+  handleUserPassword: PropTypes.func,
+  handleUserName: PropTypes.func
 }
 
 export default ParticipantRegister

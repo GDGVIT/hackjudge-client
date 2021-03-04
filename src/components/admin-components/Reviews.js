@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import Review from './Review'
 
 const Reviews = ({ event }) => {
@@ -9,6 +11,10 @@ const Reviews = ({ event }) => {
       <Review n={2} event={event} />
     </div>
   )
+}
+
+Reviews.propTypes = {
+  event: PropTypes.object
 }
 
 export default Reviews

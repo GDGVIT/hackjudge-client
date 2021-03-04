@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 import Events from '../components/common-components/Events'
 
@@ -34,6 +35,10 @@ const ParticipantHome = ({ userData }) => {
       </div>
     </>
   )
+}
+
+ParticipantHome.propTypes = {
+  userData: PropTypes.object
 }
 
 export default ParticipantHome
