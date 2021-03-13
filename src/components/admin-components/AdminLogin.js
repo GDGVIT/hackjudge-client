@@ -14,7 +14,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
 
   return (
     <>
-      <div className='login-title'>Login</div>
+      <div className='login-title'>Admin Login</div>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           inputType='text'

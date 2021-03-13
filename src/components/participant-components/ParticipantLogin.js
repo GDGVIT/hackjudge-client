@@ -19,7 +19,7 @@ const ParticipantLogin = ({
 
   return (
     <>
-      <div className='login-title'>Login</div>
+      <div className='login-title'>Start Hacking</div>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           inputType='text'
@@ -33,11 +33,11 @@ const ParticipantLogin = ({
           onChangeHandler={handleUserPassword}
           labelText='Password: '
         />
-        <input className='login-button' type='submit' value='Login' />
+        <input className='login-button' type='submit' value='Sign In' />
       </form>
       <div className='user-type-login-button'>
-        <button onClick={() => handleUserType(2)}>Admin?</button>
-        <button onClick={() => handleUserType(1)}>NewUser?</button>
+        <button onClick={() => handleUserType(2)}>Admin? /</button>
+        <button onClick={() => handleUserType(1)}>/ NewUser?</button>
       </div>
     </>
   )
@@ -49,7 +49,7 @@ ParticipantLogin.propTypes = {
     password: PropTypes.string
   }),
   handleUserEmail: PropTypes.func,
-  handleUserType: PropTypes.bool,
+  handleUserType: PropTypes.func,
   handleUserPassword: PropTypes.func
 }
 

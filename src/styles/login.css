@@ -5,6 +5,7 @@
 
 .dsc-logo {
   height: 40px;
+  background-color: white;
 }
 
 .loginHeader-ul {
@@ -12,11 +13,68 @@
   display: flex;
   list-style-type: none;
   margin: 0;
-  padding: 10px;
+  padding-top: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
-/* csstricks */
 .login-dsc-logo {
   margin-left: auto;
-  background-color: white;
+}
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+}
+
+.login-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 40px;
+  padding: 20px;
+}
+
+.login-form {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 250px;
+  height: 35px;
+  margin: 15px;
+  background-color: rgb(46, 41, 41);
+  color: white;
+  border: 0;
+  outline: none;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.login-button {
+  background-color: rgb(127, 127, 204);
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: white;
+}
+
+.user-type-login-button > button {
+  border: 0;
+  outline: none;
+  background-color: inherit;
+  color: white;
+  font-size: 15px;
+}
+
+.user-type-login-button > button:hover {
+  cursor: pointer;
 }

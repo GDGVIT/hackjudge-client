@@ -14,7 +14,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
 
   return (
     <>
-      <div className='login-title'>Register</div>
+      <div className='login-title'>Start Hacking</div>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           labelText='Name: '
@@ -51,7 +51,7 @@ ParticipantRegister.propTypes = {
     name: PropTypes.string
   }),
   handleUserEmail: PropTypes.func,
-  handleUserType: PropTypes.bool,
+  handleUserType: PropTypes.func,
   handleUserPassword: PropTypes.func,
   handleUserName: PropTypes.func
 }
