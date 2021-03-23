@@ -11,13 +11,19 @@ const Header = ({ currentPage }) => {
     <header className={headerClass}>
       <ul>
         <li>
-          <img
-            className='hackJudge-logo '
-            src={HackJudgeLogo}
-            alt='HackJudgeLogo'
-          />
+          <Link to='/admin'>
+            <img
+              className='hackJudge-logo '
+              src={HackJudgeLogo}
+              alt='HackJudgeLogo'
+            />
+          </Link>
         </li>
-        <li className='logout-button'>
+
+        <li className='links'>
+          <Link to='/admin-home'>Current Events</Link>
+          <Link to='/upcoming-events'>Upcoming Events</Link>
+          <Link to='/past-events'>Past Events</Link>
           <Link to='/'>Logout</Link>
         </li>
       </ul>

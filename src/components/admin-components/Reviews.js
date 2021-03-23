@@ -5,7 +5,7 @@ import Review from './Review'
 
 const Reviews = ({ event }) => {
   return (
-    <div>
+    <div className='reviews-list'>
       <Review n={0} event={event} />
       <Review n={1} event={event} />
       <Review n={2} event={event} />
