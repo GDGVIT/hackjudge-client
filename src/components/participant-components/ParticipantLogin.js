@@ -36,8 +36,9 @@ const ParticipantLogin = ({
         <input className='login-button' type='submit' value='Sign In' />
       </form>
       <div className='user-type-login-button'>
-        <button onClick={() => handleUserType(2)}>Admin? /</button>
-        <button onClick={() => handleUserType(1)}>/ NewUser?</button>
+        <button onClick={() => handleUserType(2)}>Admin?</button>
+        {' // '}
+        <button onClick={() => handleUserType(1)}>NewUser?</button>
       </div>
     </>
   )

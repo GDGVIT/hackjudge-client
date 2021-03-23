@@ -7,6 +7,9 @@ import ParticipantRegister from '../components/participant-components/Participan
 
 import '../styles/login.css'
 
+import HackJudgeLogo from '../assets/HackJudgeLogo.svg'
+import DSCLogo from '../assets/DSCLogo.svg'
+
 const Login = ({ userData, handleUserData }) => {
   const handleUserType = (newUserType) => {
     handleUserData({ ...userData, userType: newUserType })
@@ -31,14 +34,14 @@ const Login = ({ userData, handleUserData }) => {
           <li className='login-hackJudge-logo'>
             <img
               className='hackJudge-logo '
-              src='https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png'
+              src={HackJudgeLogo}
               alt='HackJudgeLogo'
             />
           </li>
           <li className='login-dsc-logo'>
             <img
               className='dsc-logo '
-              src='https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo2.png'
+              src={DSCLogo}
               alt='HackJudgeLogo'
             />
           </li>
