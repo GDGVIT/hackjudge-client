@@ -14,22 +14,22 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
 
   return (
     <>
-      <div className='login-title'>Register</div>
+      <div className='login-title'>Start Hacking</div>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
-          labelText='Name: '
+          labelText='Name'
           inputType='text'
           inputValue={userData.name}
           onChangeHandler={handleUserName}
         />
         <InputForm
-          labelText='Email: '
+          labelText='Email'
           inputType='text'
           inputValue={userData.email}
           onChangeHandler={handleUserEmail}
         />
         <InputForm
-          labelText='Password: '
+          labelText='Password'
           inputType='password'
           inputValue={userData.password}
           onChangeHandler={handleUserPassword}
@@ -38,6 +38,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
       </form>
       <div className='user-type-login-button'>
         <button onClick={() => handleUserType(2)}>Admin?</button>
+        {' // '}
         <button onClick={() => handleUserType(0)}>ExistingUser?</button>
       </div>
     </>
@@ -51,7 +52,7 @@ ParticipantRegister.propTypes = {
     name: PropTypes.string
   }),
   handleUserEmail: PropTypes.func,
-  handleUserType: PropTypes.bool,
+  handleUserType: PropTypes.func,
   handleUserPassword: PropTypes.func,
   handleUserName: PropTypes.func
 }

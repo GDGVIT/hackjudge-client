@@ -10,11 +10,12 @@ const Review = ({ n, event }) => {
 
   return (
     <span>
-      <button onClick={handleButtonClick}>Review {n}</button>
+      <button className='review-button' onClick={handleButtonClick}>Review {n}</button>
       {expanded && (
         <div className='reviewCard'>
           <h1 className='reviewName'>
-            Review {n} for {event.name}
+            {/* Review {n} for {event.name} */}
+            This is a place holder; will be replaced with sth not so harsh on the eye
           </h1>
           <button className='collapse-review' onClick={handleButtonClick}>
             Back
@@ -28,7 +29,7 @@ const Review = ({ n, event }) => {
 Review.propTypes = {
   n: PropTypes.number,
   event: PropTypes.shape({
-    name: PropTypes.number.isRequired
+    name: PropTypes.string.isRequired
   })
 }
 

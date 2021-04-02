@@ -4,17 +4,20 @@ import PropTypes from 'prop-types'
 
 import InputForm from '../common-components/InputForm'
 
+import adminLogin from '../../utilities/adminLogin'
+
 const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType }) => {
   const history = useHistory()
 
   const handleSubmit = (event) => {
+    adminLogin(userData.email, userData.password)
     event.preventDefault()
     history.push('/admin')
   }
 
   return (
     <>
-      <div className='login-title'>Login</div>
+      <div className='login-title'>Admin Login</div>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           inputType='text'

@@ -6,7 +6,7 @@ import AdminHome from './pages/AdminHome'
 import ParticipantHome from './pages/ParticipantHome'
 import Header from './components/common-components/Header'
 
-import './styles/index.css'
+import './styles/app.css'
 
 import ComponentsTest from './pages/ComponentsTest'
 

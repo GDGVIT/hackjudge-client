@@ -3,33 +3,35 @@ import PropTypes from 'prop-types'
 
 import Events from '../components/common-components/Events'
 
+// import getAllEvents from '../utilities/getAllEvents'
+
 import '../styles/adminHome.css'
 
 const AdminHome = ({ userData }) => {
   const [events, setEvents] = useState([])
-
   const hook = () => {
     setEvents([
       {
         id: 1,
-        name: 'Event 1'
+        name: 'Hack Harvard 2021'
       },
       {
         id: 2,
-        name: 'Event 2'
+        name: 'Hack Harvard 2021'
+      },
+      {
+        id: 3,
+        name: 'Hack Harvard 2021'
       }
     ])
   }
 
   useEffect(hook, [])
-
+  // getAllEvents()
   return (
-    <>
-      <div className='admin-home'>
-        <h1>Admin home</h1>
-        <Events events={events} isAdmin />
-      </div>
-    </>
+    <div className='admin-home'>
+      <Events events={events} isAdmin />
+    </div>
   )
 }
 
