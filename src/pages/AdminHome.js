@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import Events from '../components/common-components/Events'
 
+// import getAllEvents from '../utilities/getAllEvents'
+
 import '../styles/adminHome.css'
 
 const AdminHome = ({ userData }) => {
@@ -25,7 +27,7 @@ const AdminHome = ({ userData }) => {
   }
 
   useEffect(hook, [])
-
+  // getAllEvents()
   return (
     <div className='admin-home'>
       <Events events={events} isAdmin />
