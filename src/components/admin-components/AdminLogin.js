@@ -10,9 +10,16 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
   const history = useHistory()
 
   const handleSubmit = (event) => {
-    adminLogin(userData.email, userData.password)
     event.preventDefault()
-    history.push('/admin')
+    adminLogin(userData.email, userData.password).then(a => {
+      if (a.status === 200) {
+        history.push('/admin')
+      } else {
+        history.push('/')
+      }
+    })
+    // console.log(response)
+    // history.push('/admin')
   }
 
   return (

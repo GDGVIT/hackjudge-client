@@ -1,22 +1,21 @@
 import axios from 'axios'
 
 const adminLogin = async (userEmail, userPassword) => {
-  userEmail = 'a1@b.com'
-  userPassword = 'qwetyuiop'
   const data = {
     email: userEmail,
     password: userPassword,
-    isAdmin: false
+    isAdmin: true
   }
   const config = {
     method: 'post',
-    url: 'http://helios-hackjudgeapi.herokuapp.com/auth/login',
-    headers: {},
+    url: 'https://helios-hackjudgeapi.herokuapp.com/auth/login',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     data: data
   }
-
   const response = await axios(config)
-  console.log(response.data)
+  return response
 }
 
 export default adminLogin
