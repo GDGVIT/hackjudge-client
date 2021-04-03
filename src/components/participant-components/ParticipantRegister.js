@@ -14,7 +14,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
 
   return (
     <>
-      <div className='login-title'>Start Hacking</div>
+      <div className='login-title'>Create Account</div>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           labelText='Name'
