@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const participantRegister = (userEmail, userPassword) => {
+const participantRegister = async (userEmail, userPassword) => {
   const data = {
     email: userEmail,
     password: userPassword,
@@ -14,13 +14,8 @@ const participantRegister = (userEmail, userPassword) => {
     data: data
   }
 
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data))
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+  const response = axios(config)
+  console.log(response)
 }
 
 export default participantRegister

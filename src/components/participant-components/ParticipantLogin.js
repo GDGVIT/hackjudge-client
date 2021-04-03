@@ -4,19 +4,34 @@ import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
 
+import participantLogin from '../../utilities/participantLogin'
+
 const ParticipantLogin = ({
   userData,
   handleUserType,
   handleUserEmail,
-  handleUserPassword
+  handleUserPassword,
+  handleAuthId,
+  handleToken,
+  handleUserName
 }) => {
   const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault()
     history.push('/home')
+    participantLogin(userData.email, userData.password).then(response => {
+      if (response.status === 200) {
+        response = response.data
+        handleToken(response.token)
+        handleAuthId(response.user.authId)
+        handleUserName(response.user.name)
+        history.push('/home')
+      } else {
+        history.push('/')
+      }
+    })
   }
-
   return (
     <>
       <div className='login-title'>Start Hacking</div>
@@ -51,7 +66,10 @@ ParticipantLogin.propTypes = {
   }),
   handleUserEmail: PropTypes.func,
   handleUserType: PropTypes.func,
-  handleUserPassword: PropTypes.func
+  handleUserPassword: PropTypes.func,
+  handleToken: PropTypes.func,
+  handleAuthId: PropTypes.func,
+  handleUserName: PropTypes.func
 }
 
 export default ParticipantLogin

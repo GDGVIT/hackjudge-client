@@ -27,6 +27,15 @@ const Login = ({ userData, handleUserData }) => {
     handleUserData({ ...userData, password: newPassword })
   }
 
+  const handleToken = (newToken) => {
+    console.log('updating', newToken)
+    handleUserData({ ...userData, token: newToken })
+  }
+
+  const handleAuthId = (newAuthId) => {
+    handleUserData({ ...userData, auth_id: newAuthId })
+  }
+
   return (
     <div className='login-page'>
       <header className='loginHeader'>
@@ -54,6 +63,9 @@ const Login = ({ userData, handleUserData }) => {
             handleUserType={handleUserType}
             handleUserEmail={handleUserEmail}
             handleUserPassword={handleUserPassword}
+            handleAuthId={handleAuthId}
+            handleToken={handleToken}
+            handleUserName={handleUserName}
           />
         )}
         {userData.userType === 1 && (
@@ -63,6 +75,8 @@ const Login = ({ userData, handleUserData }) => {
             handleUserEmail={handleUserEmail}
             handleUserPassword={handleUserPassword}
             handleUserName={handleUserName}
+            handleAuthId={handleAuthId}
+            handleToken={handleToken}
           />
         )}
         {userData.userType === 2 && (
@@ -71,6 +85,9 @@ const Login = ({ userData, handleUserData }) => {
             handleUserType={handleUserType}
             handleUserEmail={handleUserEmail}
             handleUserPassword={handleUserPassword}
+            handleAuthId={handleAuthId}
+            handleToken={handleToken}
+            handleUserName={handleUserName}
           />
         )}
       </div>
