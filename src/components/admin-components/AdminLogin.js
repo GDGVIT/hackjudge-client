@@ -6,20 +6,24 @@ import InputForm from '../common-components/InputForm'
 
 import adminLogin from '../../utilities/adminLogin'
 
-const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType }) => {
+const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken, handleUserName }) => {
   const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    adminLogin(userData.email, userData.password).then(a => {
-      if (a.status === 200) {
+    adminLogin(userData.email, userData.password).then(response => {
+      if (response.status === 200) {
+        response = response.data
+        console.log(response)
         history.push('/admin')
+        console.log(response.token)
+        handleToken(response.token)
+        handleAuthId(response.user.authId)
+        handleUserName(response.user.name)
       } else {
         history.push('/')
       }
     })
-    // console.log(response)
-    // history.push('/admin')
   }
 
   return (
@@ -51,7 +55,10 @@ AdminLogin.propTypes = {
   userData: PropTypes.object,
   handleUserEmail: PropTypes.func,
   handleUserPassword: PropTypes.func,
-  handleUserType: PropTypes.func
+  handleUserType: PropTypes.func,
+  handleToken: PropTypes.func,
+  handleAuthId: PropTypes.func,
+  handleUserName: PropTypes.func
 }
 
 export default AdminLogin

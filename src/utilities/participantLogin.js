@@ -1,26 +1,21 @@
 import axios from 'axios'
 
-const participantRegister = (userEmail, userPassword) => {
+const participantLogin = async (userEmail, userPassword) => {
   const data = {
     email: userEmail,
     password: userPassword,
     isAdmin: false
   }
-
   const config = {
     method: 'post',
-    url: '{{URL}}/auth/login',
-    headers: {},
+    url: 'https://helios-hackjudgeapi.herokuapp.com/auth/login',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     data: data
   }
-
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data))
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+  const response = await axios(config)
+  return response
 }
 
-export default participantRegister
+export default participantLogin
