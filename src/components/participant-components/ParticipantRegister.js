@@ -4,12 +4,27 @@ import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
 
+import participantRegister from '../../utilities/participantRegister'
+
+import validator from '../../utilities/validator'
+
 const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken, handleLogin }) => {
   const history = useHistory()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    history.push('/home')
+    if (validator(userData.email)) {
+      let response = await participantRegister(userData.email, userData.password, userData.name)
+      if (response.status === 200) {
+        response = response.data
+        console.log(response)
+        history.push('/home')
+      } else {
+        history.push('/')
+      }
+    } else {
+      console.log('Invalid email')
+    }
   }
 
   return (

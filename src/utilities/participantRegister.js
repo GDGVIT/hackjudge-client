@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-const participantRegister = async (userEmail, userPassword) => {
+const participantRegister = async (userEmail, userPassword, userName) => {
   const data = {
+    name: userName,
     email: userEmail,
     password: userPassword,
     isAdmin: false
@@ -9,7 +10,7 @@ const participantRegister = async (userEmail, userPassword) => {
 
   const config = {
     method: 'post',
-    url: '{{URL}}/auth/signup',
+    url: 'https://helios-hackjudgeapi.herokuapp.com/auth/signup',
     headers: {},
     data: data
   }
