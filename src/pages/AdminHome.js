@@ -10,7 +10,7 @@ import '../styles/adminHome.css'
 const AdminHome = ({ userData }) => {
   const [events, setEvents] = useState([])
   const hook = () => {
-    console.log(getAllEvents(localStorage.getItem.token))
+    console.log(getAllEvents(sessionStorage.getItem('token')))
     setEvents([
       {
         id: 1,

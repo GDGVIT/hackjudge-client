@@ -11,8 +11,6 @@ const ParticipantLogin = ({
   handleUserType,
   handleUserEmail,
   handleUserPassword,
-  handleAuthId,
-  handleToken,
   handleUserName,
   handleLogin
 }) => {
@@ -23,10 +21,8 @@ const ParticipantLogin = ({
     let response = await login(userData.email, userData.password, false)
     if (response.status === 200) {
       response = response.data
-      handleToken(response.token)
-      handleAuthId(response.user.authId)
       handleUserName(response.user.name)
-      handleLogin()
+      handleLogin(response.token, response.user.authId)
       console.log('userdata:', userData)
       history.push('/home')
     } else {
