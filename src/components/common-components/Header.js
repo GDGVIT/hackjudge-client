@@ -21,9 +21,10 @@ const Header = ({ currentPage }) => {
         </li>
 
         <li className='links'>
-          <Link to='/admin-home'>Current Events</Link>
+          <Link to='/admin'>Current Events</Link>
           <Link to='/upcoming-events'>Upcoming Events</Link>
           <Link to='/past-events'>Past Events</Link>
+          <Link to='/create-event'>Create Event</Link>
           <Link to='/'>Logout</Link>
         </li>
       </ul>

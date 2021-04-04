@@ -3,6 +3,7 @@ import { useHistory, BrowserRouter as Router, Switch, Route } from 'react-router
 import Login from './pages/Login'
 import AdminHome from './pages/AdminHome'
 import ParticipantHome from './pages/ParticipantHome'
+import CreateEvent from './components/admin-components/CreateEvent'
 import Header from './components/common-components/Header'
 
 import './styles/app.css'
@@ -26,11 +27,14 @@ const App = () => {
   const hook = () => {
     const token = sessionStorage.getItem('token')
     const authId = sessionStorage.getItem('auth_id')
-    console.log(token, authId)
+    const userType = sessionStorage.getItem('user_type')
     if (token !== null && authId !== null) {
-      console.log('here')
-      handleUserData({ ...userData, logged_in: true })
-      userData.userType === 2 ? history.push('/admin') : history.push('/home')
+      handleUserData({ ...userData, userType: userType, logged_in: true })
+      if (userData.userType === 2) {
+        history.push('/admin')
+      } else {
+        history.push('/home')
+      }
     }
   }
 
@@ -53,6 +57,10 @@ const App = () => {
           </Route>
           <Route exact path='/test'>
             <ComponentsTest userData={userData} />
+          </Route>
+          <Route exact path='/create-event'>
+            <Header currentPage='create-event' />
+            <CreateEvent />
           </Route>
         </Switch>
       </Router>

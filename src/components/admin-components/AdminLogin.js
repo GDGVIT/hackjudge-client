@@ -1,6 +1,7 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
+
+import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
 
@@ -8,15 +9,14 @@ import login from '../../utilities/login'
 
 const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleUserName, handleLogin }) => {
   const history = useHistory()
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     let response = await login(userData.email, userData.password, true)
     if (response.status === 200) {
       response = response.data
-      history.push('/admin')
       handleUserName(response.user.name)
-      handleLogin(response.token, response.authId)
+      handleLogin(response.token, response.user.authId, userData.userType)
+      history.push('/admin')
     } else {
       history.push('/')
     }

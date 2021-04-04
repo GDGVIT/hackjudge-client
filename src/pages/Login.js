@@ -27,10 +27,11 @@ const Login = ({ userData, handleUserData }) => {
     handleUserData({ ...userData, password: newPassword })
   }
 
-  const handleLogin = (newToken, newAuthId) => {
+  const handleLogin = (newToken, newAuthId, userType) => {
     handleUserData({ ...userData, logged_in: true })
     sessionStorage.setItem('token', newToken)
     sessionStorage.setItem('auth_id', newAuthId)
+    sessionStorage.setItem('userType', userType)
   }
 
   return (

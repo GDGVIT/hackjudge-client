@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import '../../styles/createEvent.css'
+
 const CreateEvent = () => {
   const [eventDetails, setEventDetails] = useState({
     name: '',
@@ -30,8 +32,8 @@ const CreateEvent = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleFormSubmit}>
+    <div className='create-event-container'>
+      <form onSubmit={handleFormSubmit} className='create-event-form'>
         <label>
           Event name <input value={eventDetails.name} onChange={handleNameChange} />
         </label>
