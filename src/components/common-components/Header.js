@@ -7,6 +7,10 @@ import HackJudgeLogo from '../../assets/HackJudgeLogo.svg'
 const Header = ({ currentPage }) => {
   const headerClass = `header header-${currentPage}`
 
+  const logout = () => {
+    sessionStorage.clear()
+  }
+
   return (
     <header className={headerClass}>
       <ul>
@@ -25,7 +29,7 @@ const Header = ({ currentPage }) => {
           <Link to='/upcoming-events'>Upcoming Events</Link>
           <Link to='/past-events'>Past Events</Link>
           <Link to='/create-event'>Create Event</Link>
-          <Link to='/'>Logout</Link>
+          <Link to='/' onClick={logout}>Logout</Link>
         </li>
       </ul>
     </header>

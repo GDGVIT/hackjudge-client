@@ -1,3 +1,4 @@
-* {
-  box-sizing: border-box;
+.cred-error {
+  color: red;
+  font-size: 1rem;
 }

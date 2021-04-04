@@ -8,7 +8,7 @@ import participantRegister from '../../utilities/participantRegister'
 
 import validator from '../../utilities/validator'
 
-const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken, handleLogin }) => {
+const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handleUserPassword, handleUserType, handleLogin }) => {
   const history = useHistory()
 
   const handleSubmit = async (event) => {
@@ -18,6 +18,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
       if (response.status === 200) {
         response = response.data
         console.log(response)
+        handleLogin(response.token, response.user.authId, userData.userType)
         history.push('/home')
       } else {
         history.push('/')
@@ -64,7 +65,8 @@ ParticipantRegister.propTypes = {
   userData: PropTypes.shape({
     email: PropTypes.string,
     password: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
+    userType: PropTypes.number
   }),
   handleUserEmail: PropTypes.func,
   handleUserType: PropTypes.func,

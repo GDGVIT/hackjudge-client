@@ -22,7 +22,7 @@ const ParticipantLogin = ({
     if (response.status === 200) {
       response = response.data
       handleUserName(response.user.name)
-      handleLogin(response.token, response.user.authId)
+      handleLogin(response.token, response.user.authId, userData.userType)
       history.push('/home')
     } else {
       history.push('/')
@@ -58,7 +58,8 @@ const ParticipantLogin = ({
 ParticipantLogin.propTypes = {
   userData: PropTypes.shape({
     email: PropTypes.string,
-    password: PropTypes.string
+    password: PropTypes.string,
+    userType: PropTypes.number
   }),
   handleUserEmail: PropTypes.func,
   handleUserType: PropTypes.func,
