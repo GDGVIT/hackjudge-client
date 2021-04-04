@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 
 import InputForm from '../common-components/InputForm'
 
-import adminLogin from '../../utilities/adminLogin'
+import login from '../../utilities/login'
 
-const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken, handleUserName }) => {
+const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken, handleUserName, handleLogin }) => {
   const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    adminLogin(userData.email, userData.password).then(response => {
+    login(userData.email, userData.password, true).then(response => {
       if (response.status === 200) {
         response = response.data
         console.log(response)
@@ -20,6 +20,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
         handleToken(response.token)
         handleAuthId(response.user.authId)
         handleUserName(response.user.name)
+        handleLogin()
       } else {
         history.push('/')
       }
@@ -58,7 +59,8 @@ AdminLogin.propTypes = {
   handleUserType: PropTypes.func,
   handleToken: PropTypes.func,
   handleAuthId: PropTypes.func,
-  handleUserName: PropTypes.func
+  handleUserName: PropTypes.func,
+  handleLogin: PropTypes.func
 }
 
 export default AdminLogin
