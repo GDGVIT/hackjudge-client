@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import AdminLogin from '../components/admin-components/AdminLogin'
@@ -11,6 +12,23 @@ import HackJudgeLogo from '../assets/HackJudgeLogo.svg'
 import DSCLogo from '../assets/DSCLogo.svg'
 
 const Login = ({ userData, handleUserData }) => {
+  const history = useHistory()
+  const hook = () => {
+    const token = sessionStorage.getItem('token')
+    const authId = sessionStorage.getItem('auth_id')
+    const userType = sessionStorage.getItem('user_type')
+    if (token !== null && authId !== null) {
+      handleUserData({ ...userData, userType: userType, logged_in: true })
+      if (userData.userType === 2) {
+        history.push('/admin')
+      } else {
+        history.push('/home')
+      }
+    }
+  }
+
+  useEffect(hook, [])
+
   const handleUserType = (newUserType) => {
     handleUserData({ ...userData, userType: newUserType })
   }

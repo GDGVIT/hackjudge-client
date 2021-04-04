@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useHistory } from 'react-router-dom'
 
+import InvalidCredentials from '../common-components/InvalidCredentials'
 import InputForm from '../common-components/InputForm'
 
 import login from '../../utilities/login'
 
 const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleUserName, handleLogin }) => {
   const history = useHistory()
+  const [invalid, setInvalid] = useState(false)
+
+  const handleInvalid = () => {
+    setInvalid(!invalid)
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     let response = await login(userData.email, userData.password, true)
@@ -17,8 +24,8 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       handleUserName(response.user.name)
       handleLogin(response.token, response.user.authId, userData.userType)
       history.push('/admin')
-    } else {
-      history.push('/')
+    } else if (response.status === 401) {
+      handleInvalid()
     }
   }
 
@@ -43,6 +50,9 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       <div className='user-type-login-button'>
         <button onClick={() => handleUserType(0)}>Not Admin?</button>
       </div>
+      {invalid && (
+        <InvalidCredentials />
+      )}
     </>
   )
 }

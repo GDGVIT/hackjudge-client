@@ -14,8 +14,13 @@ const login = async (userEmail, userPassword, isAdmin = false) => {
     },
     data: data
   }
-  const response = await axios(config)
-  return response
+
+  try {
+    const response = await axios(config)
+    return response
+  } catch (err) {
+    return err.response
+  }
 }
 
 export default login
