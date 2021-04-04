@@ -23,7 +23,6 @@ const ParticipantLogin = ({
       response = response.data
       handleUserName(response.user.name)
       handleLogin(response.token, response.user.authId)
-      console.log('userdata:', userData)
       history.push('/home')
     } else {
       history.push('/')

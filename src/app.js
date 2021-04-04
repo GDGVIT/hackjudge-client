@@ -29,7 +29,7 @@ const App = () => {
     console.log(token, authId)
     if (token !== null && authId !== null) {
       console.log('here')
-      handleUserData({ ...userData, token: token, auth_id: authId, logged_in: true })
+      handleUserData({ ...userData, logged_in: true })
       userData.userType === 2 ? history.push('/admin') : history.push('/home')
     }
   }
