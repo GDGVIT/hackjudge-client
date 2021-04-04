@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import Events from '../components/common-components/Events'
+import NoEvents from '../components/admin-components/NoEvents'
 
 import getAllEvents from '../utilities/getAllEvents'
 
@@ -10,28 +11,20 @@ import '../styles/adminHome.css'
 const AdminHome = ({ userData }) => {
   const [events, setEvents] = useState([])
   const hook = () => {
-    console.log(getAllEvents(sessionStorage.getItem('token')))
-    setEvents([
-      {
-        id: 1,
-        name: 'Hack Harvard 2021'
-      },
-      {
-        id: 2,
-        name: 'Hack Harvard 2021'
-      },
-      {
-        id: 3,
-        name: 'Hack Harvard 2021'
-      }
-    ])
+    const events = getAllEvents(sessionStorage.getItem('token'))
+    setEvents(events)
   }
 
   useEffect(hook, [])
 
   return (
     <div className='admin-home'>
-      <Events events={events} isAdmin />
+      {events.length === 0 && (
+        <NoEvents />
+      )}
+      {events.length !== 1 && (
+        <Events events={events} isAdmin />
+      )}
     </div>
   )
 }

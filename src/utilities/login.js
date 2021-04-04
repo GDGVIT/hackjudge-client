@@ -15,7 +15,6 @@ const login = async (userEmail, userPassword, isAdmin = false) => {
     data: data
   }
   const response = await axios(config)
-  console.log(response.data)
   return response
 }
 
