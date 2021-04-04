@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
 
-import participantLogin from '../../utilities/participantLogin'
+import login from '../../utilities/login'
 
 const ParticipantLogin = ({
   userData,
@@ -13,24 +13,26 @@ const ParticipantLogin = ({
   handleUserPassword,
   handleAuthId,
   handleToken,
-  handleUserName
+  handleUserName,
+  handleLogin
 }) => {
   const history = useHistory()
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     history.push('/home')
-    participantLogin(userData.email, userData.password).then(response => {
-      if (response.status === 200) {
-        response = response.data
-        handleToken(response.token)
-        handleAuthId(response.user.authId)
-        handleUserName(response.user.name)
-        history.push('/home')
-      } else {
-        history.push('/')
-      }
-    })
+    let response = await login(userData.email, userData.password)
+    if (response.status === 200) {
+      response = response.data
+      handleToken(response.token)
+      handleAuthId(response.user.authId)
+      handleUserName(response.user.name)
+      handleLogin()
+      console.log('userdata:', userData)
+      history.push('/home')
+    } else {
+      history.push('/')
+    }
   }
   return (
     <>
@@ -69,7 +71,8 @@ ParticipantLogin.propTypes = {
   handleUserPassword: PropTypes.func,
   handleToken: PropTypes.func,
   handleAuthId: PropTypes.func,
-  handleUserName: PropTypes.func
+  handleUserName: PropTypes.func,
+  handleLogin: PropTypes.func
 }
 
 export default ParticipantLogin

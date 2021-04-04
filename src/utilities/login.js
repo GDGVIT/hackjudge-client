@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const adminLogin = async (userEmail, userPassword) => {
+const login = async (userEmail, userPassword, isAdmin) => {
   const data = {
     email: userEmail,
     password: userPassword,
-    isAdmin: true
+    isAdmin: isAdmin
   }
   const config = {
     method: 'post',
@@ -18,4 +18,4 @@ const adminLogin = async (userEmail, userPassword) => {
   return response
 }
 
-export default adminLogin
+export default login

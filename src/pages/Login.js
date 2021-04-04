@@ -30,10 +30,15 @@ const Login = ({ userData, handleUserData }) => {
   const handleToken = (newToken) => {
     console.log('updating', newToken)
     handleUserData({ ...userData, token: newToken })
+    console.log('inside handleToken function', userData)
   }
 
   const handleAuthId = (newAuthId) => {
     handleUserData({ ...userData, auth_id: newAuthId })
+  }
+
+  const handleLogin = () => {
+    handleUserData({ ...userData, logged_in: true })
   }
 
   return (
@@ -66,6 +71,7 @@ const Login = ({ userData, handleUserData }) => {
             handleAuthId={handleAuthId}
             handleToken={handleToken}
             handleUserName={handleUserName}
+            handleLogin={handleLogin}
           />
         )}
         {userData.userType === 1 && (
@@ -77,6 +83,7 @@ const Login = ({ userData, handleUserData }) => {
             handleUserName={handleUserName}
             handleAuthId={handleAuthId}
             handleToken={handleToken}
+            handleLogin={handleLogin}
           />
         )}
         {userData.userType === 2 && (
@@ -88,6 +95,7 @@ const Login = ({ userData, handleUserData }) => {
             handleAuthId={handleAuthId}
             handleToken={handleToken}
             handleUserName={handleUserName}
+            handleLogin={handleLogin}
           />
         )}
       </div>

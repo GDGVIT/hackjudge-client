@@ -14,8 +14,9 @@ const participantRegister = async (userEmail, userPassword) => {
     data: data
   }
 
-  const response = axios(config)
+  const response = await axios(config)
   console.log(response)
+  return response
 }
 
 export default participantRegister

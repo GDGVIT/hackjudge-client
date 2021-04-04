@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
 
-const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken }) => {
+const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken, handleLogin }) => {
   const history = useHistory()
 
   const handleSubmit = (event) => {
@@ -56,7 +56,8 @@ ParticipantRegister.propTypes = {
   handleUserPassword: PropTypes.func,
   handleUserName: PropTypes.func,
   handleToken: PropTypes.func,
-  handleAuthId: PropTypes.func
+  handleAuthId: PropTypes.func,
+  handleLogin: PropTypes.func
 }
 
 export default ParticipantRegister

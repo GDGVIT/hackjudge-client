@@ -8,8 +8,6 @@ import '../styles/participantHome.css'
 const ParticipantHome = ({ userData }) => {
   const [events, setEvents] = useState([])
 
-  console.log(userData)
-
   const hook = () => {
     setEvents([
       {
