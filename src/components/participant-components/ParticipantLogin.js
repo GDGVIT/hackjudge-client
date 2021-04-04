@@ -20,8 +20,7 @@ const ParticipantLogin = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    history.push('/home')
-    let response = await login(userData.email, userData.password)
+    let response = await login(userData.email, userData.password, false)
     if (response.status === 200) {
       response = response.data
       handleToken(response.token)

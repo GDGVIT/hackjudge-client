@@ -10,8 +10,7 @@ import '../styles/adminHome.css'
 const AdminHome = ({ userData }) => {
   const [events, setEvents] = useState([])
   const hook = () => {
-    console.log(userData)
-    console.log(getAllEvents(userData.token))
+    console.log(getAllEvents(localStorage.getItem.token))
     setEvents([
       {
         id: 1,
@@ -29,6 +28,7 @@ const AdminHome = ({ userData }) => {
   }
 
   useEffect(hook, [])
+
   return (
     <div className='admin-home'>
       <Events events={events} isAdmin />
