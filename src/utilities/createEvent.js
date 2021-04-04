@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const createEvent = (newEvent, newProblemStatements, newMetrics, eventDate, teamSize) => {
+const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize) => {
   // Validate event details data
   const errors = []
   if (!Array.isArray(newProblemStatements)) {
@@ -23,7 +23,6 @@ const createEvent = (newEvent, newProblemStatements, newMetrics, eventDate, team
     console.log('Error: Can\'t create an event with those filthy details!')
     return errors
   }
-  // npm pck for err handling
 
   const data = {
     eventName: newEvent,
@@ -35,20 +34,16 @@ const createEvent = (newEvent, newProblemStatements, newMetrics, eventDate, team
 
   const config = {
     method: 'post',
-    url: '{{URL}}/event/createEvent',
+    url: 'https://helios-hackjudgeapi.herokuapp.coms/event/createEvent',
     headers: {
-      Authorization: '{{ATOKEN}}'
+      Authorization: ATOKEN
     },
     data: data
   }
 
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data))
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+  const response = await axios(config)
+  console.log(response)
+  return response
 }
 
 export default createEvent
