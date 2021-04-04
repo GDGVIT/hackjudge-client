@@ -16,9 +16,7 @@ const App = () => {
     name: '',
     email: '',
     password: '',
-    logged_in: false,
-    token: '',
-    auth_id: ''
+    logged_in: false
   })
 
   const handleUserData = (newData) => {

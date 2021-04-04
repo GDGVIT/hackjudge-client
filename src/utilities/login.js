@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const login = async (userEmail, userPassword, isAdmin) => {
+const login = async (userEmail, userPassword, isAdmin = false) => {
   const data = {
     email: userEmail,
     password: userPassword,

@@ -28,13 +28,11 @@ const Login = ({ userData, handleUserData }) => {
   }
 
   const handleToken = (newToken) => {
-    console.log('updating', newToken)
-    handleUserData({ ...userData, token: newToken })
-    console.log('inside handleToken function', userData)
+    localStorage.setItem('token', newToken)
   }
 
   const handleAuthId = (newAuthId) => {
-    handleUserData({ ...userData, auth_id: newAuthId })
+    localStorage.setItem('auth_id', newAuthId)
   }
 
   const handleLogin = () => {

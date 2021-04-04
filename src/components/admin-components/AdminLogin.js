@@ -14,9 +14,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
     login(userData.email, userData.password, true).then(response => {
       if (response.status === 200) {
         response = response.data
-        console.log(response)
         history.push('/admin')
-        console.log(response.token)
         handleToken(response.token)
         handleAuthId(response.user.authId)
         handleUserName(response.user.name)
