@@ -1,14 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Event from './Event'
+// import Event from './Event'
 
 const Events = ({ events, isAdmin }) => {
   return (
     <div>
       {isAdmin && (
         <div>
-          {events.map(event => <Event key={event.id} event={event} isAdmin={isAdmin} />)}
+          {/* {events.map(event => <Event key={event.id} event={event} isAdmin={isAdmin} />)} */}
+          Hello
         </div>
       )}
 

@@ -10,8 +10,10 @@ import '../styles/adminHome.css'
 
 const AdminHome = ({ userData }) => {
   const [events, setEvents] = useState([])
-  const hook = () => {
-    const events = getAllEvents(sessionStorage.getItem('token'))
+  const hook = async () => {
+    const token = sessionStorage.getItem('token')
+    console.log('token', token)
+    const events = await getAllEvents(token)
     setEvents(events)
   }
 
