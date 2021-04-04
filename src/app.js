@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
+import React, { useState, useEffect } from 'react'
+import { useHistory, BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import AdminHome from './pages/AdminHome'
 import ParticipantHome from './pages/ParticipantHome'
@@ -11,6 +10,7 @@ import './styles/app.css'
 import ComponentsTest from './pages/ComponentsTest'
 
 const App = () => {
+  const history = useHistory()
   const [userData, setUserData] = useState({
     userType: 0,
     name: '',
@@ -22,6 +22,19 @@ const App = () => {
   const handleUserData = (newData) => {
     setUserData((currData) => newData)
   }
+
+  const hook = () => {
+    const token = sessionStorage.getItem('token')
+    const authId = sessionStorage.getItem('auth_id')
+    console.log(token, authId)
+    if (token !== null && authId !== null) {
+      console.log('here')
+      handleUserData({ ...userData, token: token, auth_id: authId, logged_in: true })
+      userData.userType === 2 ? history.push('/admin') : history.push('/home')
+    }
+  }
+
+  useEffect(hook, [])
 
   return (
     <div className='container'>

@@ -6,7 +6,7 @@ import InputForm from '../common-components/InputForm'
 
 import login from '../../utilities/login'
 
-const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleAuthId, handleToken, handleUserName, handleLogin }) => {
+const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleUserName, handleLogin }) => {
   const history = useHistory()
 
   const handleSubmit = (event) => {
@@ -15,10 +15,8 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       if (response.status === 200) {
         response = response.data
         history.push('/admin')
-        handleToken(response.token)
-        handleAuthId(response.user.authId)
         handleUserName(response.user.name)
-        handleLogin()
+        handleLogin(response.token, response.authId)
       } else {
         history.push('/')
       }

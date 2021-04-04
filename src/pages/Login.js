@@ -27,16 +27,10 @@ const Login = ({ userData, handleUserData }) => {
     handleUserData({ ...userData, password: newPassword })
   }
 
-  const handleToken = (newToken) => {
-    localStorage.setItem('token', newToken)
-  }
-
-  const handleAuthId = (newAuthId) => {
-    localStorage.setItem('auth_id', newAuthId)
-  }
-
-  const handleLogin = () => {
+  const handleLogin = (newToken, newAuthId) => {
     handleUserData({ ...userData, logged_in: true })
+    sessionStorage.setItem('token', newToken)
+    sessionStorage.setItem('auth_id', newAuthId)
   }
 
   return (
@@ -66,8 +60,6 @@ const Login = ({ userData, handleUserData }) => {
             handleUserType={handleUserType}
             handleUserEmail={handleUserEmail}
             handleUserPassword={handleUserPassword}
-            handleAuthId={handleAuthId}
-            handleToken={handleToken}
             handleUserName={handleUserName}
             handleLogin={handleLogin}
           />
@@ -79,8 +71,6 @@ const Login = ({ userData, handleUserData }) => {
             handleUserEmail={handleUserEmail}
             handleUserPassword={handleUserPassword}
             handleUserName={handleUserName}
-            handleAuthId={handleAuthId}
-            handleToken={handleToken}
             handleLogin={handleLogin}
           />
         )}
@@ -90,8 +80,6 @@ const Login = ({ userData, handleUserData }) => {
             handleUserType={handleUserType}
             handleUserEmail={handleUserEmail}
             handleUserPassword={handleUserPassword}
-            handleAuthId={handleAuthId}
-            handleToken={handleToken}
             handleUserName={handleUserName}
             handleLogin={handleLogin}
           />
