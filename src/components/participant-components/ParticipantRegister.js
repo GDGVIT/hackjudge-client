@@ -27,7 +27,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
     if (response.status === 200) {
       response = response.data
       console.log(response)
-      handleLogin(response.token, response.user.authId, userData.userType)
+      handleLogin(response.token, response.user.authId, 1)
       history.push('/home')
     } else if (response.status === 422) {
       console.log(response)

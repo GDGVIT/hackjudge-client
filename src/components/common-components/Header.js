@@ -10,7 +10,8 @@ const Header = ({ currentPage }) => {
   const logout = () => {
     sessionStorage.clear()
   }
-
+  const userType = sessionStorage.getItem('userType')
+  console.log(userType)
   return (
     <header className={headerClass}>
       <ul>
@@ -25,11 +26,23 @@ const Header = ({ currentPage }) => {
         </li>
 
         <li className='links'>
-          <Link to='/admin'>Current Events</Link>
-          <Link to='/admin'>Upcoming Events</Link>
-          <Link to='/admin'>Past Events</Link>
-          <Link to='/admin'>Create Event</Link>
-          <Link to='/' onClick={logout}>Logout</Link>
+          {userType === '2' && (
+            <>
+              <Link to='/admin'>Current Events</Link>
+              <Link to='/admin'>Upcoming Events</Link>
+              <Link to='/admin'>Past Events</Link>
+              <Link to='/admin'>Create Event</Link>
+              <Link to='/' onClick={logout}>Logout</Link>
+            </>
+          )}
+          {userType !== '2' && (
+            <>
+              <Link to='/home'>Current Events</Link>
+              <Link to='/home'>Upcoming Events</Link>
+              <Link to='/home'>Past Events</Link>
+              <Link to='/' onClick={logout}>Logout</Link>
+            </>
+          )}
         </li>
       </ul>
     </header>
