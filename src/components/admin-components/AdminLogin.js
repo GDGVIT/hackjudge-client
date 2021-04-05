@@ -28,7 +28,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       setInvalid(false)
       response = response.data
       handleUserName(response.user.name)
-      handleLogin(response.token, response.user.authId, userData.userType)
+      handleLogin(response.token, response.user.authId, 2)
       history.push('/admin')
     } else if (response.status === 401) {
       setErrorMessage('Invalid Credentials! Unauthorized')
