@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+
 import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
+import LoginError from '../common-components/LoginError'
 
 import login from '../../utilities/login'
+import validator from '../../utilities/validator'
 
 const ParticipantLogin = ({
   userData,
@@ -15,17 +18,28 @@ const ParticipantLogin = ({
   handleLogin
 }) => {
   const history = useHistory()
+  const [invalid, setInvalid] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (!validator(userData.email)) {
+      setErrorMessage('That doesn\'t look like an email to me')
+      setInvalid(true)
+      return
+    } else {
+      setInvalid(false)
+    }
     let response = await login(userData.email, userData.password, false)
     if (response.status === 200) {
+      setInvalid(false)
       response = response.data
       handleUserName(response.user.name)
       handleLogin(response.token, response.user.authId, userData.userType)
       history.push('/home')
-    } else {
-      history.push('/')
+    } else if (response.status === 401) {
+      setErrorMessage('Invalid Credentials! Unauthorized')
+      setInvalid(true)
     }
   }
   return (
@@ -51,6 +65,9 @@ const ParticipantLogin = ({
         {' // '}
         <button onClick={() => handleUserType(1)}>NewUser?</button>
       </div>
+      {invalid && (
+        <LoginError message={errorMessage} />
+      )}
     </>
   )
 }
