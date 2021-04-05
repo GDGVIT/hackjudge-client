@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
 import InputForm from '../common-components/InputForm'
+import LoginLoader from '../common-components/LoginLoader'
 import LoginError from '../common-components/LoginError'
 
 import login from '../../utilities/login'
@@ -20,16 +21,21 @@ const ParticipantLogin = ({
   const history = useHistory()
   const [invalid, setInvalid] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [animationState, setAnimationState] = useState(0)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setAnimationState(1)
     if (!validator(userData.email)) {
       setErrorMessage('That doesn\'t look like an email to me')
       setInvalid(true)
+      setAnimationState(0)
       return
     } else {
       setInvalid(false)
+      setAnimationState(1)
     }
+    setAnimationState(1)
     let response = await login(userData.email, userData.password, false)
     if (response.status === 200) {
       setInvalid(false)
@@ -38,6 +44,7 @@ const ParticipantLogin = ({
       handleLogin(response.token, response.user.authId, 0)
       history.push('/home')
     } else if (response.status === 401) {
+      setAnimationState(0)
       setErrorMessage('Invalid Credentials! Unauthorized')
       setInvalid(true)
     }
@@ -65,6 +72,7 @@ const ParticipantLogin = ({
         {' // '}
         <button onClick={() => handleUserType(1)}>NewUser?</button>
       </div>
+      <LoginLoader animationState={animationState} />
       {invalid && (
         <LoginError message={errorMessage} />
       )}
