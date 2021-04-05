@@ -88,3 +88,40 @@ input::placeholder {
 .user-type-login-button > button:hover {
   cursor: pointer;
 }
+
+.login-circle {
+  background-color: #e1e1e1;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+}
+
+.loader-box {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 7px;
+}
+
+.red {
+  background-color: red!important;
+}
+
+.hidden {
+  display: hidden!important;
+}
+
+@keyframes phaser {
+  0% { background-color: #ffffff; }
+  25% { background-color: rgb(151, 141, 141); }
+  50% { background-color: #ffffff; }
+  75% { background-color: rgb(122, 117, 117); }
+  100% { background-color: rgb(255, 255, 255); }
+}
+
+.login-circle-phasing {
+    background-color: #000000;
+    animation-name: phaser;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+}

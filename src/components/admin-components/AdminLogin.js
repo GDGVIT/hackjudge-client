@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 
 import { useHistory } from 'react-router-dom'
 
-import LoginError from '../common-components/LoginError'
 import InputForm from '../common-components/InputForm'
+import LoginLoader from '../common-components/LoginLoader'
+import LoginError from '../common-components/LoginError'
 
 import login from '../../utilities/login'
 import validator from '../../utilities/validator'
@@ -13,16 +14,21 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
   const history = useHistory()
   const [invalid, setInvalid] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [animationState, setAnimationState] = useState(0)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setAnimationState(1)
     if (!validator(userData.email)) {
       setErrorMessage('That doesn\'t look like an email to me')
       setInvalid(true)
+      setAnimationState(0)
       return
     } else {
       setInvalid(false)
+      setAnimationState(1)
     }
+    setAnimationState(1)
     let response = await login(userData.email, userData.password, true)
     if (response.status === 200) {
       setInvalid(false)
@@ -31,6 +37,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       handleLogin(response.token, response.user.authId, 2)
       history.push('/admin')
     } else if (response.status === 401) {
+      setAnimationState(0)
       setErrorMessage('Invalid Credentials! Unauthorized')
       setInvalid(true)
     }
@@ -57,6 +64,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       <div className='user-type-login-button'>
         <button onClick={() => handleUserType(0)}>Not Admin?</button>
       </div>
+      <LoginLoader animationState={animationState} />
       {invalid && (
         <LoginError message={errorMessage} />
       )}
