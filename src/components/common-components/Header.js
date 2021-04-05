@@ -26,9 +26,9 @@ const Header = ({ currentPage }) => {
 
         <li className='links'>
           <Link to='/admin'>Current Events</Link>
-          <Link to='/upcoming-events'>Upcoming Events</Link>
-          <Link to='/past-events'>Past Events</Link>
-          <Link to='/create-event'>Create Event</Link>
+          <Link to='/admin'>Upcoming Events</Link>
+          <Link to='/admin'>Past Events</Link>
+          <Link to='/admin'>Create Event</Link>
           <Link to='/' onClick={logout}>Logout</Link>
         </li>
       </ul>
