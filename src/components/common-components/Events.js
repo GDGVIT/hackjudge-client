@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-// import Event from './Event'
+import Event from './Event'
 
 const Events = ({ events, isAdmin }) => {
+  console.log(events)
   return (
     <div>
       {isAdmin && (
         <div>
-          {/* {events.map(event => <Event key={event.id} event={event} isAdmin={isAdmin} />)} */}
-          Hello
+          {events.map(event => <Event key={event.eventId} event={event} isAdmin={isAdmin} />)}
         </div>
       )}
 
@@ -25,7 +25,7 @@ const Events = ({ events, isAdmin }) => {
 }
 
 Events.propTypes = {
-  events: PropTypes.array,
+  events: PropTypes.any,
   isAdmin: PropTypes.bool
 }
 

@@ -8,7 +8,7 @@ const Event = ({ event, isAdmin }) => {
     <div>
       {isAdmin && (
         <div className='event'>
-          <span className='event-name'>{event.name} </span>
+          <span className='event-name'>{event.eventName} </span>
           {/* button to list all teams */}
           <Reviews event={event} />
         </div>

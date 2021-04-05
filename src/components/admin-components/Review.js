@@ -29,7 +29,7 @@ const Review = ({ n, event }) => {
 Review.propTypes = {
   n: PropTypes.number,
   event: PropTypes.shape({
-    name: PropTypes.string.isRequired
+    eventName: PropTypes.string.isRequired
   })
 }
 
