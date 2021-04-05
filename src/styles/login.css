@@ -120,7 +120,7 @@ input::placeholder {
 }
 
 .login-circle-phasing {
-  background-color: #000000;
+  background-color: #000;
   animation-name: phaser;
   animation-iteration-count: infinite;
   animation-duration: 5s;
