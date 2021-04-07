@@ -15,8 +15,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(0, 0, 0);
   background-image: url(../assets/Background.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: unset;
+  background-size: auto;
   color: white;
   padding: 20px;
 }
