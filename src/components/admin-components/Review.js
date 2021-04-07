@@ -7,16 +7,18 @@ const Review = ({ n, event }) => {
   const handleButtonClick = () => {
     setExpanded(!expanded)
   }
-
+  console.log('n: ', n, '\nevent:\n', event)
   return (
     <span>
       <button className='review-button' onClick={handleButtonClick}>Review {n}</button>
       {expanded && (
-        <div className='reviewCard'>
-          <h1 className='reviewName'>
-            {/* Review {n} for {event.name} */}
-            This is a place holder; will be replaced with sth not so harsh on the eye
+        <div className='review-card'>
+          <h1 className='review-event-name'>
+            {event.eventName}
           </h1>
+          <h2 className='event-review-no'>
+            Review {n}
+          </h2>
           <button className='collapse-review' onClick={handleButtonClick}>
             Back
           </button>
