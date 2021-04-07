@@ -50,6 +50,7 @@ const Login = ({ userData, handleUserData }) => {
     sessionStorage.setItem('token', newToken)
     sessionStorage.setItem('auth_id', newAuthId)
     sessionStorage.setItem('userType', userType)
+    sessionStorage.setItem('loggid_id', 'true')
   }
 
   return (
