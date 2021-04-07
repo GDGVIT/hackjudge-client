@@ -34,19 +34,22 @@ const CreateEvent = () => {
   return (
     <div className='create-event-container'>
       <form onSubmit={handleFormSubmit} className='create-event-form'>
-        <label>
-          Event name <input value={eventDetails.name} onChange={handleNameChange} />
+        <label className='create-event-form-fields'>
+          Event name
+          <input value={eventDetails.name} onChange={handleNameChange} />
         </label>
-        <label>
-          Event date <input value={eventDetails.date} onChange={handleDateChange} />
+        <label className='create-event-form-fields'>
+          Event date
+          <input value={eventDetails.date} onChange={handleDateChange} />
         </label>
-        <label>
-          Max Members <input value={eventDetails.maxMembers} onChange={handleMaxMembersChange} />
+        <label className='create-event-form-fields'>
+          Max Members
+          <input value={eventDetails.maxMembers} onChange={handleMaxMembersChange} />
         </label>
-        <label>
+        <label className='create-event-form-fields'>
           Event reviews <input value={eventDetails.reviews} onChange={handleReviewsChange} />
         </label>
-        <label>
+        <label className='create-event-form-fields'>
           Problem Statements <input value='' onChange={handleProblemStatementChange} />
         </label>
       </form>

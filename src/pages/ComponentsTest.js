@@ -1,9 +1,12 @@
 import React from 'react'
+import CreateEvent from '../components/admin-components/CreateEvent'
+import Header from '../components/common-components/Header'
 
 const ComponentsTest = () => {
   return (
     <>
-      Tis a test
+      <Header />
+      <CreateEvent />
     </>
   )
 }

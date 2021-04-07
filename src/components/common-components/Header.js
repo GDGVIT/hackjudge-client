@@ -10,8 +10,10 @@ const Header = ({ currentPage }) => {
   const logout = () => {
     sessionStorage.clear()
   }
-  const userType = sessionStorage.getItem('userType')
-  console.log(userType)
+  let userType = sessionStorage.getItem('userType')
+  if (userType == null) {
+    userType = '1'
+  }
   return (
     <header className={headerClass}>
       <ul>
