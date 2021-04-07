@@ -15,7 +15,7 @@ const AdminHome = ({ userData }) => {
   const [events, setEvents] = useState([])
 
   const hook = async () => {
-    if (!userData.logged_in) {
+    if (!sessionStorage.getItem('logged_in') === 'true') {
       history.push('/')
     }
     const token = sessionStorage.getItem('token')
