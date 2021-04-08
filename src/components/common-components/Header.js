@@ -18,30 +18,41 @@ const Header = ({ currentPage }) => {
     <header className={headerClass}>
       <ul>
         <li>
-          <Link to='/admin'>
-            <img
-              className='hackJudge-logo '
-              src={HackJudgeLogo}
-              alt='HackJudgeLogo'
-            />
-          </Link>
+          {userType === '2' && (
+            <Link to='/admin'>
+              <img
+                className='hackJudge-logo '
+                src={HackJudgeLogo}
+                alt='HackJudgeLogo'
+              />
+            </Link>
+          )}
+          {userType !== '2' && (
+            <Link to='/home'>
+              <img
+                className='hackJudge-logo '
+                src={HackJudgeLogo}
+                alt='HackJudgeLogo'
+              />
+            </Link>
+          )}
         </li>
 
         <li className='links'>
           {userType === '2' && (
             <>
-              <Link to='/admin'>Current Events</Link>
-              <Link to='/admin'>Upcoming Events</Link>
-              <Link to='/admin'>Past Events</Link>
-              <Link to='/admin'>Create Event</Link>
+              <button>Current Events</button>
+              <button>Upcoming Events</button>
+              <button>Past Events</button>
+              <button>Create Event</button>
               <Link to='/' onClick={logout}>Logout</Link>
             </>
           )}
           {userType !== '2' && (
             <>
-              <Link to='/home'>Current Events</Link>
-              <Link to='/home'>Upcoming Events</Link>
-              <Link to='/home'>Past Events</Link>
+              <button>Current Events</button>
+              <button>Upcoming Events</button>
+              <button>Past Events</button>
               <Link to='/' onClick={logout}>Logout</Link>
             </>
           )}

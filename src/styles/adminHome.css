@@ -13,26 +13,6 @@
   padding: 80px;
 }
 
-.links {
-  width: max-content;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.links > a {
-  font-family: 'Azonix', sans-serif;
-  text-decoration: none;
-  color: white;
-  font-size: 1.5rem;
-  margin: 0 1rem;
-}
-
-.links > a:hover {
-  color: #04d9ff;
-}
-
 .event-name {
   font-family: 'Azonix', sans-serif;
   color: #fff;
@@ -80,7 +60,6 @@
   flex-direction: column;
   align-items: center;
   padding: 40px;
-  /* justify-content: center; */
 }
 
 .review-event-name {

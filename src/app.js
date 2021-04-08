@@ -7,6 +7,7 @@ import ParticipantHome from './pages/ParticipantHome'
 import Header from './components/common-components/Header'
 
 import './styles/app.css'
+import './styles/sharedStyles.css'
 
 import ComponentsTest from './pages/ComponentsTest'
 
