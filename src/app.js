@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Login from './pages/Login'
@@ -24,6 +24,11 @@ const App = () => {
     setUserData((currData) => newData)
   }
 
+  const createRef = useRef()
+  const currentRef = useRef()
+  const pastRef = useRef()
+  const upcomingRef = useRef()
+
   return (
     <div className='container'>
       <Router>
@@ -32,12 +37,12 @@ const App = () => {
             <Login userData={userData} handleUserData={handleUserData} />
           </Route>
           <Route exact path='/admin'>
-            <Header currentPage='admin-home' />
-            <AdminHome userData={userData} />
+            <Header currentPage='admin-home' createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+            <AdminHome userData={userData} createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
           </Route>
           <Route exact path='/home'>
-            <Header currentPage='participant-home' />
-            <ParticipantHome userData={userData} />
+            <Header currentPage='participant-home' currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+            <ParticipantHome userData={userData} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
           </Route>
           <Route exact path='/test'>
             <ComponentsTest userData={userData} />

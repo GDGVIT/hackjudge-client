@@ -4,16 +4,18 @@ import { Link } from 'react-router-dom'
 
 import HackJudgeLogo from '../../assets/HackJudgeLogo.svg'
 
-const Header = ({ currentPage }) => {
+const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) => {
   const headerClass = `header header-${currentPage}`
 
   const logout = () => {
     sessionStorage.clear()
   }
+
   let userType = sessionStorage.getItem('userType')
   if (userType == null) {
     userType = '1'
   }
+
   return (
     <header className={headerClass}>
       <ul>
@@ -30,7 +32,7 @@ const Header = ({ currentPage }) => {
           {userType !== '2' && (
             <Link to='/home'>
               <img
-                className='hackJudge-logo '
+                className='hackJudge-logo'
                 src={HackJudgeLogo}
                 alt='HackJudgeLogo'
               />
@@ -41,18 +43,18 @@ const Header = ({ currentPage }) => {
         <li className='links'>
           {userType === '2' && (
             <>
-              <button>Current Events</button>
-              <button>Upcoming Events</button>
-              <button>Past Events</button>
-              <button>Create Event</button>
+              <button ref={currentRef}>Current Events</button>
+              <button ref={upcomingRef}>Upcoming Events</button>
+              <button ref={pastRef}>Past Events</button>
+              <button ref={createRef}>Create Event</button>
               <Link to='/' onClick={logout}>Logout</Link>
             </>
           )}
           {userType !== '2' && (
             <>
-              <button>Current Events</button>
-              <button>Upcoming Events</button>
-              <button>Past Events</button>
+              <button ref={currentRef}>Current Events</button>
+              <button ref={upcomingRef}>Upcoming Events</button>
+              <button ref={pastRef}>Past Events</button>
               <Link to='/' onClick={logout}>Logout</Link>
             </>
           )}
@@ -63,7 +65,11 @@ const Header = ({ currentPage }) => {
 }
 
 Header.propTypes = {
-  currentPage: PropTypes.string
+  currentPage: PropTypes.string,
+  createRef: PropTypes.any,
+  currentRef: PropTypes.any,
+  pastRef: PropTypes.any,
+  upcomingRef: PropTypes.any
 }
 
 export default Header
