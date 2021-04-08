@@ -5,9 +5,24 @@ import Events from '../components/common-components/Events'
 
 import '../styles/participantHome.css'
 
-const ParticipantHome = ({ userData }) => {
+const ParticipantHome = ({ userData, currentRef, pastRef, upcomingRef }) => {
   const [events, setEvents] = useState([])
-
+  const [overlayType, setOverlayType] = useState(0)
+  if (currentRef.current) {
+    currentRef.current.onclick = () => {
+      setOverlayType(0)
+    }
+  }
+  if (pastRef.current) {
+    pastRef.current.onclick = () => {
+      setOverlayType(2)
+    }
+  }
+  if (upcomingRef.current) {
+    upcomingRef.current.onclick = () => {
+      setOverlayType(3)
+    }
+  }
   const hook = () => {
     setEvents([
       {
@@ -25,18 +40,19 @@ const ParticipantHome = ({ userData }) => {
   return (
     <>
       <div className='participant-home'>
-        <h1>Participant home page</h1>
-        <p>
-          Welcome {userData.email}, your password is {userData.password}
-        </p>
-        <Events events={events} isAdmin={false} />
+        {overlayType === 0 && (
+          <Events events={events} isAdmin={false} />
+        )}
       </div>
     </>
   )
 }
 
 ParticipantHome.propTypes = {
-  userData: PropTypes.object
+  userData: PropTypes.object,
+  currentRef: PropTypes.any,
+  pastRef: PropTypes.any,
+  upcomingRef: PropTypes.any
 }
 
 export default ParticipantHome
