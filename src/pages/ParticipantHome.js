@@ -5,7 +5,7 @@ import Events from '../components/common-components/Events'
 
 import '../styles/participantHome.css'
 
-const ParticipantHome = ({ userData, currentRef, pastRef, upcomingRef }) => {
+const ParticipantHome = ({ userData, currentRef, upcomingRef }) => {
   const [events, setEvents] = useState([])
   const [overlayType, setOverlayType] = useState(0)
   if (currentRef.current) {
@@ -13,11 +13,7 @@ const ParticipantHome = ({ userData, currentRef, pastRef, upcomingRef }) => {
       setOverlayType(0)
     }
   }
-  if (pastRef.current) {
-    pastRef.current.onclick = () => {
-      setOverlayType(2)
-    }
-  }
+
   if (upcomingRef.current) {
     upcomingRef.current.onclick = () => {
       setOverlayType(3)
@@ -51,7 +47,6 @@ const ParticipantHome = ({ userData, currentRef, pastRef, upcomingRef }) => {
 ParticipantHome.propTypes = {
   userData: PropTypes.object,
   currentRef: PropTypes.any,
-  pastRef: PropTypes.any,
   upcomingRef: PropTypes.any
 }
 

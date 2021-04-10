@@ -42,7 +42,7 @@ const App = () => {
           </Route>
           <Route exact path='/home'>
             <Header currentPage='participant-home' currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
-            <ParticipantHome userData={userData} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+            <ParticipantHome userData={userData} currentRef={currentRef} upcomingRef={upcomingRef} />
           </Route>
           <Route exact path='/test'>
             <ComponentsTest userData={userData} />
