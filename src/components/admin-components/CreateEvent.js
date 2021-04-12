@@ -97,11 +97,11 @@ const CreateEvent = () => {
         </label>
         <label className='create-event-form-fields'>
           Event date
-          <input value={eventDetails.date} placeholder='yyyy/mm/dd' onChange={handleDateChange} />
+          <input value={eventDetails.date} placeholder='yyyy-mm-dd' onChange={handleDateChange} />
         </label>
         <label className='create-event-form-fields'>
           End Date
-          <input value={eventDetails.endDate} placeholder='yyyy/mm/dd' onChange={handleEndDateChange} />
+          <input value={eventDetails.endDate} placeholder='yyyy-mm-dd' onChange={handleEndDateChange} />
         </label>
         <label className='create-event-form-fields'>
           Max Members
