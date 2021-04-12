@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import CreateEventProblemStatement from './CreateEventProblemStatement'
+import CreateEventMetric from './CreateEventMetric'
 
 import '../../styles/createEvent.css'
 
@@ -11,11 +12,15 @@ const CreateEvent = () => {
     maxMembers: 4,
     reviews: 3,
     problemStatements: [],
-    problemStatement: ''
+    problemStatement: '',
+    metrics: [],
+    metric: ''
   })
 
   const handleFormSubmit = (event) => {
     event.preventDefault()
+    console.log(eventDetails)
+    console.log(Date.parse(eventDetails.date))
   }
 
   const handleNameChange = (event) => {
@@ -34,27 +39,49 @@ const CreateEvent = () => {
     setEventDetails({ ...eventDetails, problemStatement: event.target.value })
   }
 
+  const handleMetricChange = (event) => {
+    setEventDetails({ ...eventDetails, metric: event.target.value })
+  }
+
   const handlePsKeyDown = (event) => {
-    console.log('key pressed')
     if (event.keyCode === 13 && eventDetails.problemStatement !== '') {
-      console.log('key is enter')
       const currPs = eventDetails.problemStatements
       currPs.push({ id: currPs.length, ps: eventDetails.problemStatement })
       setEventDetails({ ...eventDetails, problemStatements: currPs, problemStatement: '' })
     }
   }
 
+  const handleMetricKeyDown = (event) => {
+    if (event.keyCode === 13 && eventDetails.metric !== '' && eventDetails.metric.includes(':')) {
+      const currMetrics = eventDetails.metrics
+      const newMetric = eventDetails.metric.split(':')
+      currMetrics.push({ id: currMetrics.length, metric: newMetric[0], maxScore: parseInt(newMetric[1]) })
+      setEventDetails({ ...eventDetails, metrics: currMetrics, metric: '' })
+    }
+  }
+
+  const removePs = (pId) => {
+    let newPs = eventDetails.problemStatements
+    newPs = newPs.filter(ps => ps.id !== pId)
+    setEventDetails({ ...eventDetails, problemStatements: newPs })
+  }
+
+  const removeMetric = (metricId) => {
+    const newMetrics = eventDetails.metrics.filter(m => m.id !== metricId)
+    setEventDetails({ ...eventDetails, metrics: newMetrics })
+  }
+
   return (
-    <div className='create-event-container'>
-      <h1>mmm... les see wat you have</h1>
-      <form onSubmit={handleFormSubmit} className='create-event-form'>
+    <div className='create-event-page'>
+      <form className='create-event-form'>
+        <h1> Fill this up... carefully </h1>
         <label className='create-event-form-fields'>
           Event name
-          <input value={eventDetails.name} onChange={handleNameChange} />
+          <input placeholder='Name of the event' value={eventDetails.name} onChange={handleNameChange} />
         </label>
         <label className='create-event-form-fields'>
           Event date
-          <input value={eventDetails.date} onChange={handleDateChange} />
+          <input value={eventDetails.date} placeholder='yyyy/mm/dd' onChange={handleDateChange} />
         </label>
         <label className='create-event-form-fields'>
           Max Members
@@ -66,14 +93,37 @@ const CreateEvent = () => {
         <label className='create-event-form-fields'>
           Problem Statements <input value={eventDetails.problemStatement} onKeyDown={handlePsKeyDown} onChange={handleProblemStatementChange} />
         </label>
+        <label className='create-event-form-fields'>
+          Metrics <input value={eventDetails.metric} onKeyDown={handleMetricKeyDown} onChange={handleMetricChange} />
+        </label>
+        <input type='submit' onClick={handleFormSubmit} className='submit-event'/>
       </form>
-      {eventDetails.problemStatements !== [] && (
-        <div className='form-problem-statements-container'>
-          <div className='form-problem-statements'>
-            {eventDetails.problemStatements.map(ps => <CreateEventProblemStatement key={ps.id} problemStatement={ps.ps} />)}
-          </div>
-        </div>
-      )}
+      <div className='form-problem-statements'>
+        {eventDetails.problemStatements.length === 0 && (
+          <h1>
+            Add some problem statements?
+          </h1>
+        )}
+        {eventDetails.problemStatements.length !== 0 && (
+          <h1>
+            Problem Statements
+          </h1>
+        )}
+        {eventDetails.problemStatements.map(ps => <CreateEventProblemStatement key={ps.id} problemStatement={ps} removePs={removePs} />)}
+      </div>
+      <div className='metrics'>
+        {eventDetails.metrics.length === 0 && (
+          <h1>
+            Add some metrics?
+          </h1>
+        )}
+        {eventDetails.metrics.length !== 0 && (
+          <h1>
+            Metrics
+          </h1>
+        )}
+        {eventDetails.metrics.map(metric => <CreateEventMetric key={metric.id} metric={metric} removeMetric={removeMetric} />)}
+      </div>
     </div>
   )
 }
