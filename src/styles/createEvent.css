@@ -1,15 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@600&display=swap');
 
-.create-event-container {
-  display: grid;
-  place-items: center;
+.create-event-page {
   width: 100%;
   height: 100%;
-  font-family: 'Overpass', sans-serif;
+  display: grid;
+  grid-template-columns: 40% 30% auto;
+  padding: 8px;
 }
 
 .create-event-form {
   display: grid;
+  height: max-content;
+}
+
+.create-event-page h1 {
+  font-family: 'Poppins', serif;
+  font-size: 1.5rem;
+}
+
+.create-event-form-fields > input {
+  border-radius: 0;
 }
 
 .create-event-form-fields {
@@ -21,26 +31,62 @@
   font-family: 'Azonix', sans-serif;
 }
 
-.form-problem-statements-container {
-  width: 50%;
+.form-problem-statements {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  min-width: 100%;
+  padding: 0 8px 8px 8px;
   overflow: hidden;
 }
 
-.form-problem-statements {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-end;
-  padding-right: 4rem;
+.problem-statement {
+  background-color: #171717;
+  padding: 8px;
+  margin: 8px;
+  height: max-content;
 }
 
-.problem-statement {
-  border: 1px solid rgba(48, 43, 43, 0.685);
-  padding: 14px;
-  background-color: rgba(48, 43, 43, 0.685);
-  border-radius: 9999px;
-  font-family: sans-serif;
-  width: inherit;
+.metric {
+  background-color: #171717;
+  padding: 8px;
+  margin: 8px;
+  height: max-content;
+  max-width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.metric-name {
+  text-align: left;
+  width: 100%;
+  padding-left: 5px;
+}
+
+.remove-problem-statement,
+.remove-metric {
+  outline: none;
+  border: 0;
+  background-color: #111;
+  height: 20px;
+  width: 20px;
+  color: #ccc;
+}
+
+.remove-problem-statement:hover,
+.remove-metric:hover {
+  color: #111;
+  background-color: #fff;
+}
+
+.submit-event {
+  width: 95%;
+  background-color: #171717;
+}
+
+.submit-event:hover {
+  cursor: pointer;
 }

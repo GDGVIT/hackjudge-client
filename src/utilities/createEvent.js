@@ -10,11 +10,22 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     errors.push('Event name must be a string')
   }
 
-  for (const element of newMetrics) {
-    if (!(element.maxScore === 'number')) {
-      errors.push('Metric scores must be a number')
+  try {
+    eventDate = Date.parse(eventDate)
+  } catch {
+    errors.push('Date cannot be parsed')
+  }
+
+  if (!Array.isArray(newMetrics)) {
+    errors.push('Metrics must be an array')
+  } else {
+    for (const element of newMetrics) {
+      if (!(element.maxScore === 'number')) {
+        errors.push('Metric scores must be a number')
+      }
     }
   }
+
   if (!(typeof (maxTeamSize) === 'number')) {
     errors.push('The maximum team size must be a number')
   }
