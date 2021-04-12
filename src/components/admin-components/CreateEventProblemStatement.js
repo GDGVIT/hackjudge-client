@@ -14,7 +14,7 @@ const CreateEventProblemStatement = ({ problemStatement, removePs }) => {
 }
 
 CreateEventProblemStatement.propTypes = {
-  problemStatement: PropTypes.string,
+  problemStatement: PropTypes.object,
   removePs: PropTypes.func
 }
 

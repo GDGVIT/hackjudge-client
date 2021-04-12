@@ -11,6 +11,7 @@ const CreateEvent = () => {
   const [eventDetails, setEventDetails] = useState({
     name: '',
     date: '',
+    endDate: '',
     maxMembers: 4,
     reviews: 3,
     problemStatements: [],
@@ -21,7 +22,14 @@ const CreateEvent = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    const response = await createEvent(sessionStorage.getItem('token'), eventDetails.name, eventDetails.problemStatements, eventDetails.metrics, eventDetails.date, eventDetails.maxMembers)
+    const response = await createEvent(sessionStorage.getItem('token'),
+      eventDetails.name,
+      eventDetails.problemStatements,
+      eventDetails.metrics,
+      eventDetails.date,
+      eventDetails.maxMembers,
+      eventDetails.reviews,
+      eventDetails.endDate)
     console.log(response)
   }
 
@@ -30,6 +38,9 @@ const CreateEvent = () => {
   }
   const handleDateChange = (event) => {
     setEventDetails({ ...eventDetails, date: event.target.value })
+  }
+  const handleEndDateChange = (event) => {
+    setEventDetails({ ...eventDetails, endDate: event.target.value })
   }
   const handleMaxMembersChange = (event) => {
     if (event.target.value === '') {
@@ -89,6 +100,10 @@ const CreateEvent = () => {
           <input value={eventDetails.date} placeholder='yyyy/mm/dd' onChange={handleDateChange} />
         </label>
         <label className='create-event-form-fields'>
+          End Date
+          <input value={eventDetails.endDate} placeholder='yyyy/mm/dd' onChange={handleEndDateChange} />
+        </label>
+        <label className='create-event-form-fields'>
           Max Members
           <input value={eventDetails.maxMembers} onChange={handleMaxMembersChange} />
         </label>
@@ -101,7 +116,6 @@ const CreateEvent = () => {
         <label className='create-event-form-fields'>
           Metrics <input value={eventDetails.metric} onKeyDown={handleMetricKeyDown} onChange={handleMetricChange} />
         </label>
-        <button onClick={handleFormSubmit} className='submit-event'> Submit </button>
       </form>
       <div className='form-problem-statements'>
         {eventDetails.problemStatements.length === 0 && (
@@ -129,6 +143,7 @@ const CreateEvent = () => {
         )}
         {eventDetails.metrics.map(metric => <CreateEventMetric key={metric.id} metric={metric} removeMetric={removeMetric} />)}
       </div>
+      <button onClick={handleFormSubmit} className='submit-event'> Submit </button>
     </div>
   )
 }
