@@ -85,6 +85,11 @@
 .submit-event {
   width: 95%;
   background-color: #171717;
+  height: 3rem;
+  font-size: 1.2rem;
+  color: #fff;
+  outline: none;
+  border: 0;
 }
 
 .submit-event:hover {

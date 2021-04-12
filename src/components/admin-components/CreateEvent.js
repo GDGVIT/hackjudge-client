@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import CreateEventProblemStatement from './CreateEventProblemStatement'
 import CreateEventMetric from './CreateEventMetric'
 
+import createEvent from '../../utilities/createEvent'
+
 import '../../styles/createEvent.css'
 
 const CreateEvent = () => {
@@ -17,10 +19,10 @@ const CreateEvent = () => {
     metric: ''
   })
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault()
-    console.log(eventDetails)
-    console.log(Date.parse(eventDetails.date))
+    const response = await createEvent(sessionStorage.getItem('token'), eventDetails.name, eventDetails.problemStatements, eventDetails.metrics, eventDetails.date, eventDetails.maxMembers)
+    console.log(response)
   }
 
   const handleNameChange = (event) => {
@@ -30,7 +32,10 @@ const CreateEvent = () => {
     setEventDetails({ ...eventDetails, date: event.target.value })
   }
   const handleMaxMembersChange = (event) => {
-    setEventDetails({ ...eventDetails, maxMembers: event.target.value })
+    if (event.target.value === '') {
+      setEventDetails({ ...eventDetails, maxMembers: 4 })
+    }
+    setEventDetails({ ...eventDetails, maxMembers: parseInt(event.target.value) })
   }
   const handleReviewsChange = (event) => {
     setEventDetails({ ...eventDetails, reviews: event.target.value })
@@ -55,7 +60,7 @@ const CreateEvent = () => {
     if (event.keyCode === 13 && eventDetails.metric !== '' && eventDetails.metric.includes(':')) {
       const currMetrics = eventDetails.metrics
       const newMetric = eventDetails.metric.split(':')
-      currMetrics.push({ id: currMetrics.length, metric: newMetric[0], maxScore: parseInt(newMetric[1]) })
+      currMetrics.push({ id: currMetrics.length, metricName: newMetric[0], maxScore: parseInt(newMetric[1]) })
       setEventDetails({ ...eventDetails, metrics: currMetrics, metric: '' })
     }
   }
@@ -96,7 +101,7 @@ const CreateEvent = () => {
         <label className='create-event-form-fields'>
           Metrics <input value={eventDetails.metric} onKeyDown={handleMetricKeyDown} onChange={handleMetricChange} />
         </label>
-        <input type='submit' onClick={handleFormSubmit} className='submit-event'/>
+        <button onClick={handleFormSubmit} className='submit-event'> Submit </button>
       </form>
       <div className='form-problem-statements'>
         {eventDetails.problemStatements.length === 0 && (
