@@ -1,8 +1,10 @@
 import axios from 'axios'
 
-const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize) => {
+const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize, reviews, endDate) => {
   // Validate event details data
   console.log(teamSize)
+  newMetrics = newMetrics.map(m => ({ metricName: m.metricName, maxScore: m.maxScore }))
+  newProblemStatements = newProblemStatements.map(ps => (ps.ps))
   const errors = []
   if (!Array.isArray(newProblemStatements)) {
     errors.push('Problem statements must be an array.')
@@ -13,10 +15,10 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
 
   try {
     eventDate = Date.parse(eventDate)
-    if (isNaN(eventDate)) {
+    endDate = Date.parse(endDate)
+    if (isNaN(eventDate) || isNaN(endDate)) {
       throw new Error('invalid date')
     }
-    console.log(eventDate)
   } catch {
     errors.push('Date cannot be parsed')
   }
@@ -35,6 +37,10 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     errors.push('The maximum team size must be a number')
   }
 
+  if (!(typeof (reviews) === 'number')) {
+    errors.push('The no of reviews must be a number')
+  }
+
   if (errors.length !== 0) {
     console.log('Error: Can\'t create an event with those filthy details!')
     return errors
@@ -45,7 +51,9 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     problemStatements: newProblemStatements,
     metrics: newMetrics,
     dateOfEvent: eventDate,
-    maxTeamSize: teamSize
+    maxTeamSize: teamSize,
+    noOfReviews: reviews,
+    endOfEvent: endDate
   }
 
   const config = {
