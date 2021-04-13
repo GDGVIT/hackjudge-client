@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Event from './Event'
 
 const Events = ({ events, isAdmin }) => {
-  console.log(events)
   return (
     <div>
       {isAdmin && (

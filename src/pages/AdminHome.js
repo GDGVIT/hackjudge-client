@@ -13,7 +13,11 @@ import '../styles/adminHome.css'
 const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) => {
   const history = useHistory()
 
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState({
+    currentEvents: [],
+    pastEvents: [],
+    upcomingEvents: []
+  })
   const [overlayType, setOverlayType] = useState(0)
 
   const hook = async () => {
@@ -21,8 +25,22 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
       history.push('/')
     }
     const token = sessionStorage.getItem('token')
-    const newEvents = await getAllEvents(token)
-    setEvents(newEvents)
+    let newEvents = await getAllEvents(token)
+    newEvents = newEvents.map(event => ({ ...event, dateOfEvent: Date.parse(event.dateOfEvent), endOfEvent: Date.parse(event.endOfEvent) }))
+    const currDate = Date.now()
+    console.log(currDate)
+    const currEvents = newEvents.filter(event => {
+      return ((event.dateOfEvent <= currDate) && (event.endOfEvent > currDate))
+    })
+    const pasEvents = newEvents.filter(event => {
+      return (event.endOfEvent < currDate)
+    })
+    const upcomEvents = newEvents.filter(event => {
+      return (event.dateOfEvent > currDate)
+    })
+    setEvents({ currentEvents: currEvents, pastEvents: pasEvents, upcomingEvents: upcomEvents })
+    console.log(newEvents)
+    console.log(events)
   }
 
   useEffect(hook, [])
@@ -51,11 +69,23 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
       {overlayType === 1 && (
         <CreateEvent />
       )}
-      {overlayType === 0 && events.length === 0 && (
+      {overlayType === 0 && events.currentEvents.length === 0 && (
         <NoEvents />
       )}
-      {overlayType === 0 && events.length !== 1 && (
-        <Events events={events} isAdmin />
+      {overlayType === 0 && events.currentEvents.length !== 0 && (
+        <Events events={events.currentEvents} isAdmin />
+      )}
+      {overlayType === 2 && events.pastEvents.length === 0 && (
+        <NoEvents />
+      )}
+      {overlayType === 2 && events.pastEvents.length !== 0 && (
+        <Events events={events.pastEvents} isAdmin />
+      )}
+      {overlayType === 3 && events.upcomingEvents.length === 0 && (
+        <NoEvents />
+      )}
+      {overlayType === 3 && events.upcomingEvents.length !== 0 && (
+        <Events events={events.upcomingEvents} isAdmin />
       )}
     </div>
   )
