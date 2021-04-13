@@ -45,7 +45,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
 
   return (
     <>
-      <div className='login-title'>Create Account</div>
+      <h1 className='login-title'>Create Account</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           labelText='Name'

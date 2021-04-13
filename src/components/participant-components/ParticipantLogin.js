@@ -51,7 +51,7 @@ const ParticipantLogin = ({
   }
   return (
     <>
-      <div className='login-title'>Start Hacking</div>
+      <h1 className='login-title'>Start Hacking</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           inputType='text'
