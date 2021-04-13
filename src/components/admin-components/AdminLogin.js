@@ -45,18 +45,18 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
 
   return (
     <>
-      <div className='login-title'>Admin Login</div>
+      <h1 className='login-title'>Admin Login</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           inputType='text'
           inputValue={userData.email}
-          labelText='Email: '
+          labelText='Email'
           onChangeHandler={handleUserEmail}
         />
         <InputForm
           inputType='password'
           inputValue={userData.password}
-          labelText='Password: '
+          labelText='Password'
           onChangeHandler={handleUserPassword}
         />
         <input type='submit' className='login-button' value='Login' />

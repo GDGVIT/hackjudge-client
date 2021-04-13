@@ -44,9 +44,10 @@ const CreateEvent = () => {
   }
   const handleMaxMembersChange = (event) => {
     if (event.target.value === '') {
-      setEventDetails({ ...eventDetails, maxMembers: 4 })
+      setEventDetails({ ...eventDetails, maxMembers: '' })
+    } else {
+      setEventDetails({ ...eventDetails, maxMembers: parseInt(event.target.value) })
     }
-    setEventDetails({ ...eventDetails, maxMembers: parseInt(event.target.value) })
   }
   const handleReviewsChange = (event) => {
     setEventDetails({ ...eventDetails, reviews: event.target.value })
