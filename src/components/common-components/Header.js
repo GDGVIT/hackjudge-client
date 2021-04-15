@@ -52,9 +52,6 @@ const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) =>
           )}
           {userType !== '2' && (
             <>
-              <button ref={currentRef}>Current Events</button>
-              <button ref={upcomingRef}>Upcoming Events</button>
-              <button ref={pastRef}>Past Events</button>
               <Link to='/' onClick={logout}>Logout</Link>
             </>
           )}

@@ -33,13 +33,18 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
     if (response.status === 200) {
       response = response.data
       console.log(response)
-      handleLogin(response.token, response.user.authId, 1)
+      handleLogin(response.token, response.createdAuth.authId, 1, response.user.name)
       history.push('/home')
     } else if (response.status === 422) {
       setAnimationState(0)
       console.log(response)
       setInvalid(true)
       setErrorMessage('Can\'t make an account with those filthy details')
+    } else if (response.status === 409) {
+      setAnimationState(0)
+      console.log(response)
+      setInvalid(true)
+      setErrorMessage('User already exists!')
     }
   }
 

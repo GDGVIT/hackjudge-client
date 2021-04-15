@@ -33,8 +33,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
     if (response.status === 200) {
       setInvalid(false)
       response = response.data
-      handleUserName(response.user.name)
-      handleLogin(response.token, response.user.authId, 2)
+      handleLogin(response.token, response.user.authId, 2, response.user.name)
       history.push('/admin')
     } else if (response.status === 401) {
       setAnimationState(0)
