@@ -52,12 +52,14 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
           inputValue={userData.email}
           labelText='Email'
           onChangeHandler={handleUserEmail}
+          placeholderText='user@domain.com'
         />
         <InputForm
           inputType='password'
           inputValue={userData.password}
           labelText='Password'
           onChangeHandler={handleUserPassword}
+          placeholderText='Password'
         />
         <input type='submit' className='login-button' value='Login' />
       </form>

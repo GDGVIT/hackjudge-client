@@ -73,19 +73,19 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
         <NoEvents />
       )}
       {overlayType === 0 && events.currentEvents.length !== 0 && (
-        <Events events={events.currentEvents} isAdmin />
+        <Events events={events.currentEvents} isAdmin referrer={overlayType} />
       )}
       {overlayType === 2 && events.pastEvents.length === 0 && (
         <NoEvents />
       )}
       {overlayType === 2 && events.pastEvents.length !== 0 && (
-        <Events events={events.pastEvents} isAdmin />
+        <Events events={events.pastEvents} isAdmin referrer={overlayType} />
       )}
       {overlayType === 3 && events.upcomingEvents.length === 0 && (
         <NoEvents />
       )}
       {overlayType === 3 && events.upcomingEvents.length !== 0 && (
-        <Events events={events.upcomingEvents} isAdmin />
+        <Events events={events.upcomingEvents} isAdmin referrer={overlayType} />
       )}
     </div>
   )

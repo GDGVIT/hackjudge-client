@@ -90,61 +90,68 @@ const CreateEvent = () => {
 
   return (
     <div className='create-event-page'>
-      <form className='create-event-form'>
-        <h1> Fill this up... carefully </h1>
-        <label className='create-event-form-fields'>
-          Event name
-          <input placeholder='Name of the event' value={eventDetails.name} onChange={handleNameChange} />
-        </label>
-        <label className='create-event-form-fields'>
-          Event date
-          <input value={eventDetails.date} placeholder='yyyy-mm-dd' onChange={handleDateChange} />
-        </label>
-        <label className='create-event-form-fields'>
-          End Date
-          <input value={eventDetails.endDate} placeholder='yyyy-mm-dd' onChange={handleEndDateChange} />
-        </label>
-        <label className='create-event-form-fields'>
-          Max Members
-          <input value={eventDetails.maxMembers} onChange={handleMaxMembersChange} />
-        </label>
-        <label className='create-event-form-fields'>
-          Event reviews <input value={eventDetails.reviews} onChange={handleReviewsChange} />
-        </label>
-        <label className='create-event-form-fields'>
-          Problem Statements <input value={eventDetails.problemStatement} onKeyDown={handlePsKeyDown} onChange={handleProblemStatementChange} />
-        </label>
-        <label className='create-event-form-fields'>
-          Metrics <input value={eventDetails.metric} onKeyDown={handleMetricKeyDown} onChange={handleMetricChange} />
-        </label>
-      </form>
+      <div className='create-event-form-wrapper'>
+        <form className='create-event-form'>
+          <h1> Event Details </h1>
+          <label className='create-event-form-fields'>
+            <span>Event name</span>
+            <input placeholder='Name of the event' value={eventDetails.name} onChange={handleNameChange} />
+          </label>
+          <label className='create-event-form-fields'>
+            <span>Event date</span>
+            <input value={eventDetails.date} placeholder='yyyy-mm-dd' onChange={handleDateChange} />
+          </label>
+          <label className='create-event-form-fields'>
+            <span>End Date</span>
+            <input value={eventDetails.endDate} placeholder='yyyy-mm-dd' onChange={handleEndDateChange} />
+          </label>
+          <label className='create-event-form-fields'>
+            <span>Max Members</span>
+            <input type='number' min='1' max='100' value={eventDetails.maxMembers} onChange={handleMaxMembersChange} />
+          </label>
+          <label className='create-event-form-fields'>
+            <span>Event reviews</span>
+            <input type='number' min='1' max='10' value={eventDetails.reviews} onChange={handleReviewsChange} />
+          </label>
+          <label className='create-event-form-fields'>
+            <span>Problem Statements</span>
+            <textarea value={eventDetails.problemStatement} onKeyDown={handlePsKeyDown} placeholder='Problem Statements' onChange={handleProblemStatementChange}>
+              Problem Statements
+            </textarea>
+          </label>
+          <label className='create-event-form-fields'>
+            <span>Metrics</span>
+            <input value={eventDetails.metric} onKeyDown={handleMetricKeyDown} placeholder='Metric Name: Max Score' onChange={handleMetricChange} />
+          </label>
+        </form>
+        <button onClick={handleFormSubmit} className='submit-event'> Create Event </button>
+      </div>
       <div className='form-problem-statements'>
         {eventDetails.problemStatements.length === 0 && (
-          <h1>
+          <h3>
             Add some problem statements?
-          </h1>
+          </h3>
         )}
         {eventDetails.problemStatements.length !== 0 && (
-          <h1>
+          <h2>
             Problem Statements
-          </h1>
+          </h2>
         )}
         {eventDetails.problemStatements.map(ps => <CreateEventProblemStatement key={ps.id} problemStatement={ps} removePs={removePs} />)}
       </div>
       <div className='metrics'>
         {eventDetails.metrics.length === 0 && (
-          <h1>
+          <h3>
             Add some metrics?
-          </h1>
+          </h3>
         )}
         {eventDetails.metrics.length !== 0 && (
-          <h1>
+          <h2>
             Metrics
-          </h1>
+          </h2>
         )}
         {eventDetails.metrics.map(metric => <CreateEventMetric key={metric.id} metric={metric} removeMetric={removeMetric} />)}
       </div>
-      <button onClick={handleFormSubmit} className='submit-event'> Submit </button>
     </div>
   )
 }

@@ -116,7 +116,7 @@
   text-align: left;
   width: 100%;
   padding: 5px;
-  color: #aaa;
+  color: #ddd;
 }
 
 .input-box {
@@ -130,6 +130,14 @@
   padding-left: 20px;
   border-radius: 4px;
   font-size: 15px;
+}
+
+.input-box:focus {
+  border: 1px solid white;
+}
+
+.input-box::placeholder {
+  color: rgb(151, 141, 141);
 }
 
 .login-button {
@@ -158,10 +166,13 @@ input::placeholder {
   background-color: inherit;
   color: white;
   font-size: 15px;
+  transition: all 500ms;
 }
 
 .user-type-login-button > button:hover {
   cursor: pointer;
+  color: #426a8f;
+  transform: scale(1.01);
 }
 
 .login-circle {

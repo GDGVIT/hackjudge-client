@@ -8,7 +8,10 @@ const CreateEventProblemStatement = ({ problemStatement, removePs }) => {
 
   return (
     <div className='problem-statement'>
-      <button onClick={handleButtonClick} className='remove-problem-statement'>X</button> {problemStatement.ps}
+      <div className='ps-text'>
+        {problemStatement.ps}
+      </div>
+      <button onClick={handleButtonClick} className='remove-problem-statement'>X</button>
     </div>
   )
 }

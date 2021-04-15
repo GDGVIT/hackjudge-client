@@ -8,7 +8,11 @@ const CreateEventMetric = ({ metric, removeMetric }) => {
 
   return (
     <div className='metric'>
-      <button onClick={handleButtonClick} className='remove-metric'>X</button>  <span className='metric-name'>{metric.metricName}</span><span>{metric.maxScore}</span>
+      <span className='metric-name'>{metric.metricName}</span>
+      <span className='metric-score'>{metric.maxScore}</span>
+      <button onClick={handleButtonClick} className='remove-metric'>
+        X
+      </button>
     </div>
   )
 }
