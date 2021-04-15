@@ -52,18 +52,21 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
           inputType='text'
           inputValue={userData.name}
           onChangeHandler={handleUserName}
+          placeholderText='Full Name'
         />
         <InputForm
           labelText='Email'
           inputType='text'
           inputValue={userData.email}
           onChangeHandler={handleUserEmail}
+          placeholderText='user@domain.com'
         />
         <InputForm
           labelText='Password'
           inputType='password'
           inputValue={userData.password}
           onChangeHandler={handleUserPassword}
+          placeholderText='Password'
         />
         <input className='login-button' type='submit' value='Register' />
       </form>

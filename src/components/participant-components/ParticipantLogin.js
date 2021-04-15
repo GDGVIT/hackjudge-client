@@ -51,19 +51,21 @@ const ParticipantLogin = ({
   }
   return (
     <>
-      <h1 className='login-title'>Start Hacking</h1>
+      <h1 className='login-title'>Login</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
           inputType='text'
           inputValue={userData.email}
           onChangeHandler={handleUserEmail}
-          labelText='Email: '
+          labelText='Email'
+          placeholderText='user@domain.com'
         />
         <InputForm
           inputType='password'
           inputValue={userData.password}
           onChangeHandler={handleUserPassword}
-          labelText='Password: '
+          labelText='Password'
+          placeholderText='Password'
         />
         <input className='login-button' type='submit' value='Sign In' />
       </form>

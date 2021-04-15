@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Event from './Event'
 
-const Events = ({ events, isAdmin }) => {
+const Events = ({ events, isAdmin, referrer }) => {
   return (
     <div>
       {isAdmin && (
@@ -25,7 +25,8 @@ const Events = ({ events, isAdmin }) => {
 
 Events.propTypes = {
   events: PropTypes.any,
-  isAdmin: PropTypes.bool
+  isAdmin: PropTypes.bool,
+  referrer: PropTypes.number
 }
 
 export default Events
