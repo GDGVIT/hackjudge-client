@@ -17,6 +17,7 @@ const login = async (userEmail, userPassword, isAdmin = false) => {
 
   try {
     const response = await axios(config)
+    console.log(response)
     return response
   } catch (err) {
     return err.response

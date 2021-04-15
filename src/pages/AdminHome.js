@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import Events from '../components/common-components/Events'
+import Events from '../components/admin-components/Events'
 import NoEvents from '../components/admin-components/NoEvents'
 import CreateEvent from '../components/admin-components/CreateEvent'
 
@@ -24,6 +24,11 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
     if (!sessionStorage.getItem('logged_in') === 'true') {
       history.push('/')
     }
+    if (sessionStorage.getItem('userType') !== '2') {
+      history.push('/')
+      sessionStorage.clear()
+    }
+
     const token = sessionStorage.getItem('token')
     let newEvents = await getAllEvents(token)
     newEvents = newEvents.map(event => ({ ...event, dateOfEvent: Date.parse(event.dateOfEvent), endOfEvent: Date.parse(event.endOfEvent) }))

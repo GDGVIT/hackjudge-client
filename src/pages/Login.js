@@ -45,12 +45,13 @@ const Login = ({ userData, handleUserData }) => {
     handleUserData({ ...userData, password: newPassword })
   }
 
-  const handleLogin = (newToken, newAuthId, userType) => {
-    handleUserData({ ...userData, logged_in: true })
+  const handleLogin = (newToken, newAuthId, userType, userName) => {
+    handleUserData({ ...userData, email: '', password: '', name: '', logged_in: true })
     sessionStorage.setItem('token', newToken)
     sessionStorage.setItem('auth_id', newAuthId)
     sessionStorage.setItem('userType', userType)
-    sessionStorage.setItem('loggid_id', 'true')
+    sessionStorage.setItem('logged_id', 'true')
+    sessionStorage.setItem('userName', userName)
   }
 
   return (

@@ -40,8 +40,7 @@ const ParticipantLogin = ({
     if (response.status === 200) {
       setInvalid(false)
       response = response.data
-      handleUserName(response.user.name)
-      handleLogin(response.token, response.user.authId, 0)
+      handleLogin(response.token, response.user.authId, 0, response.user.name)
       history.push('/home')
     } else if (response.status === 401) {
       setAnimationState(0)
