@@ -1,10 +1,12 @@
 import React from 'react'
-import adminLogin from '../utilities/adminLogin'
+import CreateEvent from '../components/admin-components/CreateEvent'
+import Header from '../components/common-components/Header'
 
 const ComponentsTest = () => {
-  adminLogin('admin@mail.com', 'thtwhfsiai')
   return (
     <>
+      <Header />
+      <CreateEvent />
     </>
   )
 }

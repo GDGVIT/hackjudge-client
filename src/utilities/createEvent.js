@@ -1,54 +1,73 @@
 import axios from 'axios'
 
-const createEvent = (newEvent, newProblemStatements, newMetrics, eventDate, teamSize) => {
+const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize, reviews, endDate) => {
   // Validate event details data
+  console.log(teamSize)
+  newMetrics = newMetrics.map(m => ({ metricName: m.metricName, maxScore: m.maxScore }))
+  newProblemStatements = newProblemStatements.map(ps => (ps.ps))
   const errors = []
   if (!Array.isArray(newProblemStatements)) {
     errors.push('Problem statements must be an array.')
   }
   if (!(typeof (newEvent) === 'string')) {
-    errors.push('Event name must be a string')
+    errors.push(`Event name must be a string, it is currently ${newEvent}`)
   }
 
-  for (const element of newMetrics) {
-    if (!(element.maxScore === 'number')) {
-      errors.push('Metric scores must be a number')
+  try {
+    eventDate = Date.parse(eventDate)
+    endDate = Date.parse(endDate)
+    if (isNaN(eventDate) || isNaN(endDate)) {
+      throw new Error('invalid date')
+    }
+  } catch {
+    errors.push('Date cannot be parsed')
+  }
+
+  if (!Array.isArray(newMetrics)) {
+    errors.push('Metrics must be an array')
+  } else {
+    for (const element of newMetrics) {
+      if (!(typeof (element.maxScore) === 'number')) {
+        errors.push(`Metric scores must be a number not ${typeof (element.maxScore)}`)
+      }
     }
   }
-  if (!(typeof (maxTeamSize) === 'number')) {
+
+  if (!(typeof (teamSize) === 'number')) {
     errors.push('The maximum team size must be a number')
+  }
+
+  if (!(typeof (reviews) === 'number')) {
+    errors.push('The no of reviews must be a number')
   }
 
   if (errors.length !== 0) {
     console.log('Error: Can\'t create an event with those filthy details!')
     return errors
   }
-  // npm pck for err handling
 
   const data = {
     eventName: newEvent,
     problemStatements: newProblemStatements,
     metrics: newMetrics,
     dateOfEvent: eventDate,
-    maxTeamSize: teamSize
+    maxTeamSize: teamSize,
+    noOfReviews: reviews,
+    endOfEvent: endDate
   }
 
   const config = {
     method: 'post',
-    url: '{{URL}}/event/createEvent',
+    url: 'https://helios-hackjudgeapi.herokuapp.com/event/createEvent',
     headers: {
-      Authorization: '{{ATOKEN}}'
+      Authorization: ATOKEN
     },
     data: data
   }
-
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data))
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+  console.log(config)
+  const response = await axios(config)
+  console.log(response)
+  return response
 }
 
 export default createEvent

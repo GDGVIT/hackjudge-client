@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@600&display=swap');
+
+.create-event-page {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 500px));
+  gap: 5px;
+  padding: 0 20px 0 20px;
+  place-content: center;
+  transition: all 500ms;
+}
+
+.create-event-page h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  color: #ddd;
+}
+
+.create-event-form-wrapper {
+  width: 100%;
+}
+
+.form-problem-statements,
+.metrics {
+  padding: 10px;
+  border: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  align-content: flex-start;
+}
+
+.create-event-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  gap: 6px;
+  padding: 10px;
+}
+
+.create-event-form > h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+}
+
+.create-event-form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-event-form-fields > span {
+  font-size: 1rem;
+  color: #ccc;
+  padding: 3px;
+}
+
+.create-event-form-fields > input,
+.create-event-form-fields > textarea {
+  background-color: #171717;
+  outline: none;
+  border: 0;
+  height: 3rem;
+  color: #fff;
+  font-size: 1.3rem;
+  padding-left: 10px;
+  border-radius: 4px;
+}
+
+.create-event-form-fields > textarea {
+  min-height: 100px;
+  max-height: 150px;
+  font-size: 1.2rem;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.create-event-form-fields > input::placeholder {
+  color: rgb(134, 134, 134);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.create-event-form-fields > input:focus,
+.create-event-form textarea:focus {
+  border: 1px solid white;
+}
+
+.create-event-form-fields > input:hover,
+.create-event-form textarea:hover {
+  border: 1px solid #aaa;
+}
+
+.submit-event {
+  width: 100%;
+  margin-top: 20px;
+  height: 2.8rem;
+  background-color: #335677;
+  outline: none;
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  transition: all 500ms;
+  font-size: 1.3rem;
+}
+
+.submit-event:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.problem-statement,
+.metric {
+  border: 0;
+  border-radius: 4px;
+  max-width: 100%;
+  min-width: 20%;
+  width: max-content;
+  margin-top: 5px;
+  overflow: hidden;
+  min-height: 20px;
+  height: max-content;
+  background-color: #171717;
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-problem-statement,
+.remove-metric {
+  background-color: #201010;
+  border: 0;
+  border-left: 1px solid #db0f0f;
+  outline: none;
+  color: #ff7979;
+  width: 35px;
+  padding: 5px;
+  font-size: 1rem;
+  transition: all 500ms;
+}
+
+.remove-problem-statement:hover,
+.remove-metric:hover {
+  cursor: pointer;
+  background-color: #db0f0f;
+  color: #fff;
+}
+
+.ps-text {
+  padding: 10px;
+  width: 100%;
+  transition: all 500ms;
+  font-size: 1.1rem;
+}
+
+.ps-text:hover {
+  color: rgb(255, 220, 220);
+}
+
+.form-problem-statements > h3,
+.form-problem-statements > h2,
+.metrics > h3,
+.metrics > h2 {
+  text-align: center;
+  width: 100%;
+}
+
+.metric-name,
+.metric-score {
+  padding: 10px;
+  font-size: 1.1rem;
+}
+
+.metric-score {
+  color: #cecece;
+}

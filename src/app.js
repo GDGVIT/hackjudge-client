@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Login from './pages/Login'
@@ -7,6 +7,7 @@ import ParticipantHome from './pages/ParticipantHome'
 import Header from './components/common-components/Header'
 
 import './styles/app.css'
+import './styles/sharedStyles.css'
 
 import ComponentsTest from './pages/ComponentsTest'
 
@@ -23,6 +24,11 @@ const App = () => {
     setUserData((currData) => newData)
   }
 
+  const createRef = useRef()
+  const currentRef = useRef()
+  const pastRef = useRef()
+  const upcomingRef = useRef()
+
   return (
     <div className='container'>
       <Router>
@@ -31,12 +37,12 @@ const App = () => {
             <Login userData={userData} handleUserData={handleUserData} />
           </Route>
           <Route exact path='/admin'>
-            <Header currentPage='admin-home' />
-            <AdminHome userData={userData} />
+            <Header currentPage='admin-home' createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+            <AdminHome userData={userData} createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
           </Route>
           <Route exact path='/home'>
-            <Header currentPage='participant-home' />
-            <ParticipantHome userData={userData} />
+            <Header currentPage='participant-home' currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+            <ParticipantHome userData={userData} currentRef={currentRef} upcomingRef={upcomingRef} />
           </Route>
           <Route exact path='/test'>
             <ComponentsTest userData={userData} />

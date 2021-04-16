@@ -3,18 +3,18 @@ import PropTypes from 'prop-types'
 
 import Event from './Event'
 
-const Events = ({ events, isAdmin }) => {
+const Events = ({ events, isAdmin, referrer }) => {
   return (
     <div>
       {isAdmin && (
         <div>
-          {events.map(event => <Event key={event.id} event={event} isAdmin={isAdmin} />)}
+          {events.map(event => <Event key={event.eventId} event={event} isAdmin={isAdmin} />)}
         </div>
       )}
 
-      {!isAdmin && (
+      {!isAdmin && console.log(events) && (
         <div>
-          [List of upcoming events that the user has not registered for along with a register button]
+          [List of upcoming e vents that the user has not registered for along with a register button]
           <br />
           [List of events the user is taking part in and button to view the team details for that event]
         </div>
@@ -24,8 +24,9 @@ const Events = ({ events, isAdmin }) => {
 }
 
 Events.propTypes = {
-  events: PropTypes.array,
-  isAdmin: PropTypes.bool
+  events: PropTypes.any,
+  isAdmin: PropTypes.bool,
+  referrer: PropTypes.number
 }
 
 export default Events

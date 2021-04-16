@@ -1,44 +1,48 @@
 import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import Events from '../components/common-components/Events'
+import ParticipantEvents from '../components/participant-components/ParticipantEvents'
 
 import '../styles/participantHome.css'
 
-const ParticipantHome = ({ userData }) => {
-  const [events, setEvents] = useState([])
+import getAllEvents from '../utilities/getAllEvents'
 
-  console.log(userData)
+const ParticipantHome = ({ currentRef, upcomingRef }) => {
+  const history = useHistory()
+  const [events, setEvents] = useState()
 
-  const hook = () => {
-    setEvents([
-      {
-        id: 1,
-        name: 'Event 1'
-      },
-      {
-        id: 2,
-        name: 'Event 2'
-      }
-    ])
+  const hook = async () => {
+    if (!sessionStorage.getItem('logged_in') === 'true') {
+      history.push('/')
+    }
+
+    const token = sessionStorage.getItem('token')
+    if (token === 'null') {
+      history.push('/')
+    }
+
+    let newEvents = await getAllEvents(token)
+    newEvents = newEvents.map(event => ({
+      ...event,
+      unixStartTime: Date.parse(event.dateOfEvent),
+      unixEndTime: Date.parse(event.endOfEvent)
+    }))
+    console.log(newEvents)
+    setEvents(newEvents)
   }
 
   useEffect(hook, [])
   return (
-    <>
-      <div className='participant-home'>
-        <h1>Participant home page</h1>
-        <p>
-          Welcome {userData.email}, your password is {userData.password}
-        </p>
-        <Events events={events} isAdmin={false} />
-      </div>
-    </>
+    <div className='participant-home'>
+      <ParticipantEvents events={events} />
+    </div>
   )
 }
 
 ParticipantHome.propTypes = {
-  userData: PropTypes.object
+  currentRef: PropTypes.any,
+  upcomingRef: PropTypes.any
 }
 
 export default ParticipantHome

@@ -4,27 +4,57 @@ import { Link } from 'react-router-dom'
 
 import HackJudgeLogo from '../../assets/HackJudgeLogo.svg'
 
-const Header = ({ currentPage }) => {
+const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) => {
   const headerClass = `header header-${currentPage}`
+
+  const logout = () => {
+    sessionStorage.clear()
+  }
+
+  let userType = sessionStorage.getItem('userType')
+  if (userType == null) {
+    userType = '1'
+  }
 
   return (
     <header className={headerClass}>
       <ul>
         <li>
-          <Link to='/admin'>
-            <img
-              className='hackJudge-logo '
-              src={HackJudgeLogo}
-              alt='HackJudgeLogo'
-            />
-          </Link>
+          {userType === '2' && (
+            <Link to='/admin'>
+              <img
+                className='hackJudge-logo '
+                src={HackJudgeLogo}
+                alt='HackJudgeLogo'
+              />
+            </Link>
+          )}
+          {userType !== '2' && (
+            <Link to='/home'>
+              <img
+                className='hackJudge-logo'
+                src={HackJudgeLogo}
+                alt='HackJudgeLogo'
+              />
+            </Link>
+          )}
         </li>
 
         <li className='links'>
-          <Link to='/admin-home'>Current Events</Link>
-          <Link to='/upcoming-events'>Upcoming Events</Link>
-          <Link to='/past-events'>Past Events</Link>
-          <Link to='/'>Logout</Link>
+          {userType === '2' && (
+            <>
+              <button ref={currentRef}>Current Events</button>
+              <button ref={upcomingRef}>Upcoming Events</button>
+              <button ref={pastRef}>Past Events</button>
+              <button ref={createRef}>Create Event</button>
+              <Link to='/' onClick={logout}>Logout</Link>
+            </>
+          )}
+          {userType !== '2' && (
+            <>
+              <Link to='/' onClick={logout}>Logout</Link>
+            </>
+          )}
         </li>
       </ul>
     </header>
@@ -32,7 +62,11 @@ const Header = ({ currentPage }) => {
 }
 
 Header.propTypes = {
-  currentPage: PropTypes.string
+  currentPage: PropTypes.string,
+  createRef: PropTypes.any,
+  currentRef: PropTypes.any,
+  pastRef: PropTypes.any,
+  upcomingRef: PropTypes.any
 }
 
 export default Header
