@@ -1,24 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import isInTeam from '../../utilities/isInTeam'
+
 const ParticipantEvents = ({ events }) => {
   const [registeredEvents, setRegisteredEvents] = useState([])
   const [unregisteredEvents, setUnregisterdEvents] = useState([])
 
-  const hook = () => {
+  const hook = async () => {
     const tempRegEvents = []
     const tempUnregEvents = []
+    if (events && events.length !== 0) {
+      events.forEach(async (event) => {
+        const response = await isInTeam(sessionStorage.getItem('token'), event.eventId)
+        if (response.status !== 200) {
+          console.log(response)
+        } else if (response.data.message === 'You are not in a team') {
+          tempUnregEvents.push({ event, message: response.data.message })
+        } else {
+          tempRegEvents.push({ event: event, message: response.data.message })
+        }
+      })
+    }
     setRegisteredEvents(tempRegEvents)
     setUnregisterdEvents(tempUnregEvents)
-    console.log(registeredEvents)
-    console.log(unregisteredEvents)
+    console.log(registeredEvents.length, unregisteredEvents.length)
   }
 
-  useEffect(hook, [])
+  useEffect(hook, [events])
 
   return (
     <div>
-      {registeredEvents.length === 0 && unregisteredEvents.length === 0 && (
+      {unregisteredEvents.length === 0 && registeredEvents.length === 0 && (
         <div className='no-events-at-all'>
           There are no events... at all
         </div>
@@ -30,7 +43,7 @@ const ParticipantEvents = ({ events }) => {
       )}
       {unregisteredEvents.length !== 0 && (
         <div>
-          You havent registered for these events
+          <h1> Register, and forget about FOMO</h1>
         </div>
       )}
     </div>
