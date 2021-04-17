@@ -42,6 +42,11 @@ const Review = ({ n, event }) => {
                   No teams to show, marketing team slakin, eh?
                 </p>
               )}
+              {teams !== null && teams.length > 0 && (
+                <div className='review-teams-container'>
+                  Teams
+                </div>
+              )}
             </div>
           </div>
         </div>
