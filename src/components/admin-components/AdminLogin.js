@@ -7,8 +7,8 @@ import InputForm from '../common-components/InputForm'
 import LoginLoader from '../common-components/LoginLoader'
 import LoginError from '../common-components/LoginError'
 
-import login from '../../utilities/login'
-import validator from '../../utilities/validator'
+import api from '../../utilities/api'
+import { emailValidator } from '../../utilities/validator'
 
 const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserType, handleUserName, handleLogin }) => {
   const history = useHistory()
@@ -19,7 +19,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
   const handleSubmit = async (event) => {
     event.preventDefault()
     setAnimationState(1)
-    if (!validator(userData.email)) {
+    if (!emailValidator(userData.email)) {
       setErrorMessage('That doesn\'t look like an email to me')
       setInvalid(true)
       setAnimationState(0)
@@ -28,8 +28,14 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       setInvalid(false)
       setAnimationState(1)
     }
+
     setAnimationState(1)
-    let response = await login(userData.email, userData.password, true)
+    const data = {
+      email: userData.email,
+      password: userData.password,
+      isAdmin: true
+    }
+    let response = await api('login', 'post', data)
     if (response.status === 200) {
       setInvalid(false)
       response = response.data

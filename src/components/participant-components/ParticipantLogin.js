@@ -7,8 +7,8 @@ import InputForm from '../common-components/InputForm'
 import LoginLoader from '../common-components/LoginLoader'
 import LoginError from '../common-components/LoginError'
 
-import login from '../../utilities/login'
-import validator from '../../utilities/validator'
+import { emailValidator } from '../../utilities/validator'
+import api from '../../utilities/api'
 
 const ParticipantLogin = ({
   userData,
@@ -26,7 +26,7 @@ const ParticipantLogin = ({
   const handleSubmit = async (event) => {
     event.preventDefault()
     setAnimationState(1)
-    if (!validator(userData.email)) {
+    if (!emailValidator(userData.email)) {
       setErrorMessage('That doesn\'t look like an email to me')
       setInvalid(true)
       setAnimationState(0)
@@ -35,8 +35,11 @@ const ParticipantLogin = ({
       setInvalid(false)
       setAnimationState(1)
     }
+
     setAnimationState(1)
-    let response = await login(userData.email, userData.password, false)
+
+    let response = await api('login', 'post', { email: userData.email, password: userData.password, isAdmin: false })
+
     if (response.status === 200) {
       setInvalid(false)
       response = response.data
