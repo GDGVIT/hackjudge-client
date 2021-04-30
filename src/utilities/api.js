@@ -35,7 +35,9 @@ const api = async (url, method, data = null, authorization = null) => {
     console.log(response)
     return response
   } catch (error) {
-    return error.respnose
+    console.log('errr')
+    console.log(error.response)
+    return error.response
   }
 }
 

@@ -33,3 +33,7 @@ body {
   flex-direction: column;
   overflow: hidden;
 }
+
+button:hover {
+  cursor: pointer;
+}

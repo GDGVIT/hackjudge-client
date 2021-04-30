@@ -1,3 +1,131 @@
-* {
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@600&display=swap');
+
+.participant-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.unregistered-events-container {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.unregistered-event-card {
+  padding: 10px;
+  width: 100%;
+  background-color: #17171786;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.7rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.unregistered-event-card > div:last-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.unregistered-event-card button {
+  padding: 7px;
+  background-color: inherit;
+  border: 1px solid white;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1.4rem;
+  transition: all 500ms;
+}
+
+.unregistered-event-card button:first-child {
+  background-color: hsl(175, 100%, 51%);
+  color: rgb(0, 0, 0);
+  transition: all 500ms;
+}
+
+.unregistered-event-card button:hover {
+  text-decoration: underline;
+}
+
+.unreg-event-details {
+  position: fixed;
+  top: 10%;
+  left: 25%;
+  min-width: 50%;
+  width: 50%;
+  min-height: 80%;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  background-color: rgba(42, 37, 37, 0.4);
+  padding: 30px;
+}
+
+.unreg-event-details-topbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-details-title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.event-details-title > h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.event-details-title > h3 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: rgb(179, 179, 179);
+}
+
+.unreg-event-detail-close {
+  background-color: #171717;
+  width: max-content;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid white;
+  border-radius: 4px;
+  transition: all 500ms;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.unreg-event-detail-close:hover {
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+}
+
+.event-details-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.unreg-event-ps {
+  display: flex;
+  flex-direction: column;
+}
+
+.unreg-event-ps li {
+  list-style: none;
 }

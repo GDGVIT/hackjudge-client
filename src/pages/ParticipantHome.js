@@ -35,7 +35,14 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
   useEffect(hook, [])
   return (
     <div className='participant-home'>
-      <ParticipantEvents events={events} />
+      {events && events.length !== 0 && (
+        <ParticipantEvents events={events} />
+      )}
+      {events && events.length === 0 && (
+        <div>
+          There are no events
+        </div>
+      )}
     </div>
   )
 }

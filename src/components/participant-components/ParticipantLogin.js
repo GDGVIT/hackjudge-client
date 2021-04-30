@@ -39,13 +39,13 @@ const ParticipantLogin = ({
     setAnimationState(1)
 
     let response = await api('login', 'post', { email: userData.email, password: userData.password, isAdmin: false })
-
+    console.log(response)
     if (response.status === 200) {
       setInvalid(false)
       response = response.data
       handleLogin(response.token, response.user.authId, 0, response.user.name)
       history.push('/home')
-    } else if (response.status === 401) {
+    } else if (response.status === 401 || response.status === 400) {
       setAnimationState(0)
       setErrorMessage('Invalid Credentials! Unauthorized')
       setInvalid(true)

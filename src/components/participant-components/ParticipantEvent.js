@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const ParticipantEvent = ({ event, eventType }) => {
-  console.log({ event, eventType })
+  console.log('participant event is called')
   // eventType: 0 -> Unregistered event
   // eventType: 1 -> Registered and is leader
   // eventType: 2 -> Registerd and does not have a team
@@ -13,14 +13,16 @@ const ParticipantEvent = ({ event, eventType }) => {
       {eventType === 0 && (
         <div className='unregistered-event-card'>
           <div className='ppt-event-name'>
-            Event Name
+            {event.eventName}
           </div>
-          <button className='ppt-event-register-button'>
-            Register
-          </button>
-          <button className='ppt-event-details-button'>
-            Details
-          </button>
+          <div>
+            <button className='ppt-event-register-button'>
+              Register
+            </button>
+            <button className='ppt-event-details-button'>
+              Details
+            </button>
+          </div>
         </div>
       )}
       {eventType === 1 && (
