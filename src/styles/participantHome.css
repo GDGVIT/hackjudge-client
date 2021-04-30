@@ -45,16 +45,6 @@
   transition: all 500ms;
 }
 
-.unregistered-event-card button:first-child {
-  background-color: hsl(175, 100%, 51%);
-  color: rgb(0, 0, 0);
-  transition: all 500ms;
-}
-
-.unregistered-event-card button:hover {
-  text-decoration: underline;
-}
-
 .unreg-event-details {
   position: fixed;
   top: 10%;
@@ -128,4 +118,153 @@
 
 .unreg-event-ps li {
   list-style: none;
+}
+
+.create-team-overlay {
+  width: 500px;
+  padding: 20px;
+  background-color: #171717;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.create-team-form {
+  width: 80%;
+}
+
+.create-team-form > label {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 200;
+  gap: 5px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.create-team-input {
+  width: 100%;
+  background-color: #fffd;
+  border: 0;
+  border-radius: 4px;
+  color: #000;
+  height: 2rem;
+  font-size: 1.5rem;
+  padding: 6px;
+  text-align: center;
+}
+
+.create-team-input:focus {
+  outline: none;
+  border: 1px solid hsl(241, 77%, 66%);
+}
+
+.create-team-button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 4px;
+  color: #000;
+  width: 80%;
+  height: 2.2rem;
+  font-size: 1.5rem;
+  transition: all 500ms;
+}
+
+.create-team-button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.create-team-button:focus {
+  background-color: #000;
+  color: #fff;
+}
+
+.jointeam-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.705);
+  display: grid;
+  place-items: center;
+}
+
+.jointeam-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  font-weight: bold;
+  gap: 7px;
+  padding-bottom: 10px;
+}
+
+.jointeam-input {
+  height: 2.4rem;
+  max-width: 400px;
+  min-width: 300px;
+  background-color: #171717;
+  border-radius: 4px;
+  color: #fff;
+  border: 0;
+  font-size: 1.4rem;
+  padding: 7px;
+  transition: all 500ms;
+}
+
+.jointeam-input:focus {
+  border: 1px solid gray;
+  background-color: #fff;
+  color: #000;
+  outline: none;
+}
+
+.jointeam-input:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid rgb(78, 78, 78);
+}
+
+.jointeam-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.jointeam-overlay button {
+  height: 2.7rem;
+  font-size: 1.2rem;
+  background-color: #171717;
+  color: #fff;
+  padding: 7px;
+  width: 49%;
+  outline: none;
+  border: 0;
+  border-radius: 4px;
+  transition: all 500ms;
+}
+
+.jointeam-overlay button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/*
+ * These two should be at around line 47,
+ * the linter is a cunt
+ */
+.unregistered-event-card button:first-child {
+  background-color: hsl(175, 100%, 51%);
+  color: rgb(0, 0, 0);
+  transition: all 500ms;
+}
+
+.unregistered-event-card button:hover {
+  text-decoration: underline;
 }

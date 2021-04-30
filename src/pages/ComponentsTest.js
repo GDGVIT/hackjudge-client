@@ -1,17 +1,18 @@
 import React from 'react'
 // import Header from '../components/common-components/Header'
 // import ParticipantEvent from '../components/participant-components/ParticipantEvent'
-import UnregEventDetail from '../components/participant-components/UnregEventDetail'
+// import UnregEventDetail from '../components/participant-components/UnregEventDetail'
+import JoinTeam from '../components/participant-components/JoinTeam'
 
 const ComponentsTest = () => {
-  const event1 = {
-    eventName: 'Event 1',
-    maxMembers: 4,
-    problemStatements: [
-      "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gall",
-      "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gall"
-    ]
-  }
+  // const event1 = {
+  //   eventName: 'Event 1',
+  //   maxMembers: 4,
+  //   problemStatements: [
+  //     "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gall",
+  //     "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a gall"
+  //   ]
+  // }
   // const event2 = {
   //   eventName: 'Event 2',
   //   maxMembers: 4
@@ -46,9 +47,15 @@ const ComponentsTest = () => {
   // )
 
   /* ---------------------- Unregistered event details ------------------ */
+  // return (
+  //   <>
+  //     <UnregEventDetail event={event1} />
+  //   </>
+  // )
+
   return (
     <>
-      <UnregEventDetail event={event1} />
+      <JoinTeam />
     </>
   )
 }

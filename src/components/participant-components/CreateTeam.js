@@ -1,30 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const CreateTeam = ({ creator }) => {
+const CreateTeam = ({ eventID }) => {
+  // const creatorToken = sessionStorage.getItem('token')
+
   return (
-    <div>
-      <form>
+    <div className='create-team-overlay'>
+      <form className='create-team-form'>
         <label>
-          Team name <input />
-        </label>
-        <label>
-          Event <input />
-        </label>
-        <label>
-          Members <input />
-        </label>
-        <label>
-          other details <input />
+          Enter your team name
+          <input className='create-team-input' />
         </label>
       </form>
+      <button className='create-team-button'>
+        Create Team
+      </button>
     </div>
 
   )
 }
 
 CreateTeam.propTypes = {
-  creator: PropTypes.string
+  eventID: PropTypes.string
 }
 
 export default CreateTeam
