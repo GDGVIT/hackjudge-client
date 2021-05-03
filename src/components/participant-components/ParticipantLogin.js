@@ -60,6 +60,7 @@ const ParticipantLogin = ({
           onChangeHandler={handleUserEmail}
           labelText='Email'
           placeholderText='user@domain.com'
+          id='email-input'
         />
         <InputForm
           inputType='password'

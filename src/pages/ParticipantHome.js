@@ -11,7 +11,9 @@ import isInTeam from '../utilities/isInTeam'
 
 const ParticipantHome = ({ currentRef, upcomingRef }) => {
   const history = useHistory()
-  const [events, setEvents] = useState({ registered: [], unregistered: [] })
+  const [events, setEvents] = useState([])
+  const [registered, setRegistered] = useState([])
+  const [unregistered, setUnregistered] = useState([])
 
   const hook = async () => {
     if (!sessionStorage.getItem('logged_in') === 'true') {
@@ -30,36 +32,33 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
       unixEndTime: Date.parse(event.endOfEvent)
     }))
 
-    const tempRegEvents = []
-    const tempUnregEvents = []
-
     if (newEvents.length !== 0) {
-      newEvents.forEach(async (event) => {
-        const response = await isInTeam(token, event.eventId)
+      newEvents.forEach(async (thisevent) => {
+        const response = await isInTeam(token, thisevent.eventId)
         if (response.status !== 200) {
           console.log(response)
         } else if (response.data.message === 'You are not in a team') {
-          tempUnregEvents.push({ event, message: response.data.message })
+          thisevent.userStatus = 0
+          setUnregistered((oldState) => [...oldState, thisevent])
         } else {
-          tempRegEvents.push({ event: event, message: response.data.message })
+          thisevent.userStatus = 1
+          setRegistered((oldState) => [...oldState, thisevent])
         }
       })
     }
 
-    setEvents({ registered: tempRegEvents, unregistered: tempUnregEvents })
+    setEvents(newEvents)
   }
 
   useEffect(hook, [])
 
-  useEffect(() => console.log(events), [events])
-
   return (
     <div className='participant-home'>
-      {(events.unregistered.length !== 0 || events.registered.length !== 0) && (
-        <ParticipantEvents events={events} />
+      {(events.length !== 0) && (
+        <ParticipantEvents unregistered={unregistered} registered={registered} />
       )}
 
-      {events.registered.length === 0 && events.unregistered.length === 0 && (
+      {events.length === 0 && (
         <div>
           There are no events
         </div>

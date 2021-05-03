@@ -25,6 +25,16 @@
   margin-left: auto;
 }
 
+@media screen and (max-width: 768px) {
+  .login-dsc-logo {
+    display: none;
+  }
+
+  .loginHeader-ul {
+    justify-content: center;
+  }
+}
+
 .login-form-container {
   display: grid;
   flex-direction: column;

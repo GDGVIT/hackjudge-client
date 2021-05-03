@@ -7,16 +7,24 @@
 }
 
 .unregistered-events-container {
-  width: 30%;
+  width: max-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  overflow: hidden;
+}
+
+.un-reg-events-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 100;
 }
 
 .unregistered-event-card {
   padding: 10px;
   width: 100%;
+  gap: 10px;
   background-color: #17171786;
   border-radius: 7px;
   display: flex;
@@ -43,6 +51,21 @@
   color: #fff;
   font-size: 1.4rem;
   transition: all 500ms;
+}
+
+@media screen and (max-width: 580px) {
+  .un-reg-events-title {
+    font-size: 1.7rem;
+  }
+
+  .unregistered-event-card {
+    flex-direction: column;
+    font-size: 1.5rem;
+  }
+
+  .unregistered-event-card button {
+    font-size: 1.3rem;
+  }
 }
 
 .unreg-event-details {

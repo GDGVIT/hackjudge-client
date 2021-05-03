@@ -44,3 +44,9 @@
 .active-link {
   color: #04d9ff;
 }
+
+@media screen and (max-width: 768px) {
+  .login-dsc-logo {
+    display: none;
+  }
+}
