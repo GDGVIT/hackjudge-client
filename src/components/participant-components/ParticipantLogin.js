@@ -55,7 +55,7 @@ const ParticipantLogin = ({
       <h1 className='login-title'>Login</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
-          inputType='text'
+          inputType='email'
           inputValue={userData.email}
           onChangeHandler={handleUserEmail}
           labelText='Email'

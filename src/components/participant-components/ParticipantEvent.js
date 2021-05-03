@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// import UnregEventDetail from './UnregEventDetail'
+
 const ParticipantEvent = ({ event, eventType }) => {
   console.log('participant event is called')
   // eventType: 0 -> Unregistered event

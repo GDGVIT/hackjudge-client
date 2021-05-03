@@ -53,7 +53,7 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       <h1 className='login-title'>Admin Login</h1>
       <form onSubmit={handleSubmit} className='login-form'>
         <InputForm
-          inputType='text'
+          inputType='email'
           inputValue={userData.email}
           labelText='Email'
           onChangeHandler={handleUserEmail}

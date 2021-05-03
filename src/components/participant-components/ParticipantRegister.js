@@ -78,7 +78,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
         />
         <InputForm
           labelText='Email'
-          inputType='text'
+          inputType='email'
           inputValue={userData.email}
           onChangeHandler={handleUserEmail}
           placeholderText='user@domain.com'
