@@ -39,7 +39,6 @@ const ParticipantLogin = ({
     setAnimationState(1)
 
     let response = await api('login', 'post', { email: userData.email, password: userData.password, isAdmin: false })
-    console.log(response)
     if (response.status === 200) {
       setInvalid(false)
       response = response.data
