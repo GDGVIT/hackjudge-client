@@ -39,7 +39,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  /* justify-content: flex-end; */
   gap: 15px;
 }
 
@@ -244,7 +243,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.705);
+  background-color: #312e2e;
+
+  /* background: inherit; */
   display: grid;
   place-items: center;
 }
@@ -309,6 +310,57 @@
   color: #000;
 }
 
+.jointeam-error {
+  min-width: 100%;
+  text-align: center;
+  color: red;
+  padding: 14px;
+}
+
+.jointeam-success {
+  min-width: 100%;
+  text-align: center;
+  padding: 14px;
+  color: rgb(90, 90, 207);
+}
+
+.teamcode {
+  width: 100%;
+  overflow: hidden;
+  border: 0;
+  background-color: #335677;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding: 14px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.teamcode > h2 {
+  border: 1px solid white;
+  border-radius: 4px;
+  margin: 16px;
+}
+
+.teamcode > h2:first-child {
+  border: 0;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+}
+
+.teamcode > button {
+  background-color: inherit;
+  border: 1px solid white;
+}
+
+[teamcode=""] {
+  display: none;
+}
+
+[created]:not([created=""]) {
+  display: none;
+}
+
 /*
  * These two should be at around line 47,
  * the linter is a cunt
@@ -321,4 +373,54 @@
 
 .unregistered-event-card button:hover {
   text-decoration: underline;
+}
+
+.event-register {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: clamp(100%, 100%, 100%);
+  width: clamp(100%, 100%, 100%);
+  background: #171717;
+
+  /* background: #0f2027;  fallback for old browsers */
+
+  /* background: -webkit-linear-gradient(right, #2c5364, #203a43, #0f2027);  Chrome 10-25, Safari 5.1-6 */
+
+  /* background: linear-gradient(to right, #2c5364, #203a43, #0f2027); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  display: grid;
+  place-items: center;
+}
+
+@media screen and (max-width: 530px) {
+  .event-register > div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.join-team-button,
+.event-create-team-button,
+.event-register-back {
+  margin: 5px;
+  border-radius: 7px;
+  background-color: inherit;
+  color: #fff;
+  border: 1px solid white;
+  height: 3.2rem;
+  font-size: 1.7rem;
+  padding: 14px;
+  transition: all 500ms;
+}
+
+.event-register-back {
+  border: 1px solid gray;
+}
+
+.join-team-button:hover,
+.event-create-team-button:hover,
+.event-register-back:hover {
+  background-color: #fff;
+  color: #000;
+  transform: scale(1.1) translateX(1.1);
 }

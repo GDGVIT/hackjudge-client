@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import UnregEventDetail from './UnregEventDetail'
+import EventRegister from './EventRegister'
 
 const ParticipantEvent = ({ event, eventType }) => {
   // eventType: 0 -> Unregistered event
@@ -10,9 +11,14 @@ const ParticipantEvent = ({ event, eventType }) => {
   // eventType: 3 -> Registerd and is a normal member of a team
 
   const [overlay, setOverlay] = useState(false)
+  const [register, setRegister] = useState(false)
 
-  const handleButtonClick = () => {
+  const handleDetails = () => {
     setOverlay((current) => !current)
+  }
+
+  const handleRegister = () => {
+    setRegister((current) => !current)
   }
 
   return (
@@ -24,16 +30,19 @@ const ParticipantEvent = ({ event, eventType }) => {
               {event.eventName}
             </div>
             <div>
-              <button className='ppt-event-register-button'>
+              <button onClick={handleRegister} className='ppt-event-register-button'>
                 Register
               </button>
-              <button onClick={handleButtonClick} className='ppt-event-details-button'>
+              <button onClick={handleDetails} className='ppt-event-details-button'>
                 Details
               </button>
             </div>
           </div>
           {overlay && (
-            <UnregEventDetail event={event} close={handleButtonClick}/>
+            <UnregEventDetail event={event} close={handleDetails} />
+          )}
+          {register && (
+            <EventRegister event={event} close={handleRegister} />
           )}
         </>
       )}

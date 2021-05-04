@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-const JoinTeam = () => {
+const JoinTeam = ({ event, back }) => {
   const error = ''
 
   return (
@@ -16,7 +17,7 @@ const JoinTeam = () => {
           <button className='jointeam-button'>
             Join
           </button>
-          <button className='jointeam-back-button'>
+          <button onClick={back} className='jointeam-back-button'>
             Back
           </button>
         </div>
@@ -26,6 +27,11 @@ const JoinTeam = () => {
       </div>
     </div>
   )
+}
+
+JoinTeam.propTypes = {
+  event: PropTypes.object,
+  back: PropTypes.func
 }
 
 export default JoinTeam

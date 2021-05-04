@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const UnregEventsDetail = ({ event, close, register }) => {
+import EventRegister from './EventRegister'
+
+const UnregEventsDetail = ({ event, close }) => {
   console.log(event)
+
+  const [register, setRegister] = useState(false)
+
   const hashPs = (ps) => {
     if (!ps) return 0
     let hash = 0
@@ -50,10 +55,13 @@ const UnregEventsDetail = ({ event, close, register }) => {
         </div>
       </div>
       <div className='event-details-footer'>
-        <button className='ppt-event-register-button'>
+        <button onClick={() => setRegister(!register)} className='ppt-event-register-button'>
           Register
         </button>
       </div>
+      {register && (
+        <EventRegister event={event} close={() => setRegister(!register)} />
+      )}
     </div>
   )
 }
@@ -65,8 +73,7 @@ UnregEventsDetail.propTypes = {
     problemStatements: PropTypes.array,
     metrics: PropTypes.array
   }),
-  close: PropTypes.func,
-  register: PropTypes.func
+  close: PropTypes.func
 }
 
 export default UnregEventsDetail
