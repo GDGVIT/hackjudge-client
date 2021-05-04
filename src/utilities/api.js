@@ -6,7 +6,7 @@ const validateCreateEvent = (data) => {
 }
 
 const api = async (url, method, data = null, authorization = null) => {
-  const BASEURL = 'http://helios-hackjudgeapi.herokuapp.com/'
+  const BASEURL = 'https://helios-hackjudgeapi.herokuapp.com/'
 
   const calls = {
     login: 'auth/login',

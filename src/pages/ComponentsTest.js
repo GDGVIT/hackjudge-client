@@ -1,8 +1,5 @@
 import React from 'react'
-// import Header from '../components/common-components/Header'
-// import ParticipantEvent from '../components/participant-components/ParticipantEvent'
-// import UnregEventDetail from '../components/participant-components/UnregEventDetail'
-import JoinTeam from '../components/participant-components/JoinTeam'
+import EventRegister from '../components/participant-components/EventRegister'
 
 const ComponentsTest = () => {
   // const event1 = {
@@ -30,33 +27,14 @@ const ComponentsTest = () => {
   //   maxMembers: 4
   // }
 
-  /* ----------------------List of unregistered events------------------ */
   // return (
   //   <>
-  //     <Header />
-  //     <div className='participant-home'>
-  //       <div className='unregistered-events-container'>
-  //         <ParticipantEvent event={event1} eventType={0} />
-  //         <ParticipantEvent event={event2} eventType={0} />
-  //         <ParticipantEvent event={event3} eventType={0} />
-  //         <ParticipantEvent event={event4} eventType={0} />
-  //         <ParticipantEvent event={event5} eventType={0} />
-  //       </div>
-  //     </div>
-  //   </>
-  // )
-
-  /* ---------------------- Unregistered event details ------------------ */
-  // return (
-  //   <>
-  //     <UnregEventDetail event={event1} />
+  //     <JoinTeam />
   //   </>
   // )
 
   return (
-    <>
-      <JoinTeam />
-    </>
+    <EventRegister />
   )
 }
 

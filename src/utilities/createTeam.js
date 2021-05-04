@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const getAllReviews = async (CTOKEN, eventId, teamName) => {
-  const URL = 'http://helios-hackjudgeapi.herokuapp.com'
+  const URL = 'https://helios-hackjudgeapi.herokuapp.com'
   const data = {
     team: {
       teamName: teamName

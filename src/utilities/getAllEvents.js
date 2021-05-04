@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const getAllEvents = async (ATOKEN) => {
-  const URL = 'http://helios-hackjudgeapi.herokuapp.com'
+  const URL = 'https://helios-hackjudgeapi.herokuapp.com'
   const config = {
     method: 'get',
     url: `${URL}/event/allEvents`,

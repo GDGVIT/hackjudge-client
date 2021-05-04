@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const UnregEventsDetail = ({ event }) => {
+const UnregEventsDetail = ({ event, close, register }) => {
+  console.log(event)
   const hashPs = (ps) => {
     if (!ps) return 0
     let hash = 0
@@ -21,29 +22,31 @@ const UnregEventsDetail = ({ event }) => {
       <div className='unreg-event-details-topbar'>
         <div className='event-details-title'>
           <h1>{event.eventName}</h1>
-          <h3>{event.maxMembers} Members</h3>
         </div>
-        <div className='unreg-event-detail-close'>
-          X
+        <div onClick={close} className='unreg-event-detail-close'>
+          Back
         </div>
       </div>
       <div className='event-details-body'>
         <div className='event-details-description'>
-          ASdf
+          <h2>Event Description</h2>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio laboriosam perferendis nemo atque, dolore deleniti magnam mollitia veritatis maxime! Earum veritatis nulla magni laudantium dolores numquam, distinctio officiis iusto voluptas excepturi sint recusandae maxime nisi similique! Neque, quaerat dolorem quibusdam maxime omnis, ea assumenda voluptatum illum odit rem voluptate ullam!
+        </div>
+        <div className='unreg-event-teamSize'>
+          <h2>Team size</h2>
+          2 - {event.maxTeamSize} members
         </div>
         <div className='unreg-event-ps'>
-          <h3>
+          <h2>
             Problem Statements
-          </h3>
+          </h2>
           <ul>
             {event.problemStatements && event.problemStatements.map(ps => <li key={hashPs(ps)}>{ps}</li>)}
           </ul>
         </div>
-        <div>
-          asdfg
-        </div>
-        <div>
-          Asdf
+        <div className='unreg-event-metrics'>
+          <h2>Metrics</h2>
+          {event.metrics && event.metrics.map(metric => <li key={hashPs(metric.metricId)}>{metric.metricName}</li>)}
         </div>
       </div>
       <div className='event-details-footer'>
@@ -58,9 +61,12 @@ const UnregEventsDetail = ({ event }) => {
 UnregEventsDetail.propTypes = {
   event: PropTypes.shape({
     eventName: PropTypes.string,
-    maxMembers: PropTypes.number,
-    problemStatements: PropTypes.array
-  })
+    maxTeamSize: PropTypes.number,
+    problemStatements: PropTypes.array,
+    metrics: PropTypes.array
+  }),
+  close: PropTypes.func,
+  register: PropTypes.func
 }
 
 export default UnregEventsDetail

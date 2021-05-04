@@ -15,7 +15,7 @@ const EventRegister = () => {
   }
 
   return (
-    <div>
+    <div className='event-register'>
       {create === 0 && (
         <div>
           <button onClick={handleJoinTeam}>Join a team</button>
