@@ -15,7 +15,8 @@ const api = async (url, method, data = null, authorization = null) => {
     getEvent: `event/${data.eventId}`,
     createEvent: 'event/createEvent',
     getAllTeams: `event/team/allTeams/${data.eventId}`,
-    createTeam: 'participantTeam/createTeam'
+    createTeam: 'participantTeam/createTeam',
+    joinTeam: 'participantTeam/joinTeam'
   }
 
   const config = {
@@ -34,10 +35,8 @@ const api = async (url, method, data = null, authorization = null) => {
 
   try {
     const response = await axios(config)
-    console.log(response)
     return response
   } catch (error) {
-    console.log('errr')
     console.log(error.response)
     return error.response
   }

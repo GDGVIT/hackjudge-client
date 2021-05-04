@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 import EventRegister from './EventRegister'
 
 const UnregEventsDetail = ({ event, close }) => {
-  console.log(event)
-
   const [register, setRegister] = useState(false)
 
   const hashPs = (ps) => {
@@ -34,7 +32,7 @@ const UnregEventsDetail = ({ event, close }) => {
       </div>
       <div className='event-details-body'>
         <div className='event-details-description'>
-          <h2>Event Description</h2>
+          <h2>Description</h2>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio laboriosam perferendis nemo atque, dolore deleniti magnam mollitia veritatis maxime! Earum veritatis nulla magni laudantium dolores numquam, distinctio officiis iusto voluptas excepturi sint recusandae maxime nisi similique! Neque, quaerat dolorem quibusdam maxime omnis, ea assumenda voluptatum illum odit rem voluptate ullam!
         </div>
         <div className='unreg-event-teamSize'>

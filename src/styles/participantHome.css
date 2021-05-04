@@ -101,6 +101,17 @@
   gap: 10px;
 }
 
+.event-details-description h2 {
+  font-weight: 400;
+  border-bottom: 1px solid white;
+  margin-bottom: 7px;
+}
+
+.event-details-description {
+  padding-bottom: 7px;
+  border-bottom: 1px solid white;
+}
+
 .event-details-title > h1 {
   font-size: 2rem;
   font-weight: 700;
@@ -130,15 +141,30 @@
 }
 
 .event-details-body {
-  padding: 30px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+}
+
+.event-details-body > * {
+  margin: 4px 0;
 }
 
 .unreg-event-ps {
   display: flex;
   flex-direction: column;
+  padding-bottom: 7px;
+  border-bottom: 1px solid white;
+}
+
+.unreg-event-teamSize {
+  padding-bottom: 6px;
+  border-bottom: 1px solid white;
+}
+
+.unreg-event-metrics {
+  border-bottom: 1px solid white;
+  padding-bottom: 7px;
 }
 
 .event-details-body li {
@@ -250,6 +276,10 @@
   place-items: center;
 }
 
+.jointeam-container {
+  width: min-content;
+}
+
 .jointeam-label {
   display: flex;
   flex-direction: column;
@@ -305,11 +335,6 @@
   transition: all 500ms;
 }
 
-.jointeam-overlay button:hover {
-  background-color: #fff;
-  color: #000;
-}
-
 .jointeam-error {
   min-width: 100%;
   text-align: center;
@@ -359,6 +384,11 @@
 
 [created]:not([created=""]) {
   display: none;
+}
+
+.jointeam-overlay button:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 /*
@@ -424,3 +454,23 @@
   color: #000;
   transform: scale(1.1) translateX(1.1);
 }
+
+[success]:not([success=""]) {
+  width: max-content;
+}
+
+.success-join-request {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-join-request * {
+  margin: 10px;
+}
+
+/* .success-join-request button {
+  background-color: inherit;
+  border: 1px solid white;
+} */

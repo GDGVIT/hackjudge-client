@@ -15,7 +15,7 @@ const CreateTeam = ({ event, back }) => {
   const handleSubmit = async () => {
     const token = sessionStorage.getItem('token')
     if (token === '') {
-      setError('Trynna hack?')
+      setError('There was an unexpected error')
       return
     }
     const data = {
@@ -35,7 +35,7 @@ const CreateTeam = ({ event, back }) => {
 
   return (
     <div className='jointeam-overlay'>
-      <div>
+      <div className='jointeam-container'>
         <form className='jointeam-form' created={teamcode}>
           <label className='jointeam-label'>
             Team Name

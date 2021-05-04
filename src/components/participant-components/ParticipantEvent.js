@@ -63,7 +63,7 @@ const ParticipantEvent = ({ event, eventType }) => {
       {eventType === 3 && (
         <div className='normal-member-card'>
           <div className='ppt-event-name'>
-            Event Title
+            {event.eventName}
           </div>
         </div>
       )}
