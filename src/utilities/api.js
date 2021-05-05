@@ -5,7 +5,7 @@ const validateCreateEvent = (data) => {
   else return false
 }
 
-const api = async (url, method, data = null, authorization = null) => {
+const api = async (url, method, data = null, authorization = null, urlPath = null) => {
   const BASEURL = 'https://helios-hackjudgeapi.herokuapp.com/'
 
   const calls = {
@@ -16,7 +16,10 @@ const api = async (url, method, data = null, authorization = null) => {
     createEvent: 'event/createEvent',
     getAllTeams: `event/team/allTeams/${data.eventId}`,
     createTeam: 'participantTeam/createTeam',
-    joinTeam: 'participantTeam/joinTeam'
+    joinTeam: 'participantTeam/joinTeam',
+    deleteTeam: 'participantTeam/deleteTeam',
+    updateTeam: 'participantTeam/updateTeam',
+    getSubmission: `participantTeam/${urlPath}`
   }
 
   const config = {
