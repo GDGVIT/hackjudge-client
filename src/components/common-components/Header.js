@@ -51,9 +51,9 @@ const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) =>
             </>
           )}
           {userType !== '2' && (
-            <>
+            <div className='logout-button'>
               <Link to='/' onClick={logout}>Logout</Link>
-            </>
+            </div>
           )}
         </li>
       </ul>

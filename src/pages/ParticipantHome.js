@@ -40,13 +40,15 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
         } else if (response.data.message === 'You are not in a team') {
           thisevent.userStatus = 0
           setUnregistered((oldState) => [...oldState, thisevent])
-        } else {
+        } else if (response.data.existingTeam.ParticipantTeam.isLeader) {
           thisevent.userStatus = 1
+          setRegistered((oldState) => [...oldState, thisevent])
+        } else {
+          thisevent.userStatus = 3
           setRegistered((oldState) => [...oldState, thisevent])
         }
       })
     }
-
     setEvents(newEvents)
   }
 

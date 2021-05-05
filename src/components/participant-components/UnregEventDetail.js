@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import EventRegister from './EventRegister'
 
-const UnregEventsDetail = ({ event, close }) => {
+const UnregEventsDetail = ({ event, close, registered }) => {
   const [register, setRegister] = useState(false)
 
   const hashPs = (ps) => {
@@ -52,11 +52,13 @@ const UnregEventsDetail = ({ event, close }) => {
           {event.metrics && event.metrics.map(metric => <li key={hashPs(metric.metricId)}>{metric.metricName}</li>)}
         </div>
       </div>
-      <div className='event-details-footer'>
-        <button onClick={() => setRegister(!register)} className='ppt-event-register-button'>
-          Register
-        </button>
-      </div>
+      {!registered && (
+        <div className='event-details-footer'>
+          <button onClick={() => setRegister(!register)} className='ppt-event-primary-button'>
+            Register
+          </button>
+        </div>
+      )}
       {register && (
         <EventRegister event={event} close={() => setRegister(!register)} />
       )}
@@ -71,7 +73,8 @@ UnregEventsDetail.propTypes = {
     problemStatements: PropTypes.array,
     metrics: PropTypes.array
   }),
-  close: PropTypes.func
+  close: PropTypes.func,
+  registered: PropTypes.bool
 }
 
 export default UnregEventsDetail

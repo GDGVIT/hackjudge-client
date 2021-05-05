@@ -1,8 +1,6 @@
-@import url(https://db.onlinewebfonts.com/c/50cd2aad9c8f35800bb6beac3ad42f16?family=Azonix);
-
 .hackJudge-logo {
   width: 110px;
-  height: auto;
+  height: 71.73px;
 }
 
 .dsc-logo {
@@ -66,7 +64,7 @@
 
   .hackJudge-logo {
     width: 90px;
-    height: auto;
+    height: 58.6px;
   }
 }
 
@@ -170,7 +168,7 @@
 }
 
 .login-button {
-  background-color: #335677;
+  background-color: #0083ff;
   cursor: pointer;
   height: 3.2rem;
   margin: 10px;
@@ -179,10 +177,12 @@
   color: #fff;
   font-size: 1.2rem;
   border-radius: 3px;
+  transition: all 500ms;
 }
 
 .login-button:hover {
-  background-color: #426a8f;
+  background-color: #fff;
+  color: #000;
 }
 
 input::placeholder {

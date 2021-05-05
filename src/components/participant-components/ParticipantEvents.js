@@ -21,17 +21,17 @@ const ParticipantEvents = ({ unregistered, registered }) => {
   }
 
   return (
-    <div>
+    <div className='event-status-container'>
       {unregistered.length !== 0 && (
-        <div className='unregistered-events-container'>
-          <div className='un-reg-events-title'>Events</div>
-          {unregistered.map(event => <ParticipantEvent key={hashCode(event.eventId)} event={event} eventType={0} />)}
+        <div className='participants-event-container'>
+          <div className='event-status-title'>Unregistered Events</div>
+          {unregistered.map(event => <ParticipantEvent key={hashCode(event.eventId)} event={event} />)}
         </div>
       )}
       {registered.length !== 0 && (
-        <div className='registered-events-container'>
-          <div className='un-reg-events-title'>Events</div>
-          {registered.map(event => <ParticipantEvent key={hashCode(event.eventId)} event={event} eventType={3} />)}
+        <div className='participants-event-container'>
+          <div className='event-status-title'>Registered Events</div>
+          {registered.map(event => <ParticipantEvent key={hashCode(event.eventId)} event={event} />)}
         </div>
       )}
     </div>

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import UnregEventDetail from './UnregEventDetail'
 import EventRegister from './EventRegister'
 
-const ParticipantEvent = ({ event, eventType }) => {
+const ParticipantEvent = ({ event }) => {
   // eventType: 0 -> Unregistered event
   // eventType: 1 -> Registered and is leader
-  // eventType: 2 -> Registerd and does not have a team
-  // eventType: 3 -> Registerd and is a normal member of a team
+  // eventType: 2 -> Registered and does not have a team
+  // eventType: 3 -> Registered and is a normal member of a team
 
   const [overlay, setOverlay] = useState(false)
   const [register, setRegister] = useState(false)
@@ -21,46 +21,67 @@ const ParticipantEvent = ({ event, eventType }) => {
     setRegister((current) => !current)
   }
 
+  const handleSubmission = () => {
+    console.log('Submission')
+  }
+
   return (
     <>
-      {eventType === 0 && (
+      {event.userStatus === 0 && (
         <>
-          <div className='unregistered-event-card'>
+          <div className='participant-event-card'>
             <div className='ppt-event-name'>
               {event.eventName}
             </div>
-            <div>
-              <button onClick={handleRegister} className='ppt-event-register-button'>
+            <div className='participant-event-buttons'>
+              <button onClick={handleRegister} className='ppt-event-primary-button'>
                 Register
               </button>
-              <button onClick={handleDetails} className='ppt-event-details-button'>
+              <button onClick={handleDetails} className='event-details-button'>
                 Details
               </button>
             </div>
           </div>
           {overlay && (
-            <UnregEventDetail event={event} close={handleDetails} />
+            <div className='unreg-event-details-container'>
+              <UnregEventDetail event={event} close={handleDetails} registered={false} />
+            </div>
           )}
           {register && (
             <EventRegister event={event} close={handleRegister} />
           )}
         </>
       )}
-      {eventType === 1 && (
-        <div className='registered-leader-card'>
-          <div className='ppt-event-name'>
-            Event Title
+      {event.userStatus === 1 && (
+        <>
+          <div className='participant-event-card'>
+            <div className='ppt-event-name'>
+              {event.eventName}
+            </div>
+            <div>
+              <button onClick={handleSubmission} className='ppt-event-primary-button'>
+                Submission
+              </button>
+              <button onClick={handleDetails} className='event-details-button'>
+                Details
+              </button>
+            </div>
           </div>
-        </div>
+          {overlay && (
+            <div className='unreg-event-details-container'>
+              <UnregEventDetail event={event} close={handleDetails} registered />
+            </div>
+          )}
+        </>
       )}
-      {eventType === 2 && (
+      {event.userStatus === 2 && (
         <div className='no-team-card'>
           <div className='ppt-event-name'>
             Event Title
           </div>
         </div>
       )}
-      {eventType === 3 && (
+      {event.userStatus === 3 && (
         <div className='normal-member-card'>
           <div className='ppt-event-name'>
             {event.eventName}
@@ -72,8 +93,7 @@ const ParticipantEvent = ({ event, eventType }) => {
 }
 
 ParticipantEvent.propTypes = {
-  event: PropTypes.object,
-  eventType: PropTypes.number
+  event: PropTypes.object
 }
 
 export default ParticipantEvent
