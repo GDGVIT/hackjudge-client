@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import UnregEventDetail from './UnregEventDetail'
 import EventRegister from './EventRegister'
 import ManageSubmission from './ManageSubmission'
+import ManageTeam from './ManageTeam'
 
 const ParticipantEvent = ({ event }) => {
   // eventType: 0 -> Unregistered event
@@ -14,6 +15,7 @@ const ParticipantEvent = ({ event }) => {
   const [overlay, setOverlay] = useState(false)
   const [register, setRegister] = useState(false)
   const [submission, setSubmission] = useState(false)
+  const [manageTeam, setManageTeam] = useState(false)
 
   const handleDetails = () => {
     setOverlay((current) => !current)
@@ -25,6 +27,10 @@ const ParticipantEvent = ({ event }) => {
 
   const handleSubmission = () => {
     setSubmission((current) => !current)
+  }
+
+  const handleTeam = () => {
+    setManageTeam((current) => !current)
   }
 
   return (
@@ -61,7 +67,7 @@ const ParticipantEvent = ({ event }) => {
               {event.eventName}
             </div>
             <div className='participant-event-buttons'>
-              <button onClick={handleSubmission} className='ppt-event-team-button'>
+              <button onClick={handleTeam} className='ppt-event-team-button'>
                 Team
               </button>
               <button onClick={handleSubmission} className='ppt-event-primary-button'>
@@ -80,6 +86,11 @@ const ParticipantEvent = ({ event }) => {
           {submission && (
             <div className='event-submission-container'>
               <ManageSubmission event={event} close={handleSubmission} />
+            </div>
+          )}
+          {manageTeam && (
+            <div className='unreg-event-details-container'>
+              <ManageTeam event={event} close={handleTeam} />
             </div>
           )}
         </>
