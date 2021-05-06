@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import UnregEventDetail from './UnregEventDetail'
 import EventRegister from './EventRegister'
+import ManageSubmission from './ManageSubmission'
 
 const ParticipantEvent = ({ event }) => {
   // eventType: 0 -> Unregistered event
@@ -12,6 +13,7 @@ const ParticipantEvent = ({ event }) => {
 
   const [overlay, setOverlay] = useState(false)
   const [register, setRegister] = useState(false)
+  const [submission, setSubmission] = useState(false)
 
   const handleDetails = () => {
     setOverlay((current) => !current)
@@ -22,7 +24,7 @@ const ParticipantEvent = ({ event }) => {
   }
 
   const handleSubmission = () => {
-    console.log('Submission')
+    setSubmission((current) => !current)
   }
 
   return (
@@ -70,6 +72,11 @@ const ParticipantEvent = ({ event }) => {
           {overlay && (
             <div className='unreg-event-details-container'>
               <UnregEventDetail event={event} close={handleDetails} registered />
+            </div>
+          )}
+          {submission && (
+            <div className='event-submission-container'>
+              <ManageSubmission close={handleSubmission} />
             </div>
           )}
         </>
