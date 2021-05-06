@@ -42,9 +42,11 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
           setUnregistered((oldState) => [...oldState, thisevent])
         } else if (response.data.existingTeam.ParticipantTeam.isLeader) {
           thisevent.userStatus = 1
+          thisevent.teamData = response.data
           setRegistered((oldState) => [...oldState, thisevent])
         } else {
           thisevent.userStatus = 3
+          thisevent.teamData = response.data
           setRegistered((oldState) => [...oldState, thisevent])
         }
       })

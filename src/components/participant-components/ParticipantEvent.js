@@ -60,7 +60,10 @@ const ParticipantEvent = ({ event }) => {
             <div className='ppt-event-name'>
               {event.eventName}
             </div>
-            <div>
+            <div className='participant-event-buttons'>
+              <button onClick={handleSubmission} className='ppt-event-team-button'>
+                Team
+              </button>
               <button onClick={handleSubmission} className='ppt-event-primary-button'>
                 Submission
               </button>
@@ -76,7 +79,7 @@ const ParticipantEvent = ({ event }) => {
           )}
           {submission && (
             <div className='event-submission-container'>
-              <ManageSubmission close={handleSubmission} />
+              <ManageSubmission event={event} close={handleSubmission} />
             </div>
           )}
         </>

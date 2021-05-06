@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const ManageSubmission = ({ close }) => {
+import api from '../../utilities/api'
+
+const ManageSubmission = ({ event, close }) => {
   const [abstract, setAbstract] = useState('')
   const [projectLink, setProjectLink] = useState('')
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
 
   const abstractPlaceholder = 'Tell us about your idea.'
   const linkPlaceholder = 'github.com/username/repositoryname'
@@ -14,9 +18,37 @@ const ManageSubmission = ({ close }) => {
   const handleLinkChange = (event) => {
     setProjectLink(() => event.target.value)
   }
-  const handleSubmit = () => {
-    console.log('submitted')
+  const handleSubmit = async () => {
+    console.log(event.teamData.team)
+    const authorization = sessionStorage.getItem('token')
+    if (authorization === '') {
+      console.log('Authorization is missing')
+    }
+    const data = {
+      teamId: event.teamData.team.teamId,
+      abstract: abstract,
+      link: projectLink
+    }
+    console.log(data)
+
+    const response = await api('updateTeam', 'patch', data, authorization)
+    if (response.status === 200) {
+      setSuccess(() => 'Your details were updated successfully')
+    } else {
+      setError(() => 'There was an error')
+    }
   }
+
+  const hook = () => {
+    if (event.teamData.team.abstract !== null) {
+      setAbstract(() => event.teamData.team.abstract)
+    }
+    if (event.teamData.team.link !== null) {
+      setProjectLink(() => event.teamData.team.link)
+    }
+  }
+
+  useEffect(hook, [])
 
   return (
     <div className='submission-modal'>
@@ -43,12 +75,23 @@ const ManageSubmission = ({ close }) => {
         <button onClick={handleSubmit} className='ppt-event-primary-button'>
           Submit
         </button>
+        {error !== '' && (
+          <div className='submission-error'>
+            {error}
+          </div>
+        )}
+        {success !== '' && (
+          <div>
+            {success}
+          </div>
+        )}
       </div>
     </div>
   )
 }
 
 ManageSubmission.propTypes = {
+  event: PropTypes.object,
   close: PropTypes.func
 }
 

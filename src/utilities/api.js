@@ -25,7 +25,7 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
   const config = {
     method: method,
     url: BASEURL + calls[url],
-    headers: authorization ? { authorization: authorization } : {}
+    headers: authorization ? { Authorization: authorization } : {}
   }
 
   if (method === 'post') {
