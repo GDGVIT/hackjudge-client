@@ -26,11 +26,15 @@ const CreateTeam = ({ event, back }) => {
     }
     const response = await api('createTeam', 'post', data, token)
     console.log(response)
-    if (response.status === 200) {
+    if (response.status === 200 && response.data.message !== 'team already exists') {
       setTeamcode(response.data.createdTeam.teamCode)
     } else {
       setError(response.data.message)
     }
+  }
+
+  const refresh = () => {
+    window.location.reload(false)
   }
 
   return (
@@ -58,7 +62,7 @@ const CreateTeam = ({ event, back }) => {
             <h2>{teamname} was created!!</h2>
             <h3>Here is your team code</h3>
             <h2>{teamcode}</h2>
-            <button onClick={back} className='jointeam-back-button'>
+            <button onClick={refresh} className='jointeam-back-button'>
               Back
             </button>
           </div>

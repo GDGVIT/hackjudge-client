@@ -8,6 +8,7 @@ const Review = ({ n, event }) => {
   const [teams, setTeams] = useState([])
 
   const hook = async () => {
+    // call the api with url path
     const response = await getAllTeams(sessionStorage.getItem('token'), event.eventId)
     setTeams(response.data.teams)
   }

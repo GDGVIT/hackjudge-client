@@ -12,14 +12,16 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
     login: 'auth/login',
     signup: 'auth/signup',
     getAllEvents: 'event/allEvents',
-    getEvent: `event/${data.eventId}`,
+    getEvent: `event/${urlPath}`,
     createEvent: 'event/createEvent',
-    getAllTeams: `event/team/allTeams/${data.eventId}`,
+    getAllTeams: `event/team/allTeams/${urlPath}`,
     createTeam: 'participantTeam/createTeam',
     joinTeam: 'participantTeam/joinTeam',
     deleteTeam: 'participantTeam/deleteTeam',
     updateTeam: 'participantTeam/updateTeam',
-    getSubmission: `participantTeam/${urlPath}`
+    getSubmission: `participantTeam/${urlPath}`,
+    getMembers: `participantTeam/getMembers/${urlPath}`,
+    addTeamMember: 'participantTeam/addTeamMember'
   }
 
   const config = {
@@ -28,7 +30,7 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
     headers: authorization ? { Authorization: authorization } : {}
   }
 
-  if (method === 'post') {
+  if (method === 'post' || method === 'patch' || method === 'delete') {
     config.data = data
   }
 

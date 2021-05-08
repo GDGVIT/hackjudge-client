@@ -32,6 +32,9 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
       unixEndTime: Date.parse(event.endOfEvent)
     }))
 
+    setUnregistered(() => [])
+    setRegistered(() => [])
+
     if (newEvents.length !== 0) {
       newEvents.forEach(async (thisevent) => {
         const response = await isInTeam(token, thisevent.eventId)
@@ -56,12 +59,13 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
 
   useEffect(hook, [])
 
+  // eslint-disable-next-line no-unused-vars
+
   return (
     <div className='participant-home'>
       {(events.length !== 0) && (
         <ParticipantEvents unregistered={unregistered} registered={registered} />
       )}
-
       {events.length === 0 && (
         <div>
           There are no events

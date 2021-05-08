@@ -22,14 +22,14 @@ const ManageSubmission = ({ event, close }) => {
     console.log(event.teamData.team)
     const authorization = sessionStorage.getItem('token')
     if (authorization === '') {
-      console.log('Authorization is missing')
+      setError('There was an error, try logging out.')
+      return
     }
     const data = {
       teamId: event.teamData.team.teamId,
       abstract: abstract,
       link: projectLink
     }
-    console.log(data)
 
     const response = await api('updateTeam', 'patch', data, authorization)
     if (response.status === 200) {

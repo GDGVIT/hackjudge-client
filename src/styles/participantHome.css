@@ -185,7 +185,7 @@
   background: -webkit-linear-gradient(right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   padding: 30px;
-  overflow-y: scroll;
+  overflow-y: auto;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -231,6 +231,7 @@
 
 .unreg-event-detail-close {
   background-color: #171717;
+  color: #fff;
   width: max-content;
   padding: 5px 10px 5px 10px;
   border: 1px solid white;
@@ -485,6 +486,7 @@
   border: 1px solid white;
   border-radius: 4px;
   margin: 16px;
+  padding: 8px;
 }
 
 .teamcode > h2:first-child {
@@ -640,4 +642,98 @@
 
 .event-details-footer > * {
   margin: 5px;
+}
+
+.manage-team-name {
+  border-bottom: 1px solid white;
+}
+
+.manage-team-body {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowraps;
+  justify-content: space-evenly;
+  border-bottom: 1px solid white;
+  padding: 8px;
+}
+
+.team-members,
+.waiting-members {
+  padding: 20px;
+}
+
+.add-to-team {
+  background-color: inherit;
+  border: 0;
+  margin-right: 10px;
+  color: white;
+  transition: all 500ms;
+  transform: scale(1.1);
+}
+
+.add-to-team:hover {
+  transform: scale(1.15);
+}
+
+@media screen and (max-width: 550px) {
+  .manage-team-body {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .waiting-members {
+    padding-top: 15px;
+  }
+}
+
+.manage-team-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-team-button,
+.leave-team-button {
+  border: 1px solid white;
+  color: #fff;
+  background-color: inherit;
+  border-radius: 9px;
+  padding: 5px 13px;
+  font-size: 1.5rem;
+  margin: 8px;
+  width: max-content;
+  transition: all 500ms;
+}
+
+.delete-team-button:hover,
+.leave-team-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.wishes-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wish-reload {
+  margin-top: 10px;
+  padding: 9px;
+  border: 1px solid white;
+  border-radius: 7px;
+  background-color: inherit;
+  color: white;
+  font-size: 1.3rem;
+  font-family: 'Roboto', sans-serif;
+  transition: all 500ms;
+}
+
+.wish-reload:hover {
+  background-color: #fff;
+  color: #000;
 }

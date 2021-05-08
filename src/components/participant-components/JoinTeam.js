@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import api from '../../utilities/api'
 
-const JoinTeam = ({ event, back }) => {
+const JoinTeam = ({ back }) => {
   const [error, setError] = useState('')
   const [teamcode, setTeamcode] = useState('')
   const [success, setSuccess] = useState('')
@@ -24,9 +24,7 @@ const JoinTeam = ({ event, back }) => {
       return
     }
     const data = {
-      team: {
-        teamCode: teamcode
-      }
+      teamCode: teamcode
     }
     const response = await api('joinTeam', 'post', data, token)
     console.log(response)
@@ -64,7 +62,7 @@ const JoinTeam = ({ event, back }) => {
         {success !== '' && (
           <div className='success-join-request'>
             <h2>{success}</h2>
-            <button onClick={back} className='jointeam-back-button'>
+            <button onClick={() => window.location.reload(false)} className='jointeam-back-button'>
               Back
             </button>
           </div>
