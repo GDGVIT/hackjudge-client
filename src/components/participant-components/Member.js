@@ -46,7 +46,36 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
   }
 
   const removeFromTeam = async () => {
-    console.log('rage kicking')
+    const selfAuth = sessionStorage.getItem('auth_id')
+    if (selfAuth === '') {
+      return
+    }
+    let data = {}
+    let url = ''
+    if (selfAuth === member.auth[0].authId) {
+      data = {
+        teamId: event.teamData.team.teamId
+      }
+      url = 'leaveTeam'
+    } else {
+      data = {
+        memberAuthId: member.auth[0].authId,
+        teamId: event.teamData.team.teamId
+      }
+      url = 'removeMember'
+    }
+    const token = sessionStorage.getItem('token')
+    if (token === '') {
+      console.log('no token')
+      return
+    }
+    console.log(data, 'is sent')
+    const response = await api(url, 'post', data, token, null)
+    console.log(response)
+
+    if (response.status === 200) {
+      setWishes(() => true)
+    }
   }
 
   return (

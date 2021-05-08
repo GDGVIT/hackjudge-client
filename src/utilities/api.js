@@ -21,7 +21,9 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
     updateTeam: 'participantTeam/updateTeam',
     getSubmission: `participantTeam/${urlPath}`,
     getMembers: `participantTeam/getMembers/${urlPath}`,
-    addTeamMember: 'participantTeam/addTeamMember'
+    addTeamMember: 'participantTeam/addTeamMember',
+    removeMember: 'participantTeam/removeMember',
+    leaveTeam: 'participantTeam/leaveTeam'
   }
 
   const config = {

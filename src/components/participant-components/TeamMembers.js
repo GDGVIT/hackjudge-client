@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Member from './Member'
 
-const TeamMembers = ({ members }) => {
+const TeamMembers = ({ event, members }) => {
   // there will always be atleast one member
   return (
     <div className='team-members'>
@@ -12,7 +12,7 @@ const TeamMembers = ({ members }) => {
       </h2>
       {members.map((member, index) => {
         return (
-          <Member key={index} member={member} />
+          <Member key={index} event={event} member={member} />
         )
       })}
     </div>
@@ -20,7 +20,8 @@ const TeamMembers = ({ members }) => {
 }
 
 TeamMembers.propTypes = {
-  members: PropTypes.array
+  members: PropTypes.array,
+  event: PropTypes.object
 }
 
 export default TeamMembers
