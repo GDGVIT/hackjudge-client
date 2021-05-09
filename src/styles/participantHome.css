@@ -172,6 +172,13 @@
   overflow-y: auto;
 }
 
+/* ugly stuff for firefox users as a punishment */
+@-moz-document url-prefix() {
+  .unreg-event-details-container {
+    background-color: #232526;
+  }
+}
+
 .unreg-event-details,
 .submission-modal {
   margin: 0 auto;

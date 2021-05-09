@@ -12,7 +12,10 @@ const CreateTeam = ({ event, back }) => {
     setTeamname(() => event.target.value)
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    if (event) {
+      event.preventDefault()
+    }
     const token = sessionStorage.getItem('token')
     if (token === '') {
       setError('There was an unexpected error')
@@ -40,7 +43,7 @@ const CreateTeam = ({ event, back }) => {
   return (
     <div className='jointeam-overlay'>
       <div className='jointeam-container'>
-        <form className='jointeam-form' created={teamcode}>
+        <form onSubmit={handleSubmit} className='jointeam-form' created={teamcode}>
           <label className='jointeam-label'>
             Team Name
             <input onChange={handleNameChange} value={teamname} className='jointeam-input' />
