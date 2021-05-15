@@ -12,9 +12,9 @@ const CreateTeam = ({ event, back }) => {
     setTeamname(() => event.target.value)
   }
 
-  const handleSubmit = async (event) => {
-    if (event) {
-      event.preventDefault()
+  const handleSubmit = async (e) => {
+    if (e) {
+      e.preventDefault()
     }
     const token = sessionStorage.getItem('token')
     if (token === '') {
@@ -27,6 +27,7 @@ const CreateTeam = ({ event, back }) => {
       },
       eventId: event.eventId
     }
+    console.log(data)
     const response = await api('createTeam', 'post', data, token)
     console.log(response)
     if (response.status === 200 && response.data.message !== 'team already exists') {
