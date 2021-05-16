@@ -8,6 +8,7 @@ const Review = ({ n, event }) => {
   const [teams, setTeams] = useState([])
 
   const hook = async () => {
+    // call the api with url path
     const response = await getAllTeams(sessionStorage.getItem('token'), event.eventId)
     setTeams(response.data.teams)
   }
@@ -41,6 +42,11 @@ const Review = ({ n, event }) => {
                 <p className='no-teams'>
                   No teams to show, marketing team slakin, eh?
                 </p>
+              )}
+              {teams !== null && teams.length > 0 && (
+                <div className='review-teams-container'>
+                  Teams
+                </div>
               )}
             </div>
           </div>

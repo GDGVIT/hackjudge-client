@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const getEvent = async (ATOKEN, eventID) => {
+const getAllReviews = async (ATOKEN, eventId) => {
   const URL = 'https://helios-hackjudgeapi.herokuapp.com'
   const config = {
     method: 'get',
-    url: `${URL}/event/eventID`,
+    url: `${URL}/review/allReviews/${eventId}`,
     headers: {
       Authorization: `${ATOKEN}`
     }
@@ -13,4 +13,4 @@ const getEvent = async (ATOKEN, eventID) => {
   return response.data
 }
 
-export default getEvent
+export default getAllReviews

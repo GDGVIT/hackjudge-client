@@ -1,9 +1,14 @@
-const validator = (email) => {
-  let valid = true
+const emailValidator = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  valid = re.test(String(email).toLowerCase())
-  // password validation to be done
+  const valid = re.test(String(email).toLowerCase())
   return valid
 }
 
-export default validator
+const passwordValidator = (password) => {
+  /* eslint-disable */
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$/
+  const valid = re.test(String(password))
+  return valid
+}
+
+export { emailValidator, passwordValidator }

@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize, reviews, endDate) => {
   // Validate event details data
-  console.log(teamSize)
   newMetrics = newMetrics.map(m => ({ metricName: m.metricName, maxScore: m.maxScore }))
   newProblemStatements = newProblemStatements.map(ps => (ps.ps))
   const errors = []

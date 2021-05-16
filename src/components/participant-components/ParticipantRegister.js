@@ -7,8 +7,8 @@ import InputForm from '../common-components/InputForm'
 import LoginError from '../common-components/LoginError'
 import LoginLoader from '../common-components/LoginLoader'
 
-import participantRegister from '../../utilities/participantRegister'
-import validator from '../../utilities/validator'
+import api from '../../utilities/api'
+import { emailValidator, passwordValidator } from '../../utilities/validator'
 
 const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handleUserPassword, handleUserType, handleLogin }) => {
   const history = useHistory()
@@ -19,7 +19,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
   const handleSubmit = async (event) => {
     event.preventDefault()
     setAnimationState(1)
-    if (!validator(userData.email)) {
+    if (!emailValidator(userData.email)) {
       setErrorMessage('That doesn\'t look like an email to me')
       setInvalid(true)
       setAnimationState(0)
@@ -28,12 +28,29 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
       setInvalid(false)
       setAnimationState(1)
     }
+    if (!passwordValidator(userData.password)) {
+      setErrorMessage('The password must contain at least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character,\n and should be 8 characters long')
+      setInvalid(true)
+      setAnimationState(0)
+      return
+    } else {
+      setInvalid(false)
+      setAnimationState(1)
+    }
     setAnimationState(1)
-    let response = await participantRegister(userData.email, userData.password, userData.name)
+
+    const data = {
+      name: userData.name,
+      email: userData.email,
+      password: userData.password,
+      isAdmin: false
+    }
+    let response = await api('signup', 'post', data)
+
     if (response.status === 200) {
       response = response.data
       console.log(response)
-      handleLogin(response.token, response.createdAuth.authId, 1, response.user.name)
+      handleLogin(response.token, response.createdAuth.authId, 1, response.createdAuth.name)
       history.push('/home')
     } else if (response.status === 422) {
       setAnimationState(0)
@@ -61,7 +78,7 @@ const ParticipantRegister = ({ userData, handleUserName, handleUserEmail, handle
         />
         <InputForm
           labelText='Email'
-          inputType='text'
+          inputType='email'
           inputValue={userData.email}
           onChangeHandler={handleUserEmail}
           placeholderText='user@domain.com'
