@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import EventRegister from './EventRegister'
+import BackCross from '../../assets/BackCross.svg'
 
 const UnregEventsDetail = ({ event, close, registered }) => {
   const [register, setRegister] = useState(false)
@@ -27,7 +28,11 @@ const UnregEventsDetail = ({ event, close, registered }) => {
           <h1>{event.eventName}</h1>
         </div>
         <div onClick={close} className='unreg-event-detail-close'>
-          Back
+          <img
+            className='event-register-back-icon'
+            src={BackCross}
+            alt='Back'
+          />
         </div>
       </div>
       <div className='event-details-body'>
@@ -55,7 +60,7 @@ const UnregEventsDetail = ({ event, close, registered }) => {
       {!registered && (
         <div className='event-details-footer'>
           <button onClick={() => setRegister(!register)} className='ppt-event-primary-button'>
-            Register
+            Register Now
           </button>
         </div>
       )}

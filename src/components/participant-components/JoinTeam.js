@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+import BackCross from '../../assets/BackCross.svg'
+
 import api from '../../utilities/api'
 
 const JoinTeam = ({ back }) => {
@@ -36,27 +38,38 @@ const JoinTeam = ({ back }) => {
   }
 
   return (
-    <div className='jointeam-overlay'>
-      <div className='jointeam-container' success={success}>
+    <div className='unreg-event-details-container'>
+      <div className='unreg-event-details reg-formm' success={success}>
         {success === '' && (
           <>
-            <form className='jointeam-form'>
-              <label className='jointeam-label'>
-                Team Code
-                <input value={teamcode} onChange={handleCodeChange} className='jointeam-input' />
-              </label>
-            </form>
-            <div onClick={handleSubmit} className='jointeam-buttons'>
-              <button className='jointeam-button'>
-                Join
-              </button>
-              <button onClick={back} className='jointeam-back-button'>
-                Back
-              </button>
+            <div className='unreg-event-details-topbar'>
+              <div className='event-details-title'>
+                <h1>Join A Team</h1>
+              </div>
+              <div onClick={back} className='unreg-event-detail-close'>
+                <img
+                  className='event-register-back-icon'
+                  src={BackCross}
+                  alt='Back'
+                />
+              </div>
             </div>
-            <div className='jointeam-error'>
-              {error}
+            <div className='reg-body'>
+              <form className='reg-form'>
+                <label className='reg-form-label'>
+                  Team Code
+                </label>
+                <input value={teamcode} onChange={handleCodeChange} className='reg-form-input' />
+              </form>
             </div>
+            <button onClick={handleSubmit} className='reg-button'>
+              Join
+            </button>
+            {error !== '' && (
+              <div className='jointeam-error'>
+                {error}
+              </div>
+            )}
           </>
         )}
         {success !== '' && (
