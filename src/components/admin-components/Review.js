@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import Team from './Team'
+
 import getAllTeams from '../../utilities/getAllTeams'
 
 const Review = ({ n, event }) => {
@@ -11,13 +13,13 @@ const Review = ({ n, event }) => {
     // call the api with url path
     const response = await getAllTeams(sessionStorage.getItem('token'), event.eventId)
     setTeams(response.data.teams)
+    console.log(teams)
   }
 
   useEffect(hook, [])
   const handleButtonClick = () => {
     setExpanded(!expanded)
   }
-  console.log('n: ', n, '\nevent:\n', event)
   return (
     <span>
       <button className='review-button' onClick={handleButtonClick}>Review {n}</button>
@@ -45,7 +47,10 @@ const Review = ({ n, event }) => {
               )}
               {teams !== null && teams.length > 0 && (
                 <div className='review-teams-container'>
-                  Teams
+                  <h1>Teams</h1>
+                  <div className='teams-flex'>
+                    {teams.map(team => <Team key={team.teamId} review={n} team={team} />)}
+                  </div>
                 </div>
               )}
             </div>

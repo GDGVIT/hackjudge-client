@@ -33,7 +33,6 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
     let newEvents = await getAllEvents(token)
     newEvents = newEvents.map(event => ({ ...event, dateOfEvent: Date.parse(event.dateOfEvent), endOfEvent: Date.parse(event.endOfEvent) }))
     const currDate = Date.now()
-    console.log(currDate)
     const currEvents = newEvents.filter(event => {
       return ((event.dateOfEvent <= currDate) && (event.endOfEvent > currDate))
     })
@@ -44,7 +43,6 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
       return (event.dateOfEvent > currDate)
     })
     setEvents({ currentEvents: currEvents, pastEvents: pasEvents, upcomingEvents: upcomEvents })
-    console.log(newEvents)
     console.log(events)
   }
 

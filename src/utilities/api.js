@@ -44,7 +44,6 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
     const response = await axios(config)
     return response
   } catch (error) {
-    console.log(error.response)
     return error.response
   }
 }
