@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import BackCross from '../../assets/BackCross.svg'
+
 import api from '../../utilities/api'
 
-const ManageSubmission = ({ event, close }) => {
+const ManageSubmission = ({ event, close, notAdmin = false }) => {
   const [abstract, setAbstract] = useState('')
   const [projectLink, setProjectLink] = useState('')
   const [error, setError] = useState('')
@@ -52,47 +54,63 @@ const ManageSubmission = ({ event, close }) => {
 
   return (
     <div className='submission-modal'>
-      <div className='unreg-event-details-topbar'>
-        <div className='event-details-title'>
-          <h1>Your Submission</h1>
-        </div>
+      <div className='manage-team-top'>
         <div onClick={close} className='unreg-event-detail-close'>
-          Back
+          <img
+            className='event-register-back-icon'
+            src={BackCross}
+            alt='Back'
+          />
         </div>
+      </div>
+      <div className='azonixx manage-team-title'>
+        Your Submission
       </div>
       <div className='event-details-body submission-body'>
         <div className='submission-abstract'>
-          <h2 className='abstract-title'>Abstract</h2>
-          <textarea value={abstract} onChange={handleAbstractChange} placeholder={abstractPlaceholder} className='abstract-textarea' />
+          <div className='abstract-title'>Abstract</div>
+          {notAdmin && (
+            <textarea value={abstract} placeholder={abstractPlaceholder} disabled className='abstract-textarea' />
+          )}
+          {!notAdmin && (
+            <textarea value={abstract} onChange={handleAbstractChange} placeholder={abstractPlaceholder} className='abstract-textarea' />
+          )}
         </div>
         <div className='submission-link'>
-          <h2 className='project-link'>Project Link</h2>
-          <textarea value={projectLink} onChange={handleLinkChange} placeholder={linkPlaceholder} className='project-link-textarea' />
+          <div className='abstract-title'>Project Link</div>
+          {notAdmin && (
+            <textarea value={projectLink} disabled placeholder={linkPlaceholder} className='project-link-textarea' />
+          )}
+          {!notAdmin && (
+            <textarea value={projectLink} onChange={handleLinkChange} placeholder={linkPlaceholder} className='project-link-textarea' />
+          )}
         </div>
       </div>
-
-      <div className='event-details-footer'>
-        <button onClick={handleSubmit} className='ppt-event-primary-button'>
-          Submit
-        </button>
-        {error !== '' && (
+      {!notAdmin && (
+        <div className='event-details-footer'>
+          <button onClick={handleSubmit} className='ppt-event-primary-button submission-button'>
+            Submit
+          </button>
+          {error !== '' && (
           <div className='submission-error'>
             {error}
           </div>
-        )}
-        {success !== '' && (
-          <div>
-            {success}
-          </div>
-        )}
-      </div>
+          )}
+          {success !== '' && (
+            <div>
+              {success}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }
 
 ManageSubmission.propTypes = {
   event: PropTypes.object,
-  close: PropTypes.func
+  close: PropTypes.func,
+  notAdmin: PropTypes.bool
 }
 
 export default ManageSubmission

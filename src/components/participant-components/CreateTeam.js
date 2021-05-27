@@ -49,39 +49,6 @@ const CreateTeam = ({ event, back }) => {
     setCopySuccess(() => true)
   }
 
-  // return (
-  //   <div className='unreg-event-details-container'>
-  //     <div className='unreg-event-details reg-formm'>
-  //       <form onSubmit={handleSubmit} className='jointeam-form' created={teamcode}>
-  //         <label className='jointeam-label'>
-  //           Team Name
-  //           <input onChange={handleNameChange} value={teamname} className='jointeam-input' />
-  //         </label>
-  //       </form>
-  //       <div className='jointeam-buttons' created={teamcode}>
-  //         <button onClick={handleSubmit} className='jointeam-button'>
-  //           Create
-  //         </button>
-  //         <button onClick={back} className='jointeam-back-button'>
-  //           Back
-  //         </button>
-  //       </div>
-  //       <div className='jointeam-error'>
-  //         {error}
-  //       </div>
-  //       {teamcode !== '' && (
-  //         <div className='teamcode' teamcode={teamcode}>
-  //           <h2>{teamname} was created!!</h2>
-  //           <h3>Here is your team code</h3>
-  //           <h2>{teamcode}</h2>
-  //           <button onClick={refresh} className='jointeam-back-button'>
-  //             Back
-  //           </button>
-  //         </div>
-  //       )}
-  //     </div>
-  //   </div>
-  // )
   return (
     <div className='unreg-event-details-container'>
       {teamcode === '' && (

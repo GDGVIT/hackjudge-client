@@ -23,7 +23,7 @@
   width: 45%;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1300px) {
   .event-status-container {
     width: auto;
   }
@@ -86,7 +86,7 @@
   border: 0;
   margin: 8px 0;
   border-radius: 4px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 7px;
   color: #fff;
   background-color: #0083ff;
@@ -98,7 +98,7 @@
 .ppt-event-team-button {
   border: 0;
   border-radius: 4px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 7px;
   color: #fff;
   background-color: #0083ff;
@@ -120,7 +120,7 @@
   border-radius: 4px;
   height: 2.9rem;
   color: #fff;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   transition: all 500ms;
 }
 
@@ -361,7 +361,7 @@
   color: #000;
   width: 80%;
   height: 2.2rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   transition: all 500ms;
 }
 
@@ -489,7 +489,7 @@
 }
 
 .event-register-back-icon {
-  width: max-content;
+  max-width: 22px;
   float: left;
 }
 
@@ -585,11 +585,25 @@
   width: max-content;
 }
 
+.make-normal {
+  height: 50%;
+}
+
+.success-container {
+  padding-top: 20px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
 .success-join-request {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  font-size: 1.4rem;
 }
 
 .success-join-request * {
@@ -620,7 +634,9 @@
 }
 
 .abstract-title {
+  font-family: 'Roboto', sans-serif;
   text-align: left;
+  padding: 10px 0;
 }
 
 .abstract-textarea,
@@ -631,16 +647,24 @@
   min-height: 150px;
   max-height: 280px;
   outline: none;
-  border: 1px solid white;
   font-size: 1.3rem;
-  padding: 7px;
+  border: 0;
+  border-radius: 7px;
+  padding: 9px;
   color: #fff;
-  background-color: inherit;
+  background-color: #171717;
 }
 
 .project-link-textarea {
   min-height: 50px;
   max-height: 88px;
+}
+
+.submission-button {
+  background-color: #335677;
+  font-family: 'Roboto', sans-serif;
+  height: 2.4rem;
+  width: 30%;
 }
 
 .submission-error {
@@ -662,36 +686,107 @@
   margin: 5px;
 }
 
+.manage-team-top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.azonixx {
+  font-family: 'Azonix', sans-serif;
+}
+
+.manage-team-title {
+  padding-bottom: 20px;
+  font-size: 1.2rem;
+  width: 100%;
+  text-align: center;
+}
+
 .manage-team-name {
-  border-bottom: 1px solid white;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px 25px;
+}
+
+.manage-team-name > h1 {
+  font-size: 1.2rem;
+  font-weight: normal;
 }
 
 .manage-team-body {
   display: flex;
   width: 100%;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowraps;
   justify-content: space-evenly;
-  border-bottom: 1px solid white;
-  padding: 8px;
+  padding: 8px 25px;
 }
 
-.team-members,
-.waiting-members {
+.manage-team-code {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 7px;
+}
+
+.kopy-code {
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: #335677;
+  height: 2.5rem;
+}
+
+.manage-copy-success {
+  width: 100%;
   padding: 20px;
+}
+
+.members-container {
+  padding: 7px;
+}
+
+.members-list {
+  background-color: #171717;
+  border: 0;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 12px 0 0 0;
+}
+
+.members-list > * {
+  margin-bottom: 20px;
 }
 
 .add-to-team {
   background-color: inherit;
-  border: 0;
   margin-right: 10px;
-  color: white;
+  color: #fff;
   transition: all 500ms;
   transform: scale(1.1);
+  border: 1px solid white;
+  padding: 4px;
+  padding-bottom: 1px;
+  border-radius: 4px;
+}
+
+.big-tick {
+  max-width: 150px;
 }
 
 .add-to-team:hover {
   transform: scale(1.15);
+}
+
+.leader-tag {
+  float: right;
+  color: #335677;
 }
 
 @media screen and (max-width: 550px) {
@@ -725,6 +820,12 @@
   margin: 8px;
   width: max-content;
   transition: all 500ms;
+}
+
+.delete-team-button {
+  font-size: 0.9rem;
+  border-radius: 4px;
+  border: 2px solid #335677;
 }
 
 .delete-team-button:hover,

@@ -103,11 +103,39 @@ const ParticipantEvent = ({ event }) => {
         </div>
       )}
       {event.userStatus === 3 && (
-        <div className='normal-member-card'>
-          <div className='ppt-event-name'>
-            {event.eventName}
+        <>
+          <div className='participant-event-card'>
+            <div className='ppt-event-name'>
+              {event.eventName}
+            </div>
+            <div className='participant-event-buttons'>
+              <button onClick={handleTeam} className='ppt-event-team-button'>
+                Team
+              </button>
+              <button onClick={handleSubmission} className='ppt-event-primary-button'>
+                Submission
+              </button>
+              <button onClick={handleDetails} className='event-details-button'>
+                Details
+              </button>
+            </div>
           </div>
-        </div>
+          {overlay && (
+            <div className='unreg-event-details-container'>
+              <UnregEventDetail event={event} close={handleDetails} registered />
+            </div>
+          )}
+          {submission && (
+            <div className='event-submission-container'>
+              <ManageSubmission event={event} close={handleSubmission} notAdmin />
+            </div>
+          )}
+          {manageTeam && (
+            <div className='unreg-event-details-container'>
+              <ManageTeam event={event} close={handleTeam} notAdmin />
+            </div>
+          )}
+        </>
       )}
     </>
   )
