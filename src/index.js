@@ -37,18 +37,14 @@ const App = () => {
             <Login userData={userData} handleUserData={handleUserData} />
           </Route>
           <Route exact path='/admin'>
-            <Suspense fallback={<div>Header</div>}>
+            <Suspense fallback={<div>Loading...</div>}>
               <Header currentPage='admin-home' createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
-            </Suspense>
-            <Suspense fallback={<div>Home</div>}>
               <AdminHome userData={userData} createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
             </Suspense>
           </Route>
           <Route exact path='/home'>
-            <Suspense fallback={<div>Header</div>}>
+            <Suspense fallback={<div>Loading...</div>}>
               <Header currentPage='participant-home' currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
-            </Suspense>
-            <Suspense fallback={<div>Home</div>}>
               <ParticipantHome userData={userData} currentRef={currentRef} upcomingRef={upcomingRef} />
             </Suspense>
           </Route>
