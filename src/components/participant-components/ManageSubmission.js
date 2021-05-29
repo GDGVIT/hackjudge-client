@@ -92,9 +92,9 @@ const ManageSubmission = ({ event, close, notAdmin = false }) => {
             Submit
           </button>
           {error !== '' && (
-          <div className='submission-error'>
-            {error}
-          </div>
+            <div className='submission-error'>
+              {error}
+            </div>
           )}
           {success !== '' && (
             <div>
