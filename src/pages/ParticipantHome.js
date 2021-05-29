@@ -39,7 +39,7 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
       newEvents.forEach(async (thisevent) => {
         const response = await isInTeam(token, thisevent.eventId)
         if (response.status !== 200) {
-          console.log(response)
+          console.log('Hacker?')
         } else if (response.data.message === 'You are not in a team') {
           thisevent.userStatus = 0
           setUnregistered((oldState) => [...oldState, thisevent])

@@ -37,11 +37,10 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
     }
     const token = sessionStorage.getItem('token')
     if (token === '') {
-      console.log('no token')
+      console.log('Hacker?')
       return
     }
     const response = await api('addTeamMember', 'post', data, token, null)
-    console.log(response)
     if (response.status === 200) {
       setWishes(() => true)
     }
@@ -68,12 +67,10 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
     }
     const token = sessionStorage.getItem('token')
     if (token === '') {
-      console.log('no token')
+      console.log('Hacker?')
       return
     }
-    console.log(data, 'is sent')
     const response = await api(url, 'post', data, token, null)
-    console.log(response)
 
     if (response.status === 200) {
       setWishes(() => true)

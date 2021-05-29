@@ -10,7 +10,6 @@ import api from '../../utilities/api'
 // import isInTeam from '../../utilities/isInTeam'
 
 const ManageTeam = ({ event, close, notAdmin = false }) => {
-  console.log(event)
   const [members, setMembers] = useState([])
   const [waitingMembers, setWaitingMembers] = useState([])
   const [code, setCode] = useState('')
@@ -23,7 +22,6 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
       teamId: event.teamData.team.teamId
     }
     const response = await api('deleteTeam', 'delete', data, token)
-    console.log(response)
     if (response.status === 200) {
       console.log(event.teamData.team.teamId, ' was destroyed')
       window.location.reload(false)

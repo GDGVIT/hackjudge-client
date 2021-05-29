@@ -30,9 +30,7 @@ const CreateTeam = ({ event, back }) => {
       },
       eventId: event.eventId
     }
-    console.log(data)
     const response = await api('createTeam', 'post', data, token)
-    console.log(response)
     if (response.status === 200 && response.data.message !== 'team already exists') {
       setTeamcode(response.data.createdTeam.teamCode)
     } else {

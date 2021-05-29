@@ -30,7 +30,6 @@ const JoinTeam = ({ back }) => {
       teamCode: teamcode
     }
     const response = await api('joinTeam', 'post', data, token)
-    console.log(response)
     if (response.status === 200) {
       setSuccess('Your team leader has been notified!')
     } else {
