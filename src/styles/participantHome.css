@@ -137,7 +137,6 @@
 
   .participants-event-container:last-child {
     margin-top: 25px;
-    border-top: 1px solid white;
     padding-top: 7px;
   }
 
@@ -546,6 +545,45 @@
   text-align: center;
 }
 
+@media screen and (max-width: 624px) {
+  .event-register-body {
+    padding-top: 5px;
+    flex-direction: column;
+  }
+
+  .event-register-title {
+    font-size: 2.1rem;
+  }
+
+  .event-register-back-icon {
+    width: 18px;
+  }
+
+  .reg-icon-container {
+    width: 140px;
+    height: 140px;
+    margin: 15px;
+  }
+
+  .reg-button {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .event-register-title {
+    font-size: 1.7rem;
+  }
+
+  .event-register-back-icon {
+    width: 15px;
+  }
+
+  .reg-button {
+    width: 90%;
+  }
+}
+
 @media screen and (max-width: 530px) {
   .event-register > div {
     display: flex;
@@ -734,6 +772,20 @@
   padding: 7px;
 }
 
+@media screen and (max-width: 454px) {
+  .manage-team-code {
+    flex-direction: column;
+  }
+
+  .manage-team-code > * {
+    margin: 15px;
+  }
+
+  .real-code {
+    text-align: center;
+  }
+}
+
 .kopy-code {
   color: #fff;
   border: 0;
@@ -792,8 +844,9 @@
 @media screen and (max-width: 550px) {
   .manage-team-body {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+    /* justify-content: center;
+    align-items: center; */
   }
 
   .waiting-members {

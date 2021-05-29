@@ -7,7 +7,7 @@ import TeamMembers from './TeamMembers'
 import WaitingMebmers from './WaitingMembers'
 
 import api from '../../utilities/api'
-import isInTeam from '../../utilities/isInTeam'
+// import isInTeam from '../../utilities/isInTeam'
 
 const ManageTeam = ({ event, close, notAdmin = false }) => {
   console.log(event)
@@ -51,9 +51,9 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
     const token = sessionStorage.getItem('token')
     if (token === '') return
     const membersResponse = await api('getMembers', 'get', null, token, event.teamData.team.teamId)
-    const codeResponse = await isInTeam(token, event.eventId)
+    const codeResponse = await api('getSubmission', 'get', null, token, event.teamData.team.teamId)
     if (codeResponse.status === 200) {
-      setCode(() => codeResponse.data.team.teamCode)
+      setCode(() => codeResponse.data.teamCode)
     }
     if (membersResponse.status === 200) {
       setMembers(() => membersResponse.data.existingMembers)
@@ -94,7 +94,6 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
         <div className='manage-team-code'>
           <div className='real-code'>
             {code}
-            12hsf82034
           </div>
           <button className='real-code kopy-code' onClick={handleCopy}>
             Copy code
