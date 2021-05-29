@@ -621,6 +621,7 @@
 
 [success]:not([success=""]) {
   width: max-content;
+  text-align: center;
 }
 
 .make-normal {
@@ -629,7 +630,7 @@
 
 .success-container {
   padding-top: 20px;
-  width: 100%;
+  max-width: 100%;
   display: grid;
   place-items: center;
   height: 100%;
@@ -640,7 +641,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  max-width: 100%;
   font-size: 1.4rem;
 }
 
@@ -909,4 +910,11 @@
 .wish-reload:hover {
   background-color: #fff;
   color: #000;
+}
+
+@media screen and (max-width: 489px) {
+  [success]:not([success=""]) {
+    width: 100%;
+    text-align: center;
+  }
 }
