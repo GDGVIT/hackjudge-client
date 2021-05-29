@@ -25,6 +25,7 @@
  - React
  - Axios
  - React PropTypes
+ - React Icons
 
 ## Running
 
