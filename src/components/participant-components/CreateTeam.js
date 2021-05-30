@@ -19,7 +19,7 @@ const CreateTeam = ({ event, back }) => {
     if (e) {
       e.preventDefault()
     }
-    const token = sessionStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (token === '') {
       setError('There was an unexpected error')
       return

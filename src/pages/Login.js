@@ -15,9 +15,9 @@ const ParticipantRegister = React.lazy(() => import('../components/participant-c
 const Login = ({ userData, handleUserData }) => {
   const history = useHistory()
   const hook = () => {
-    const token = sessionStorage.getItem('token')
-    const authId = sessionStorage.getItem('auth_id')
-    const userType = sessionStorage.getItem('user_type')
+    const token = localStorage.getItem('token')
+    const authId = localStorage.getItem('auth_id')
+    const userType = localStorage.getItem('user_type')
     if (token !== null && authId !== null) {
       handleUserData({ ...userData, userType: userType, logged_in: true })
       if (userData.userType === 2) {
@@ -48,11 +48,11 @@ const Login = ({ userData, handleUserData }) => {
 
   const handleLogin = (newToken, newAuthId, userType, userName) => {
     handleUserData({ ...userData, email: '', password: '', name: '', logged_in: true })
-    sessionStorage.setItem('token', newToken)
-    sessionStorage.setItem('auth_id', newAuthId)
-    sessionStorage.setItem('userType', userType)
-    sessionStorage.setItem('logged_id', 'true')
-    sessionStorage.setItem('userName', userName)
+    localStorage.setItem('token', newToken)
+    localStorage.setItem('auth_id', newAuthId)
+    localStorage.setItem('userType', userType)
+    localStorage.setItem('logged_id', 'true')
+    localStorage.setItem('userName', userName)
   }
 
   return (

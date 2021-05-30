@@ -16,7 +16,7 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
   const [copysuccess, setCopySuccess] = useState(false)
 
   const deleteTeam = async () => {
-    const token = sessionStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (token === '') return
     const data = {
       teamId: event.teamData.team.teamId
@@ -32,7 +32,7 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
     const data = {
       teamId: event.teamData.team.teamId
     }
-    const token = sessionStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (token === '') return
     const leaveResponse = await api('leaveTeam', 'post', data, token)
     if (leaveResponse.status === 200) {
@@ -46,7 +46,7 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
   }
 
   const hook = async () => {
-    const token = sessionStorage.getItem('token')
+    const token = localStorage.getItem('token')
     if (token === '') return
     const membersResponse = await api('getMembers', 'get', null, token, event.teamData.team.teamId)
     const codeResponse = await api('getSubmission', 'get', null, token, event.teamData.team.teamId)
