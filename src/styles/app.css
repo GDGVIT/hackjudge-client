@@ -1,11 +1,18 @@
-@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap);
-
 @font-face {
   font-family: 'Azonix';
   src:
     url('./../assets/Azonix.otf'),
     url(https://db.onlinewebfonts.com/c/50cd2aad9c8f35800bb6beac3ad42f16?family=Azonix);
   font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src:
+    url('./../assets/Poppins/Poppins-Medium.ttf'),
+    url(https://db.onlinewebfonts.com/c/50cd2aad9c8f35800bb6beac3ad42f16?family=Azonix);
+  font-display: swap;
+  font-weight: 500;
 }
 
 * {

@@ -58,6 +58,14 @@
   outline: none;
 }
 
+.header-brr {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
 .active-link {
   color: #04d9ff;
 }

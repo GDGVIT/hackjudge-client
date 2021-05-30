@@ -18,7 +18,7 @@ const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) =>
 
   return (
     <header className={headerClass}>
-      <ul>
+      <ul className='header-brr'>
         <li>
           {userType === '2' && (
             <Link to='/admin'>

@@ -36,6 +36,10 @@ const ManageSubmission = ({ event, close, notAdmin = false }) => {
     const response = await api('updateTeam', 'patch', data, authorization)
     if (response.status === 200) {
       setSuccess(() => 'Your details were updated successfully')
+      setTimeout(
+        close,
+        900
+      )
     } else {
       setError(() => 'There was an error')
     }
