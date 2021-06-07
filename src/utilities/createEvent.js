@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize, reviews, endDate) => {
+const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize, reviews, endDate, description) => {
   // Validate event details data
   newMetrics = newMetrics.map(m => ({ metricName: m.metricName, maxScore: m.maxScore }))
   newProblemStatements = newProblemStatements.map(ps => (ps.ps))
@@ -15,6 +15,7 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
   try {
     eventDate = Date.parse(eventDate)
     endDate = Date.parse(endDate)
+    console.log({ eventDate, endDate })
     if (isNaN(eventDate) || isNaN(endDate)) {
       throw new Error('invalid date')
     }
@@ -52,7 +53,8 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     dateOfEvent: eventDate,
     maxTeamSize: teamSize,
     noOfReviews: reviews,
-    endOfEvent: endDate
+    endOfEvent: endDate,
+    eventDesc: description
   }
 
   const config = {

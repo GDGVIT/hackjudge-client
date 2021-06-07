@@ -13,7 +13,6 @@ const Review = ({ n, event }) => {
     // call the api with url path
     const response = await getAllTeams(localStorage.getItem('token'), event.eventId)
     setTeams(response.data.teams)
-    console.log(teams)
   }
 
   useEffect(hook, [])
@@ -49,7 +48,7 @@ const Review = ({ n, event }) => {
                 <div className='review-teams-container'>
                   <h1>Teams</h1>
                   <div className='teams-flex'>
-                    {teams.map(team => <Team key={team.teamId} review={n} team={team} />)}
+                    {teams.map(team => <Team key={team.teamId} review={n} team={team} event={event} />)}
                   </div>
                 </div>
               )}

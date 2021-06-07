@@ -23,7 +23,6 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
     }
     const response = await api('deleteTeam', 'delete', data, token)
     if (response.status === 200) {
-      console.log(event.teamData.team.teamId, ' was destroyed')
       window.location.reload(false)
     }
   }

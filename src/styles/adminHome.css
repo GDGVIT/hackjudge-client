@@ -66,7 +66,7 @@
 }
 
 .review-card {
-  width: 80%;
+  width: 60%;
   height: 80%;
   border: 2px solid #406c95;
   border-radius: 7px;
@@ -78,11 +78,16 @@
   align-content: space-around;
 }
 
+.review-card-small {
+  width: 40%;
+  height: 70%;
+}
+
 .review-card-nav {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  padding-top: 10px;
+  justify-content: space-between;
+  padding: 10px 40px 0 40px;
   align-items: flex-end;
 }
 
@@ -131,6 +136,86 @@
   height: 100%;
   padding: 40px;
   padding-top: 20px;
+}
+
+.metrics-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.metrics-container {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.metric-name {
+  font-family: 'Roboto', sans-serif;
+}
+
+.metric-input {
+  height: 2rem;
+  background-color: inherit;
+  border: 0;
+  border-bottom: 2px solid #406c95;
+  width: 7ch;
+  color: #fff;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.metric-input:focus {
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid #2378c7;
+  color: #fff;
+}
+
+.review-comment {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.comment-textarea {
+  max-width: 59%;
+  min-width: 59%;
+  min-height: 30px;
+  max-height: 80px;
+  padding: 6px;
+  background-color: inherit;
+  color: #fff;
+  border: 2px solid #406c95;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.comment-textarea::placeholder {
+  color: rgb(173, 164, 164);
+}
+
+.comment-textarea:focus {
+  outline: none;
+}
+
+.submit-review-button {
+  padding: 5px 60px;
+  margin-top: 6px;
+  background-color: inherit;
+  border: 2px solid #406c95;
+  width: 59%;
+  color: #fff;
+  border-radius: 9px;
+  font-size: 1.2rem;
+  transition: all 500ms;
+}
+
+.submit-review-button:hover {
+  background-color: rgb(37, 34, 71);
+  color: rgb(255, 255, 255);
 }
 
 .no-teams {

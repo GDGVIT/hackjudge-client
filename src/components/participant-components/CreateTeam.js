@@ -99,14 +99,14 @@ const CreateTeam = ({ event, back }) => {
             Here is your team code:
           </div>
           <div className='real-code'>{teamcode}</div>
-          <button className='reg-button' onClick={handleCopy}>
-            Copy code
-          </button>
           {copysuccess && (
-            <div>
+            <div className='code-copy-success'>
               Code copied successfully
             </div>
           )}
+          <button className='reg-button' onClick={handleCopy}>
+            Copy code
+          </button>
         </div>
       )}
     </div>

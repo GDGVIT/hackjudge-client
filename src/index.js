@@ -30,7 +30,7 @@ const App = () => {
   const upcomingRef = useRef()
 
   return (
-    <div className='container'>
+    <main className='container'>
       <Router>
         <Switch>
           <Route exact path='/'>
@@ -50,7 +50,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </main>
   )
 }
 

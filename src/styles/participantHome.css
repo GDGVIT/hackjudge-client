@@ -87,7 +87,7 @@
   font-size: 1.2rem;
   padding: 7px;
   color: #fff;
-  background-color: #0083ff;
+  background-color: #335677;
   height: 2.9rem;
   transition: all 500ms;
   font-family: 'Poppins', sans-serif;
@@ -99,7 +99,7 @@
   font-size: 1.2rem;
   padding: 7px;
   color: #fff;
-  background-color: #0083ff;
+  background-color: #335677;
   height: 2.9rem;
   transition: all 500ms;
   font-family: 'Poppins', sans-serif;
@@ -914,4 +914,8 @@
     width: 100%;
     text-align: center;
   }
+}
+
+.code-copy-success {
+  font-size: 0.95rem;
 }

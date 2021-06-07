@@ -17,7 +17,7 @@ const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) =>
   }
 
   return (
-    <header className={headerClass}>
+    <nav className={headerClass}>
       <ul className='header-brr'>
         <li>
           {userType === '2' && (
@@ -57,7 +57,7 @@ const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) =>
           )}
         </li>
       </ul>
-    </header>
+    </nav>
   )
 }
 
