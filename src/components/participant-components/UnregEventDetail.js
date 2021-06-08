@@ -38,7 +38,16 @@ const UnregEventsDetail = ({ event, close, registered }) => {
       <div className='event-details-body'>
         <div className='event-details-description'>
           <h2>Description</h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio laboriosam perferendis nemo atque, dolore deleniti magnam mollitia veritatis maxime! Earum veritatis nulla magni laudantium dolores numquam, distinctio officiis iusto voluptas excepturi sint recusandae maxime nisi similique! Neque, quaerat dolorem quibusdam maxime omnis, ea assumenda voluptatum illum odit rem voluptate ullam!
+          {event.eventDesc && (
+            <>
+              {event.eventDesc}
+            </>
+          )}
+          {!event.eventDesc && (
+            <>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio laboriosam perferendis nemo atque, dolore deleniti magnam mollitia veritatis maxime! Earum veritatis nulla magni laudantium dolores numquam, distinctio officiis iusto voluptas excepturi sint recusandae maxime nisi similique! Neque, quaerat dolorem quibusdam maxime omnis, ea assumenda voluptatum illum odit rem voluptate ullam!
+            </>
+          )}
         </div>
         <div className='unreg-event-teamSize'>
           <h2>Team size</h2>
@@ -76,7 +85,8 @@ UnregEventsDetail.propTypes = {
     eventName: PropTypes.string,
     maxTeamSize: PropTypes.number,
     problemStatements: PropTypes.array,
-    metrics: PropTypes.array
+    metrics: PropTypes.array,
+    eventDesc: PropTypes.string
   }),
   close: PropTypes.func,
   registered: PropTypes.bool

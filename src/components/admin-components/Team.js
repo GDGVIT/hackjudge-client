@@ -16,15 +16,16 @@ MetricScore.propTypes = {
   metric: PropTypes.object
 }
 
-const Team = ({ review, team, event }) => {
+const Team = ({ review, team, event, referrer }) => {
   const [expand, setExpand] = useState(false)
+  console.log(event)
 
   return (
     <>
       <div onClick={() => setExpand((curr) => !curr)} className='team-button'>
         {team.teamName}
       </div>
-      {expand && (
+      {expand && referrer !== 3 && (
         <div className='review-overlay'>
           <div className='review-card review-card-small'>
             <div className='review-card-nav'>
@@ -42,10 +43,15 @@ const Team = ({ review, team, event }) => {
             </div>
             <div className='review-body metrics-body'>
               {event.metrics.map(m =>
-                <MetricScore key={m.metricId} metric={m} />
+                <MetricScore key={m.metricId} metric={m} referrer={referrer} />
               )}
               <div className='review-comment'>
-                <textarea className='comment-textarea' placeholder='Comment' />
+                {referrer === 0 && (
+                  <textarea className='comment-textarea' placeholder='Comment' />
+                )}
+                {referrer !== 0 && (
+                  <textarea value={event.eventId} className='comment-textarea' disabled placeholder='Comment' />
+                )}
               </div>
               <button className='submit-review-button'>
                 Submit
@@ -66,7 +72,8 @@ const Team = ({ review, team, event }) => {
 Team.propTypes = {
   review: PropTypes.number,
   team: PropTypes.object,
-  event: PropTypes.object
+  event: PropTypes.object,
+  referrer: PropTypes.number
 }
 
 export default Team

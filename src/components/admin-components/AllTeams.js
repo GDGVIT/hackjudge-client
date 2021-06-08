@@ -5,8 +5,9 @@ import Team from './Team'
 
 import getAllTeams from '../../utilities/getAllTeams'
 
-const Review = ({ n, event, referrer }) => {
+const AllTeams = ({ event }) => {
   const [expanded, setExpanded] = useState(false)
+
   const [teams, setTeams] = useState([])
 
   const hook = async () => {
@@ -15,14 +16,16 @@ const Review = ({ n, event, referrer }) => {
     setTeams(response.data.teams)
   }
 
-  useEffect(hook, [])
   const handleButtonClick = () => {
-    setExpanded(!expanded)
+    setExpanded((curr) => !curr)
   }
+
+  useEffect(hook)
+
   return (
-    <span>
-      <button className='review-button' onClick={handleButtonClick}>Review {n}</button>
-      {expanded && (referrer === 0 || referrer === 2) && (
+    <div className='reviews-list'>
+      <button className='review-button' onClick={handleButtonClick}>Teams</button>
+      {expanded && (
         <div className='review-overlay'>
           <div className='review-card'>
             <div className='review-card-nav'>
@@ -31,7 +34,7 @@ const Review = ({ n, event, referrer }) => {
                   {event.eventName}
                 </h2>
                 <div className='event-review-no'>
-                  Review {n}
+                  All Teams
                 </div>
               </span>
               <button className='collapse-review' onClick={handleButtonClick}>
@@ -48,7 +51,7 @@ const Review = ({ n, event, referrer }) => {
                 <div className='review-teams-container'>
                   <h1>Teams</h1>
                   <div className='teams-flex'>
-                    {teams.map(team => <Team key={team.teamId} review={n} team={team} event={event} referrer={referrer} />)}
+                    {teams.map(team => <Team key={team.teamId} review={0} team={team} event={event} referrer={3} />)}
                   </div>
                 </div>
               )}
@@ -56,17 +59,12 @@ const Review = ({ n, event, referrer }) => {
           </div>
         </div>
       )}
-    </span>
+    </div>
   )
 }
 
-Review.propTypes = {
-  n: PropTypes.number,
-  event: PropTypes.shape({
-    eventName: PropTypes.string.isRequired,
-    eventId: PropTypes.string.isRequired
-  }),
-  referrer: PropTypes.number
+AllTeams.propTypes = {
+  event: PropTypes.object
 }
 
-export default Review
+export default AllTeams

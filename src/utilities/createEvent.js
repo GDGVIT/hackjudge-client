@@ -37,7 +37,9 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     errors.push('The maximum team size must be a number')
   }
 
+  reviews = parseInt(reviews)
   if (!(typeof (reviews) === 'number')) {
+    console.log(typeof (reviews))
     errors.push('The no of reviews must be a number')
   }
 
@@ -52,7 +54,7 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     metrics: newMetrics,
     dateOfEvent: eventDate,
     maxTeamSize: teamSize,
-    noOfReviews: reviews,
+    numberOfReviews: reviews,
     endOfEvent: endDate,
     eventDesc: description
   }

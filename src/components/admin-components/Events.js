@@ -8,7 +8,7 @@ const Events = ({ events, isAdmin, referrer }) => {
     <div>
       {isAdmin && (
         <div>
-          {events.map(event => <Event key={event.eventId} event={event} isAdmin={isAdmin} />)}
+          {events.map(event => <Event key={event.eventId} event={event} isAdmin={isAdmin} referrer={referrer} />)}
         </div>
       )}
     </div>
