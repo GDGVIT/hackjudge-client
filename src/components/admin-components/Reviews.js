@@ -10,7 +10,7 @@ const Reviews = ({ event, referrer }) => {
   const [allReviews, setAllReviews] = useState([])
 
   const hook = async () => {
-    const response = await api('allReviews', 'get', null, localStorage.getItem('token'), event.eventId)
+    const response = await api('allReviews', 'get', null, sessionStorage.getItem('token'), event.eventId)
     if (response.status === 200) {
       setAllReviews(() => response.data.allReviews)
     }

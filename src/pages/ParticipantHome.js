@@ -16,11 +16,11 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
   const [unregistered, setUnregistered] = useState([])
 
   const hook = async () => {
-    if (!localStorage.getItem('logged_in') === 'true') {
+    if (!sessionStorage.getItem('logged_in') === 'true') {
       history.push('/')
     }
 
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     if (!token) {
       history.push('/')
     }

@@ -16,7 +16,7 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
   const [copysuccess, setCopySuccess] = useState(false)
 
   const deleteTeam = async () => {
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     if (token === '') return
     const data = {
       teamId: event.teamData.team.teamId
@@ -31,7 +31,7 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
     const data = {
       teamId: event.teamData.team.teamId
     }
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     if (token === '') return
     const leaveResponse = await api('leaveTeam', 'post', data, token)
     if (leaveResponse.status === 200) {
@@ -45,7 +45,7 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
   }
 
   const hook = async () => {
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     if (token === '') return
     const membersResponse = await api('getMembers', 'get', null, token, event.teamData.team.teamId)
     const codeResponse = await api('getSubmission', 'get', null, token, event.teamData.team.teamId)
@@ -88,14 +88,16 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
         )}
       </div>
       <div className='manage-team-body'>
-        <div className='manage-team-code'>
-          <div className='real-code'>
-            {code}
+        {!notAdmin && (
+          <div className='manage-team-code'>
+            <div className='real-code'>
+              {code}
+            </div>
+            <button className='real-code kopy-code' onClick={handleCopy}>
+              Copy code
+            </button>
           </div>
-          <button className='real-code kopy-code' onClick={handleCopy}>
-            Copy code
-          </button>
-        </div>
+        )}
         {copysuccess && (
           <div className='manage-copy-success'>
             Code copied successfully!

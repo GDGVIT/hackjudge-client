@@ -16,7 +16,7 @@ const JoinTeam = ({ back }) => {
   }
 
   const handleSubmit = async () => {
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     if (token === '') {
       setError('There was an unexpected error')
       return

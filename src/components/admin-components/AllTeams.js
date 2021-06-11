@@ -5,6 +5,8 @@ import Team from './Team'
 
 import getAllTeams from '../../utilities/getAllTeams'
 
+import BackCross from '../../assets/BackCross.svg'
+
 const AllTeams = ({ event }) => {
   const [expanded, setExpanded] = useState(false)
 
@@ -12,7 +14,7 @@ const AllTeams = ({ event }) => {
 
   const hook = async () => {
     // call the api with url path
-    const response = await getAllTeams(localStorage.getItem('token'), event.eventId)
+    const response = await getAllTeams(sessionStorage.getItem('token'), event.eventId)
     setTeams(response.data.teams)
   }
 
@@ -37,9 +39,13 @@ const AllTeams = ({ event }) => {
                   All Teams
                 </div>
               </span>
-              <button className='collapse-review' onClick={handleButtonClick}>
-                Close
-              </button>
+              <div onClick={handleButtonClick} className='unreg-event-detail-close'>
+                <img
+                  className='event-register-back-icon'
+                  src={BackCross}
+                  alt='Back'
+                />
+              </div>
             </div>
             <div className='review-body'>
               {teams !== null && teams.length === 0 && (

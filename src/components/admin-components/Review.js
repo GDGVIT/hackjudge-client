@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 
 import Team from './Team'
 
+import BackCross from '../../assets/BackCross.svg'
+
 import getAllTeams from '../../utilities/getAllTeams'
 
 const Review = ({ n, event, referrer }) => {
@@ -11,7 +13,7 @@ const Review = ({ n, event, referrer }) => {
 
   const hook = async () => {
     // call the api with url path
-    const response = await getAllTeams(localStorage.getItem('token'), event.eventId)
+    const response = await getAllTeams(sessionStorage.getItem('token'), event.eventId)
     setTeams(response.data.teams)
   }
 
@@ -34,9 +36,13 @@ const Review = ({ n, event, referrer }) => {
                   Review {n}
                 </div>
               </span>
-              <button className='collapse-review' onClick={handleButtonClick}>
-                Close
-              </button>
+              <div className='unreg-event-detail-close' onClick={handleButtonClick}>
+                <img
+                  className='event-register-back-icon'
+                  src={BackCross}
+                  alt='Back'
+                />
+              </div>
             </div>
             <div className='review-body'>
               {teams !== null && teams.length === 0 && (

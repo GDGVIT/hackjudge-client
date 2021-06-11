@@ -35,7 +35,7 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
       waitingMemberAuthId: member.auth[0].authId,
       teamId: event.teamData.team.teamId
     }
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     if (token === '') {
       console.log('Hacker?')
       return
@@ -47,7 +47,7 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
   }
 
   const removeFromTeam = async () => {
-    const selfAuth = localStorage.getItem('auth_id')
+    const selfAuth = sessionStorage.getItem('auth_id')
     if (selfAuth === '') {
       return
     }
@@ -65,7 +65,7 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
       }
       url = 'removeMember'
     }
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     if (token === '') {
       console.log('Hacker?')
       return
@@ -78,7 +78,7 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
   }
 
   const hook = () => {
-    const selfAuth = localStorage.getItem('auth_id')
+    const selfAuth = sessionStorage.getItem('auth_id')
     if (selfAuth === member.auth[0].authId) {
       setAd(() => true)
     }

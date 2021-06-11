@@ -22,7 +22,7 @@ const ManageSubmission = ({ event, close, notAdmin = false }) => {
   }
   const handleSubmit = async () => {
     console.log(event.teamData.team)
-    const authorization = localStorage.getItem('token')
+    const authorization = sessionStorage.getItem('token')
     if (authorization === '') {
       setError('There was an error, try logging out.')
       return
@@ -37,8 +37,8 @@ const ManageSubmission = ({ event, close, notAdmin = false }) => {
     if (response.status === 200) {
       setSuccess(() => 'Your details were updated successfully')
       setTimeout(
-        close,
-        900
+        () => window.location.reload(false),
+        1000
       )
     } else {
       setError(() => 'There was an error')

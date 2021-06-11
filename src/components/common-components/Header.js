@@ -8,10 +8,10 @@ const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) =>
   const headerClass = `header header-${currentPage}`
 
   const logout = () => {
-    localStorage.clear()
+    sessionStorage.clear()
   }
 
-  let userType = localStorage.getItem('userType')
+  let userType = sessionStorage.getItem('userType')
   if (userType == null) {
     userType = '1'
   }

@@ -89,3 +89,22 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #3f83c2;
 }
+
+.unreg-event-detail-close {
+  color: #fff;
+  width: max-content;
+  padding: 5px 10px 5px 10px;
+  transition: all 500ms;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.event-register-back-icon {
+  max-width: 22px;
+  float: left;
+}
+
+.event-register-back-icon:hover {
+  cursor: pointer;
+}

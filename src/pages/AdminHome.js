@@ -21,15 +21,15 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
   const [overlayType, setOverlayType] = useState(0)
 
   const hook = async () => {
-    if (!localStorage.getItem('logged_in') === 'true') {
+    if (!sessionStorage.getItem('logged_in') === 'true') {
       history.push('/')
     }
-    if (localStorage.getItem('userType') !== '2') {
+    if (sessionStorage.getItem('userType') !== '2') {
       history.push('/')
-      localStorage.clear()
+      sessionStorage.clear()
     }
 
-    const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
     let newEvents = await getAllEvents(token)
     newEvents = newEvents.map(event => ({ ...event, dateOfEvent: Date.parse(event.dateOfEvent), endOfEvent: Date.parse(event.endOfEvent) }))
     const currDate = Date.now()

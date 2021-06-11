@@ -32,7 +32,7 @@ const CreateEvent = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
-    const response = await createEvent(localStorage.getItem('token'),
+    const response = await createEvent(sessionStorage.getItem('token'),
       eventDetails.name,
       eventDetails.problemStatements,
       eventDetails.metrics,

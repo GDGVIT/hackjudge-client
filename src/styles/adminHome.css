@@ -250,3 +250,10 @@
   color: #000;
   border: 2px solid #fff;
 }
+
+.review-score-success {
+  width: 100%;
+  text-align: center;
+  transform: translateY(-20px);
+  color: #406c95;
+}
