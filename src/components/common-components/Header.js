@@ -47,7 +47,9 @@ const Header = ({ currentPage, createRef, currentRef, pastRef, upcomingRef }) =>
               <button ref={upcomingRef}>Upcoming Events</button>
               <button ref={pastRef}>Past Events</button>
               <button ref={createRef}>Create Event</button>
-              <Link to='/' onClick={logout}>Logout</Link>
+              <div className='logout-button'>
+                <Link to='/' onClick={logout}>Logout</Link>
+              </div>
             </>
           )}
           {userType !== '2' && (

@@ -28,8 +28,8 @@ const AllTeams = ({ event }) => {
     <div className='reviews-list'>
       <button className='review-button' onClick={handleButtonClick}>Teams</button>
       {expanded && (
-        <div className='review-overlay'>
-          <div className='review-card'>
+        <div className='review-overlay' onClick={handleButtonClick}>
+          <div className='review-card' onClick={e => e.stopPropagation()}>
             <div className='review-card-nav'>
               <span>
                 <h2 className='review-event-name'>

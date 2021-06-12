@@ -61,7 +61,7 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
   useEffect(hook, [])
 
   return (
-    <div className='unreg-event-details'>
+    <div className='unreg-event-details' onClick={e => e.stopPropagation()}>
       <div className='manage-team-top'>
         <div onClick={close} className='unreg-event-detail-close'>
           <img

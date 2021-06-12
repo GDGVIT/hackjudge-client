@@ -403,6 +403,7 @@
   border: 0;
   background: #335677;
   border-radius: 8.28508px;
+  transition: all 500ms;
 }
 
 .jointeam-error {
@@ -571,6 +572,11 @@
   .reg-button {
     width: 90%;
   }
+}
+
+.reg-button:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 @media screen and (max-width: 530px) {
@@ -788,6 +794,7 @@
 .manage-copy-success {
   width: 100%;
   padding: 20px;
+  text-align: center;
 }
 
 .members-container {
@@ -873,8 +880,7 @@
 
 .delete-team-button:hover,
 .leave-team-button:hover {
-  background-color: #fff;
-  color: #000;
+  border: 2px solid #406c95;
 }
 
 .wishes-body {

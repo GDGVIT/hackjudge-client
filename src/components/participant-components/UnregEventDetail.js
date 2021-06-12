@@ -22,7 +22,7 @@ const UnregEventsDetail = ({ event, close, registered }) => {
   }
 
   return (
-    <div className='unreg-event-details'>
+    <div className='unreg-event-details' onClick={(e) => e.stopPropagation()}>
       <div className='unreg-event-details-topbar'>
         <div className='event-details-title'>
           <h1>{event.eventName}</h1>

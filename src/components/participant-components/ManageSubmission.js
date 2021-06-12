@@ -57,7 +57,7 @@ const ManageSubmission = ({ event, close, notAdmin = false }) => {
   useEffect(hook, [])
 
   return (
-    <div className='submission-modal'>
+    <div className='submission-modal' onClick={e => e.stopPropagation()}>
       <div className='manage-team-top'>
         <div onClick={close} className='unreg-event-detail-close'>
           <img

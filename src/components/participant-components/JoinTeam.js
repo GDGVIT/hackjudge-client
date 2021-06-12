@@ -38,9 +38,9 @@ const JoinTeam = ({ back }) => {
   }
 
   return (
-    <div className='unreg-event-details-container'>
+    <div className='unreg-event-details-container' onClick={back}>
       {success === '' && (
-        <div className='unreg-event-details reg-formm' success={success}>
+        <div className='unreg-event-details reg-formm' onClick={e => e.stopPropagation()} success={success}>
           <div className='unreg-event-details-topbar'>
             <div className='event-details-title'>
               <h1>Join A Team</h1>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { IconContext } from 'react-icons'
-import { GrAdd } from 'react-icons/gr'
+import { AiOutlineUserAdd } from 'react-icons/ai'
 import { GiHighKick } from 'react-icons/gi'
 
 import api from '../../utilities/api'
@@ -90,7 +90,7 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
     <div>
       {isWaiting && (
         <IconContext.Provider value={{ color: '#fff', className: 'make-white' }}>
-          <button title='Add to Team' onClick={addToTeam} className='add-to-team'> <GrAdd /> </button>
+          <button title='Add to Team' onClick={addToTeam} className='add-to-team'> <AiOutlineUserAdd /> </button>
         </IconContext.Provider>
       )}
       {!isWaiting && (

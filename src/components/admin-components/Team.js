@@ -128,8 +128,8 @@ const Team = ({ review, team, event, referrer }) => {
         {team.teamName}
       </div>
       {expand && referrer !== 3 && (
-        <div className='review-overlay'>
-          <div className='review-card review-card-small'>
+        <div className='review-overlay' onClick={() => setExpand((curr) => !curr)}>
+          <div className='review-card review-card-small' onClick={e => e.stopPropagation()}>
             <div className='review-card-nav'>
               <span>
                 <h2 className='review-event-name'>

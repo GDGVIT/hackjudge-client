@@ -51,7 +51,7 @@ const ParticipantEvent = ({ event }) => {
             </div>
           </div>
           {overlay && (
-            <div className='unreg-event-details-container'>
+            <div className='unreg-event-details-container' onClick={handleDetails}>
               <UnregEventDetail event={event} close={handleDetails} registered={false} />
             </div>
           )}
@@ -60,7 +60,7 @@ const ParticipantEvent = ({ event }) => {
           )}
         </>
       )}
-      {event.userStatus === 1 && (
+      {(event.userStatus === 1 || event.userStatus === 3) && (
         <>
           <div className='participant-event-card'>
             <div className='ppt-event-name'>
@@ -79,60 +79,18 @@ const ParticipantEvent = ({ event }) => {
             </div>
           </div>
           {overlay && (
-            <div className='unreg-event-details-container'>
+            <div className='unreg-event-details-container' onClick={handleDetails}>
               <UnregEventDetail event={event} close={handleDetails} registered />
             </div>
           )}
           {submission && (
-            <div className='event-submission-container'>
-              <ManageSubmission event={event} close={handleSubmission} />
+            <div className='event-submission-container' onClick={handleSubmission}>
+              <ManageSubmission event={event} close={handleSubmission} notAdmin={event.userStatus === 3} />
             </div>
           )}
           {manageTeam && (
-            <div className='unreg-event-details-container'>
-              <ManageTeam event={event} close={handleTeam} />
-            </div>
-          )}
-        </>
-      )}
-      {event.userStatus === 2 && (
-        <div className='no-team-card'>
-          <div className='ppt-event-name'>
-            Event Title
-          </div>
-        </div>
-      )}
-      {event.userStatus === 3 && (
-        <>
-          <div className='participant-event-card'>
-            <div className='ppt-event-name'>
-              {event.eventName}
-            </div>
-            <div className='participant-event-buttons'>
-              <button onClick={handleTeam} className='ppt-event-team-button'>
-                Team
-              </button>
-              <button onClick={handleSubmission} className='ppt-event-primary-button'>
-                Submission
-              </button>
-              <button onClick={handleDetails} className='event-details-button'>
-                Details
-              </button>
-            </div>
-          </div>
-          {overlay && (
-            <div className='unreg-event-details-container'>
-              <UnregEventDetail event={event} close={handleDetails} registered />
-            </div>
-          )}
-          {submission && (
-            <div className='event-submission-container'>
-              <ManageSubmission event={event} close={handleSubmission} notAdmin />
-            </div>
-          )}
-          {manageTeam && (
-            <div className='unreg-event-details-container'>
-              <ManageTeam event={event} close={handleTeam} notAdmin />
+            <div className='unreg-event-details-container' onClick={handleTeam}>
+              <ManageTeam event={event} close={handleTeam} notAdmin={event.userStatus === 3} />
             </div>
           )}
         </>

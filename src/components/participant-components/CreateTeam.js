@@ -48,9 +48,9 @@ const CreateTeam = ({ event, back }) => {
   }
 
   return (
-    <div className='unreg-event-details-container'>
+    <div className='unreg-event-details-container' onClick={back}>
       {teamcode === '' && (
-        <div className='unreg-event-details reg-formm'>
+        <div className='unreg-event-details reg-formm' onClick={e => e.stopPropagation()}>
           <div className='unreg-event-details-topbar'>
             <div className='event-details-title'>
               <h1>Create A Team</h1>

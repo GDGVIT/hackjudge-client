@@ -25,8 +25,8 @@ const Review = ({ n, event, referrer }) => {
     <span>
       <button className='review-button' onClick={handleButtonClick}>Review {n}</button>
       {expanded && (referrer === 0 || referrer === 2) && (
-        <div className='review-overlay'>
-          <div className='review-card'>
+        <div className='review-overlay' onClick={handleButtonClick}>
+          <div className='review-card' onClick={(e) => e.stopPropagation()}>
             <div className='review-card-nav'>
               <span>
                 <h2 className='review-event-name'>
