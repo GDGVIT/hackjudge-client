@@ -9,7 +9,7 @@ import ManageTeam from './ManageTeam'
 const ParticipantEvent = ({ event }) => {
   // eventType: 0 -> Unregistered event
   // eventType: 1 -> Registered and is leader
-  // eventType: 2 -> Registered and does not have a team
+  // eventType: 2 -> Registered and does not have a team [unused]
   // eventType: 3 -> Registered and is a normal member of a team
 
   const [overlay, setOverlay] = useState(false)
@@ -35,65 +35,48 @@ const ParticipantEvent = ({ event }) => {
 
   return (
     <>
-      {event.userStatus === 0 && (
-        <>
-          <div className='participant-event-card'>
-            <div className='ppt-event-name'>
-              {event.eventName}
-            </div>
-            <div className='participant-event-buttons'>
-              <button onClick={handleRegister} className='ppt-event-primary-button'>
-                Register
-              </button>
-              <button onClick={handleDetails} className='event-details-button'>
-                Details
-              </button>
-            </div>
-          </div>
-          {overlay && (
-            <div className='unreg-event-details-container' onClick={handleDetails}>
-              <UnregEventDetail event={event} close={handleDetails} registered={false} />
-            </div>
-          )}
-          {register && (
-            <EventRegister event={event} close={handleRegister} />
-          )}
-        </>
-      )}
-      {(event.userStatus === 1 || event.userStatus === 3) && (
-        <>
-          <div className='participant-event-card'>
-            <div className='ppt-event-name'>
-              {event.eventName}
-            </div>
-            <div className='participant-event-buttons'>
+      <div className='participant-event-card'>
+        <div className='ppt-event-name'>
+          {event.eventName}
+        </div>
+        <div className='participant-event-buttons'>
+          {(event.userStatus === 1 || event.userStatus === 3) && (
+            <>
               <button onClick={handleTeam} className='ppt-event-team-button'>
                 Team
               </button>
               <button onClick={handleSubmission} className='ppt-event-primary-button'>
                 Submission
               </button>
-              <button onClick={handleDetails} className='event-details-button'>
-                Details
-              </button>
-            </div>
-          </div>
-          {overlay && (
-            <div className='unreg-event-details-container' onClick={handleDetails}>
-              <UnregEventDetail event={event} close={handleDetails} registered />
-            </div>
+            </>
           )}
-          {submission && (
-            <div className='event-submission-container' onClick={handleSubmission}>
-              <ManageSubmission event={event} close={handleSubmission} notAdmin={event.userStatus === 3} />
-            </div>
+          {event.userStatus === 0 && (
+            <button onClick={handleRegister} className='ppt-event-primary-button'>
+              Register
+            </button>
           )}
-          {manageTeam && (
-            <div className='unreg-event-details-container' onClick={handleTeam}>
-              <ManageTeam event={event} close={handleTeam} notAdmin={event.userStatus === 3} />
-            </div>
-          )}
-        </>
+          <button onClick={handleDetails} className='event-details-button'>
+            Details
+          </button>
+        </div>
+      </div>
+      {overlay && (
+        <div className='unreg-event-details-container' onClick={handleDetails}>
+          <UnregEventDetail event={event} close={handleDetails} registered={(!event.userStatus === 0)} />
+        </div>
+      )}
+      {event.userStatus === 0 && register && (
+        <EventRegister event={event} close={handleRegister} />
+      )}
+      {event.userStatus !== 0 && submission && (
+        <div className='event-submission-container' onClick={handleSubmission}>
+          <ManageSubmission event={event} close={handleSubmission} notAdmin={event.userStatus === 3} />
+        </div>
+      )}
+      {event.userStatus !== 0 && manageTeam && (
+        <div className='unreg-event-details-container' onClick={handleTeam}>
+          <ManageTeam event={event} close={handleTeam} notAdmin={event.userStatus === 3} />
+        </div>
       )}
     </>
   )
