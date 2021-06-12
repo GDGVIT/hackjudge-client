@@ -16,8 +16,8 @@
 
 ## Features
 - [X]  Directory structure
-- [ ]  Backend Integration
-- [ ]  UI implementation
+- [X]  Backend Integration
+- [X]  UI implementation
 
 <br>
 
@@ -26,6 +26,7 @@
  - Axios
  - React PropTypes
  - React Icons
+ - React Datepicker
 
 ## Running
 
@@ -39,7 +40,7 @@
  Directions to execute
 
 ```bash
-  npm start
+  yarn start
 ```
 
 ## Contributors
