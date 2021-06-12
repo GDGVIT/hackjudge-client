@@ -41,7 +41,6 @@ const CreateEvent = () => {
       eventDetails.reviews,
       eventDetails.endDate,
       eventDetails.description)
-    console.log(response)
     if (response.status === 200) {
       setSuccess(() => true)
     }

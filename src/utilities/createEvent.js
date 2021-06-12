@@ -15,7 +15,6 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
   try {
     eventDate = Date.parse(eventDate)
     endDate = Date.parse(endDate)
-    console.log({ eventDate, endDate })
     if (isNaN(eventDate) || isNaN(endDate)) {
       throw new Error('invalid date')
     }
@@ -39,7 +38,6 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
 
   reviews = parseInt(reviews)
   if (!(typeof (reviews) === 'number')) {
-    console.log(typeof (reviews))
     errors.push('The no of reviews must be a number')
   }
 

@@ -14,7 +14,6 @@ const Reviews = ({ event, referrer }) => {
     if (response.status === 200) {
       setAllReviews(() => response.data.allReviews)
     }
-    console.log({ event, allReviews })
   }
 
   useEffect(hook, [])

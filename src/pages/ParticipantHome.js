@@ -32,6 +32,8 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
       unixEndTime: Date.parse(event.endOfEvent)
     }))
 
+    newEvents = newEvents.filter((entry) => !(entry.unixEndTime < Date.now()))
+
     setUnregistered(() => [])
     setRegistered(() => [])
 

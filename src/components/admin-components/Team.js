@@ -47,8 +47,6 @@ const Team = ({ review, team, event, referrer }) => {
   const [comment, setComment] = useState('')
   const [success, setSuccess] = useState(false)
 
-  console.log({ event, review, team })
-
   const hook = async () => {
     if (referrer !== 0) {
       return

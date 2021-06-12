@@ -43,7 +43,6 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
       return (event.dateOfEvent > currDate)
     })
     setEvents({ currentEvents: currEvents, pastEvents: pasEvents, upcomingEvents: upcomEvents })
-    console.log(events)
   }
 
   useEffect(hook, [])

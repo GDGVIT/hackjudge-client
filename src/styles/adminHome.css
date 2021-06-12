@@ -95,30 +95,6 @@
   display: flex;
 }
 
-.collapse-review {
-  background-color: #383737;
-  height: max-content;
-  padding: 8px;
-  margin-top: 5px;
-  color: #fff;
-  border: 0;
-  width: 100px;
-  transition: all 500ms;
-}
-
-.collapse-review:hover {
-  cursor: pointer;
-  box-shadow: rgba(2, 8, 20, 0.1) 0 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0.175em 0.5em;
-  background-color: #fff;
-  transform: scale(1.02);
-  color: #000;
-}
-
-.collapse-review:focus {
-  outline: none;
-  border: 0;
-}
-
 .review-event-name {
   font-family: 'Poppins', sans-serif;
   padding: 8px;
@@ -158,9 +134,9 @@
 .metric-input {
   height: 2rem;
   background-color: inherit;
-  border: 0;
-  border-bottom: 2px solid #406c95;
-  width: 7ch;
+  border: 2px solid #406c95;
+  border-radius: 7px;
+  width: 14ch;
   color: #fff;
   padding: 0 10px;
   text-align: center;
@@ -168,8 +144,8 @@
 
 .metric-input:focus {
   outline: none;
-  border: 0;
-  border-bottom: 2px solid #2378c7;
+  border: 2px solid #2378c7;
+  box-shadow: 0 0 2px rgb(231, 231, 231);
   color: #fff;
 }
 
@@ -218,6 +194,12 @@
   color: rgb(255, 255, 255);
 }
 
+.submit-review-button:focus {
+  background-color: rgb(37, 34, 71);
+  color: rgb(255, 255, 255);
+  outline: none;
+}
+
 .no-teams {
   font-family: 'Poppins', sans-serif;
   text-align: center;
@@ -245,10 +227,10 @@
   transition: all 500ms;
 }
 
-.team-button:hover {
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #fff;
+.team-button:hover,
+.team-button:focus {
+  transform: scaleX(1.04);
+  transform: translateY(-1.1px);
 }
 
 .review-score-success {

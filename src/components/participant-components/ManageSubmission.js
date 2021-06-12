@@ -21,7 +21,6 @@ const ManageSubmission = ({ event, close, notAdmin = false }) => {
     setProjectLink(() => event.target.value)
   }
   const handleSubmit = async () => {
-    console.log(event.teamData.team)
     const authorization = sessionStorage.getItem('token')
     if (authorization === '') {
       setError('There was an error, try logging out.')

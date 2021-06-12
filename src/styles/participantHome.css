@@ -183,7 +183,7 @@
   min-width: 600px;
   width: 600px;
   min-height: 50%;
-  max-height: 80%;
+  max-height: 70%;
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -193,6 +193,10 @@
   padding: 30px;
   overflow-y: auto;
   font-family: 'Poppins', sans-serif;
+}
+
+.unreg-event-details {
+  transform: translateY(-20px);
 }
 
 .unreg-event-details-topbar {
@@ -475,15 +479,6 @@
 .back-container {
   width: 50%;
   display: inline-block;
-}
-
-.event-register-back-icon {
-  max-width: 22px;
-  float: left;
-}
-
-.event-register-back-icon:hover {
-  cursor: pointer;
 }
 
 .event-register-body {
