@@ -24,7 +24,6 @@
   overflow-y: auto;
 }
 
-
 .create-event-body > div {
   margin: 0 18px;
 }
@@ -170,6 +169,11 @@
   .create-event-details,
   .create-event-ps {
     border-right: 0;
+  }
+
+  .create-event-details {
+    height: auto;
+    overflow: initial;
   }
 
   .create-event-body > div {

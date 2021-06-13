@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Login from './pages/Login'
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+
 import './styles/app.css'
 import './styles/sharedStyles.css'
 
@@ -60,3 +62,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 )
+
+serviceWorkerRegistration.register()

@@ -20,7 +20,6 @@ const ParticipantEvents = ({ unregistered, registered }) => {
     return hash;
   }
 
-  console.log({ registered, unregistered })
   return (
     <div className='event-status-container'>
       {unregistered.length !== 0 && (
