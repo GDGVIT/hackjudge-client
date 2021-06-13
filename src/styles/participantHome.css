@@ -172,8 +172,9 @@
 
 /* ugly stuff for firefox users as a punishment */
 @-moz-document url-prefix() {
-  .unreg-event-details-container {
-    background-color: #232526;
+  .unreg-event-details-container,
+  .event-submission-container {
+    background-color: #070808;
   }
 }
 

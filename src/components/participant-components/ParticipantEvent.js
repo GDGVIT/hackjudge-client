@@ -69,7 +69,7 @@ const ParticipantEvent = ({ event }) => {
         <EventRegister event={event} close={handleRegister} />
       )}
       {event.userStatus !== 0 && submission && (
-        <div className='event-submission-container' onClick={handleSubmission}>
+        <div className='unreg-event-details-container' onClick={handleSubmission}>
           <ManageSubmission event={event} close={handleSubmission} notAdmin={event.userStatus === 3} />
         </div>
       )}
