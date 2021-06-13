@@ -64,7 +64,15 @@ const CreateTeam = ({ event, back }) => {
             </div>
           </div>
           <div className='reg-body'>
-            <form className='reg-form'>
+            <form
+              className='reg-form'
+              onSubmit={
+                (e) => {
+                  e.preventDefault()
+                  handleSubmit()
+                }
+              }
+            >
               <label className='reg-form-label'>
                 Team Name
               </label>

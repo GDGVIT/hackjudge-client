@@ -24,6 +24,7 @@
   overflow-y: auto;
 }
 
+
 .create-event-body > div {
   margin: 0 18px;
 }
@@ -122,15 +123,13 @@
   border-left: 2px solid #406c95;
   padding-left: 5px;
   transition: all 500ms;
+  display: grid;
+  place-items: center;
 }
 
 .remove-problem-statement:hover {
   cursor: pointer;
   border-left: 2px solid red;
-}
-
-.remove-problem-statement > svg {
-  transform: translate(0, 2px);
 }
 
 .create-event-button {
@@ -139,14 +138,14 @@
   background-color: #000;
   color: #fff;
   border-radius: 9px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   width: 400px;
   transition: all 500ms;
 }
 
 .create-event-button:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: rgb(37, 34, 71);
+  color: rgb(255, 255, 255);
 }
 
 .success-message {
@@ -159,6 +158,97 @@
   color: #fff;
   display: grid;
   place-items: center;
+}
+
+@media screen and (max-width: 1436px) {
+  .create-event-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .create-event-details,
+  .create-event-ps {
+    border-right: 0;
+  }
+
+  .create-event-body > div {
+    width: 80%;
+  }
+
+  .create-event-input-container {
+    align-items: center;
+  }
+
+  .create-event-input-label {
+    text-align: center;
+    width: 100%;
+  }
+
+  .create-event-input,
+  .react-datepicker-wrapper,
+  .create-event-textarea {
+    width: 500px;
+    max-width: 500px;
+    min-width: 500px;
+  }
+
+  .ps-helper {
+    text-align: center;
+  }
+
+  .problemstatements-container {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .problem-statement {
+    max-width: 500px;
+  }
+
+  .react-datepicker__input-container > input {
+    width: 100%;
+  }
+
+  .create-event-button {
+    width: 500px;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 706px) {
+  .problem-statement {
+    max-width: 400px;
+  }
+
+  .create-event-input,
+  .react-datepicker-wrapper,
+  .create-event-textarea {
+    width: 400px;
+    max-width: 400px;
+    min-width: 400px;
+  }
+
+  .create-event-button {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .problem-statement {
+    max-width: 90%;
+  }
+
+  .create-event-input,
+  .react-datepicker-wrapper,
+  .create-event-textarea {
+    width: 90%;
+    max-width: 90%;
+    min-width: 90%;
+  }
+
+  .create-event-button {
+    width: 90%;
+  }
 }
 
 .react-datepicker {

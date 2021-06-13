@@ -35,29 +35,6 @@
   align-items: center;
 }
 
-.logout-button:hover,
-.logout-button > a:hover {
-  color: #04d9ff;
-  outline: none;
-  cursor: pointer;
-  box-shadow: rgba(2, 8, 20, 0.1) 0 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0.175em 0.5em;
-}
-
-.links > button:hover,
-.links > a:hover {
-  color: #04d9ff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  box-shadow: rgba(2, 8, 20, 0.1) 0 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0.175em 0.5em;
-  transform: translateY(-3px) scale(1.05);
-}
-
-.links > button:focus {
-  border: none;
-  outline: none;
-}
-
 .header-brr {
   display: flex;
   flex-direction: row;
@@ -104,4 +81,102 @@
   max-width: 22px;
   float: left;
   cursor: pointer;
+}
+
+.mobile-links {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 60px;
+  right: 37px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.mobile-links > button {
+  padding: 5px;
+  border: 0;
+  margin: 4px;
+}
+
+.links > button:focus {
+  border: none;
+  outline: none;
+}
+
+button[hide="hide"],
+div[hide="hide"] {
+  display: none;
+}
+
+li[hide="show"] {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50px;
+  right: 37px;
+}
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+}
+
+.small-screen-links {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 60px;
+  right: 25px;
+  border-radius: 7px;
+  padding: 5px;
+  z-index: 500;
+  background-color: rgb(15, 14, 14);
+}
+
+.small-screen-button,
+.small-screen-logout {
+  background-color: rgb(48, 33, 33);
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 15px 15px;
+  margin: 0 0 5px 0;
+  text-align: center;
+  font-family: 'Azonix', sans-serif;
+}
+
+.small-screen-logout {
+  margin-bottom: 0;
+}
+
+.small-screen-logout > a {
+  text-decoration: none;
+  color: #406c95;
+}
+
+.logout-button:hover,
+.logout-button > a:hover,
+.small-screen-button > a:hover {
+  color: #04d9ff;
+  outline: none;
+  cursor: pointer;
+  box-shadow: rgba(2, 8, 20, 0.1) 0 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0.175em 0.5em;
+}
+
+.links > button:hover,
+.links > a:hover {
+  color: #04d9ff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: rgba(2, 8, 20, 0.1) 0 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0.175em 0.5em;
+  transform: translateY(-3px) scale(1.05);
+}
+
+.small-screen-button[show="hide"],
+.small-screen-logout[show="hide"] {
+  display: none;
 }

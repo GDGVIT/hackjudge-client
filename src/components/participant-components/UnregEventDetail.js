@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-import EventRegister from './EventRegister'
+// import EventRegister from './EventRegister'
 import BackCross from '../../assets/BackCross.svg'
 
 const UnregEventsDetail = ({ event, close, registered }) => {
-  const [register, setRegister] = useState(false)
+  // const [register, setRegister] = useState(false)
 
   const hashPs = (ps) => {
     if (!ps) return 0
@@ -66,7 +66,7 @@ const UnregEventsDetail = ({ event, close, registered }) => {
           {event.metrics && event.metrics.map(metric => <li key={hashPs(metric.metricId)}>{metric.metricName}</li>)}
         </div>
       </div>
-      {!registered && (
+      {/* {!registered && (
         <div className='event-details-footer'>
           <button onClick={() => setRegister(!register)} className='ppt-event-primary-button'>
             Register Now
@@ -75,7 +75,7 @@ const UnregEventsDetail = ({ event, close, registered }) => {
       )}
       {register && (
         <EventRegister event={event} close={() => setRegister(!register)} />
-      )}
+      )} */}
     </div>
   )
 }
