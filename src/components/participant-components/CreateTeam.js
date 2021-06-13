@@ -90,7 +90,7 @@ const CreateTeam = ({ event, back }) => {
         </div>
       )}
       {teamcode !== '' && (
-        <div className='unreg-event-details reg-formm teamcode' teamcode={teamcode}>
+        <div className='unreg-event-details reg-formm teamcode' onClick={(e) => e.stopPropagation()} teamcode={teamcode}>
           <div className='unreg-event-details-topbar onlyback'>
             <div onClick={refresh} className='unreg-event-detail-close'>
               <img

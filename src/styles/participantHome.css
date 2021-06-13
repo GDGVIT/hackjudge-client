@@ -196,10 +196,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-.unreg-event-details {
-  transform: translateY(-20px);
-}
-
 .unreg-event-details-topbar {
   display: flex;
   flex-direction: row;
