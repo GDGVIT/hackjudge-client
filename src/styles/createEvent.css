@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: auto;
 }
 
 .create-event-title {
@@ -21,7 +20,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding-top: 40px;
-  overflow-y: auto;
 }
 
 .create-event-body > div {
@@ -29,8 +27,7 @@
 }
 
 .create-event-details {
-  overflow-y: auto;
-  height: 90%;
+  height: 100%;
   border-right: 3px solid #406c95;
 }
 
@@ -77,8 +74,7 @@
 }
 
 .create-event-ps {
-  overflow-y: auto;
-  height: 90%;
+  height: 100%;
   border-right: 3px solid #406c95;
 }
 
@@ -253,6 +249,10 @@
   .create-event-button {
     width: 90%;
   }
+}
+
+.react-datepicker-popper {
+  z-index: 30;
 }
 
 .react-datepicker {

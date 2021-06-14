@@ -24,16 +24,30 @@
   -webkit-appearance: none;
 }
 
+html,
+body,
+#root,
+.container,
+.admin-home-container,
+.login-page-container,
+.participants-home-container {
+  height: 100%;
+  background-color: #000;
+  overflow: auto;
+}
+
 body {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
+}
+
+.login-page-container {
   background-color: rgb(0, 0, 0);
   background-image: url(../assets/Background.svg);
   background-repeat: unset;
   background-size: auto;
-  color: white;
-  padding: 20px;
 }
 
 .container {
@@ -51,4 +65,19 @@ body {
 
 button:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 425px) {
+  .header-participant-home * {
+    transform: scale(0.98);
+  }
+
+  .header-participant-home,
+  .header {
+    padding: 5px;
+  }
+
+  .header-brr {
+    padding: 0 !important;
+  }
 }

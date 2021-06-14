@@ -36,19 +36,25 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path='/'>
-            <Login userData={userData} handleUserData={handleUserData} />
+            <div className='login-page-container'>
+              <Login userData={userData} handleUserData={handleUserData} />
+            </div>
           </Route>
           <Route exact path='/admin'>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Header currentPage='admin-home' createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
-              <AdminHome userData={userData} createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
-            </Suspense>
+            <div className='admin-home-container'>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Header currentPage='admin-home' createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+                <AdminHome userData={userData} createRef={createRef} currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+              </Suspense>
+            </div>
           </Route>
           <Route exact path='/home'>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Header currentPage='participant-home' currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
-              <ParticipantHome userData={userData} currentRef={currentRef} upcomingRef={upcomingRef} />
-            </Suspense>
+            <div className='participants-home-container'>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Header currentPage='participant-home' currentRef={currentRef} pastRef={pastRef} upcomingRef={upcomingRef} />
+                <ParticipantHome userData={userData} currentRef={currentRef} upcomingRef={upcomingRef} />
+              </Suspense>
+            </div>
           </Route>
         </Switch>
       </Router>

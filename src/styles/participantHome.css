@@ -15,6 +15,8 @@
 .participants-event-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -90,11 +92,13 @@
   color: #fff;
   background-color: #335677;
   height: 2.9rem;
+  width: 130px;
   transition: all 500ms;
   font-family: 'Poppins', sans-serif;
 }
 
 .ppt-event-team-button {
+  width: 130px;
   border: 0;
   border-radius: 4px;
   font-size: 1.2rem;
@@ -128,6 +132,13 @@
   color: #000;
 }
 
+@media screen and (max-width: 715px) {
+  .participant-event-card {
+    width: 90%;
+    flex-direction: column;
+  }
+}
+
 /* Handle everything above for small screens */
 @media screen and (max-width: 580px) {
   .event-status-title {
@@ -142,6 +153,7 @@
   .participant-event-card {
     flex-direction: column;
     font-size: 1.5rem;
+    width: 310px;
   }
 
   .participant-event-card > * {
@@ -766,11 +778,16 @@
   }
 
   .manage-team-code > * {
-    margin: 15px;
+    margin: 15px 0;
   }
 
   .real-code {
     text-align: center;
+    height: 2.5rem;
+  }
+
+  .unreg-event-details {
+    padding: 10px;
   }
 }
 

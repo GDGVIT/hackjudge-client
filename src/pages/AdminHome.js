@@ -67,29 +67,31 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
     }
   }
   return (
-    <div className='admin-home'>
-      {overlayType === 1 && (
-        <CreateEvent />
-      )}
-      {overlayType === 0 && events.currentEvents.length === 0 && (
-        <NoEvents />
-      )}
-      {overlayType === 0 && events.currentEvents.length !== 0 && (
-        <Events events={events.currentEvents} isAdmin referrer={overlayType} />
-      )}
-      {overlayType === 2 && events.pastEvents.length === 0 && (
-        <NoEvents />
-      )}
-      {overlayType === 2 && events.pastEvents.length !== 0 && (
-        <Events events={events.pastEvents} isAdmin referrer={overlayType} />
-      )}
-      {overlayType === 3 && events.upcomingEvents.length === 0 && (
-        <NoEvents />
-      )}
-      {overlayType === 3 && events.upcomingEvents.length !== 0 && (
-        <Events events={events.upcomingEvents} isAdmin referrer={overlayType} />
-      )}
-    </div>
+    <>
+      <div className='admin-home'>
+        {overlayType === 1 && (
+          <CreateEvent />
+        )}
+        {overlayType === 0 && events.currentEvents.length === 0 && (
+          <NoEvents />
+        )}
+        {overlayType === 0 && events.currentEvents.length !== 0 && (
+          <Events events={events.currentEvents} isAdmin referrer={overlayType} />
+        )}
+        {overlayType === 2 && events.pastEvents.length === 0 && (
+          <NoEvents />
+        )}
+        {overlayType === 2 && events.pastEvents.length !== 0 && (
+          <Events events={events.pastEvents} isAdmin referrer={overlayType} />
+        )}
+        {overlayType === 3 && events.upcomingEvents.length === 0 && (
+          <NoEvents />
+        )}
+        {overlayType === 3 && events.upcomingEvents.length !== 0 && (
+          <Events events={events.upcomingEvents} isAdmin referrer={overlayType} />
+        )}
+      </div>
+    </>
   )
 }
 

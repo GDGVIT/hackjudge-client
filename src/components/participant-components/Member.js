@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { IconContext } from 'react-icons'
 import { AiOutlineUserAdd } from 'react-icons/ai'
-import { GiHighKick } from 'react-icons/gi'
+import { GiHighKick, GiChessKing } from 'react-icons/gi'
 
 import api from '../../utilities/api'
 
@@ -100,9 +100,11 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
       )}
       {member.auth[0].name}
       {ad && (
-        <span className='leader-tag'>
-          Team Leader
-        </span>
+        <IconContext.Provider value={{ size: '1.4em' }}>
+          <span className='leader-tag'>
+            <GiChessKing />
+          </span>
+        </IconContext.Provider>
       )}
       {wishes && (
         <Wishes />

@@ -68,6 +68,11 @@
   background: #3f83c2;
 }
 
+.header {
+  padding: 20px;
+  padding-top: 30px;
+}
+
 .unreg-event-detail-close {
   border: none;
   width: max-content;
@@ -179,4 +184,15 @@ li[hide="show"] {
 .small-screen-button[show="hide"],
 .small-screen-logout[show="hide"] {
   display: none;
+}
+
+.events-text,
+.events-text-logo {
+  z-index: 0;
+}
+
+.events-text {
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }

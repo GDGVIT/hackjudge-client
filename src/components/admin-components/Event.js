@@ -5,13 +5,9 @@ import Reviews from '../admin-components/Reviews'
 
 const Event = ({ event, isAdmin, referrer }) => {
   return (
-    <div>
-      {isAdmin && (
-        <div className='event'>
-          <span className='event-name'>{event.eventName} </span>
-          <Reviews event={event} referrer={referrer} />
-        </div>
-      )}
+    <div className='event'>
+      <span className='event-name'>{event.eventName} </span>
+      <Reviews event={event} referrer={referrer} />
     </div>
   )
 }

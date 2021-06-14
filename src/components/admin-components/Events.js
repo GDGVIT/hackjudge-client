@@ -5,7 +5,7 @@ import Event from './Event'
 
 const Events = ({ events, isAdmin, referrer }) => {
   return (
-    <div>
+    <div className='events'>
       {isAdmin && (
         <div>
           {events.map(event => <Event key={event.eventId} event={event} isAdmin={isAdmin} referrer={referrer} />)}
