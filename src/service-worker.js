@@ -1,4 +1,6 @@
+/* eslint-disable semi */
 /* eslint-disable prefer-regex-literals */
+/* eslint-disable no-restricted-globals */
 import { clientsClaim } from 'workbox-core'
 import { ExpirationPlugin } from 'workbox-expiration'
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching'
