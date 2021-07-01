@@ -5,6 +5,28 @@ import api from '../../utilities/api'
 
 import BackCross from '../../assets/BackCross.svg'
 
+// TODO:
+// Display team abstract, link and team members
+// Implement update scores route
+// Make tis responsive
+
+const Abstract = ({ abstract }) => {
+  if (!abstract) {
+    return (
+      <>
+      </>
+    )
+  }
+  return (
+    <div>
+      {abstract}
+    </div>
+  )
+}
+
+Abstract.propTypes = {
+  abstract: PropTypes.string
+}
 const MetricScore = ({ metric, handler, referrer }) => {
   const [score, setScore] = useState(metric.score)
 
@@ -12,10 +34,11 @@ const MetricScore = ({ metric, handler, referrer }) => {
     setScore(() => e.target.value)
     handler(metric.metricId, e.target.value)
   }
+  // mertricName is not a typo; if you correct it the errthing breaks
   return (
     <div className='metrics-container'>
       <span className='metric-name'>
-        {metric.metricName}
+        {metric.mertricName}
       </span>
       {referrer === 0 && (
         <input type='number' min='0' max={metric.maxScore} value={score} onChange={handleScoreChange} className='metric-input' maxLength='3' />
@@ -42,13 +65,16 @@ MetricScore.propTypes = {
 // If current event same as past event but mutable
 
 const Team = ({ review, team, event, referrer }) => {
+  console.log({ event, team })
   const [expand, setExpand] = useState(false)
   const [scores, setScores] = useState([])
   const [comment, setComment] = useState('')
   const [success, setSuccess] = useState(false)
+  const [existed, setExisted] = useState(false)
+  const [abstract, setAbstract] = useState('')
 
   const hook = async () => {
-    if (referrer !== 0) {
+    if (referrer === 3) {
       return
     }
     let currRev = event.reviews.filter(a => {
@@ -63,25 +89,31 @@ const Team = ({ review, team, event, referrer }) => {
     currRev += '/' + teamId
     const response = await api('getScore', 'get', null, sessionStorage.getItem('token'), currRev)
 
-    if (response.status === 200) {
-      console.log(response.data.metrics)
-      // const dat = response.data.metrics.map(metric => {
-      //   return ({
-      //     metricId: metric.metricId,
-      //     score: metric.score
-      //   })
-      // })
-      // console.log({ dat })
+    // mertricName is not a typo; if you correct it the errthing breaks
+    let dat = event.metrics.map(metric => {
+      return ({
+        mertricName: metric.metricName,
+        metricId: metric.metricId,
+        score: 0
+      })
+    })
+
+    if (team.abstract) {
+      setAbstract(() => team.abstract)
+    }
+
+    setScores(() => dat)
+    if (response.status === 200 && response.data.metrics.length !== 0) {
+      setExisted(() => true)
+      dat = dat.map(item => {
+        const item2 = response.data.metrics.find(i2 => i2.metricId === item.merticId)
+        return item2 ? { ...item, item2 } : item
+      })
       const uniq = [...new Set(response.data.metrics)]
       setScores(() => uniq)
-    } else {
-      const dat = event.metrics.map(metric => {
-        return ({
-          metricId: metric.metricId,
-          score: null
-        })
-      })
-      setScores(() => dat)
+    }
+    if (response.status === 200 && response.data.comments && response.data.comments.commentBody) {
+      setComment(() => response.data.comments.commentBody)
     }
   }
 
@@ -90,6 +122,7 @@ const Team = ({ review, team, event, referrer }) => {
     for (const a of scores) {
       if (a.metricId === metricId) {
         copy.push({
+          ...a,
           metricId: metricId,
           score: score
         })
@@ -109,8 +142,14 @@ const Team = ({ review, team, event, referrer }) => {
       commentBody: comment,
       colorCode: 1
     }
-
-    const response = await api('createScore', 'post', data, sessionStorage.getItem('token'), null)
+    let response
+    if (!existed) {
+      response = await api('createScore', 'post', data, sessionStorage.getItem('token'), null)
+    } else {
+      // updatescore
+      response = await api('createScore', 'post', data, sessionStorage.getItem('token'), null)
+      // response = await api('updateScore', 'patch', data, sessionStorage.getItem('token'), null)
+    }
     if (response.status === 200) {
       setSuccess(() => 'Scores updates successfully')
     } else {
@@ -146,7 +185,8 @@ const Team = ({ review, team, event, referrer }) => {
               </div>
             </div>
             <div className='review-body metrics-body'>
-              {event.metrics.map(m =>
+              <Abstract abstract={abstract} />
+              {scores.map(m =>
                 <MetricScore key={m.metricId} metric={m} handler={handleScores} referrer={referrer} />
               )}
               <div className='review-comment'>

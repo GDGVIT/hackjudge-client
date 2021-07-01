@@ -52,6 +52,7 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     metrics: newMetrics,
     dateOfEvent: eventDate,
     maxTeamSize: teamSize,
+    minTeamSize: 2,
     numberOfReviews: reviews,
     endOfEvent: endDate,
     eventDesc: description
