@@ -28,7 +28,9 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
     allData: `review/allData/${urlPath}`,
     allReviews: `review/allReviews/${urlPath}`,
     createScore: 'scores/createTeamScore',
-    getScore: `scores/getTeamScore/${urlPath}`
+    getScore: `scores/getTeamScore/${urlPath}`,
+    updateTeamScore: 'scores/updateTeamScore',
+    updateTeamComment: 'scores/updateTeamComment'
   }
 
   const config = {

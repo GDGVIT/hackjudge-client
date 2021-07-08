@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import ReviewTeamDetails from './ReviewTeamDetails'
+
 import api from '../../utilities/api'
 
 import BackCross from '../../assets/BackCross.svg'
@@ -10,23 +12,6 @@ import BackCross from '../../assets/BackCross.svg'
 // Implement update scores route
 // Make tis responsive
 
-const Abstract = ({ abstract }) => {
-  if (!abstract) {
-    return (
-      <>
-      </>
-    )
-  }
-  return (
-    <div>
-      {abstract}
-    </div>
-  )
-}
-
-Abstract.propTypes = {
-  abstract: PropTypes.string
-}
 const MetricScore = ({ metric, handler, referrer }) => {
   const [score, setScore] = useState(metric.score)
 
@@ -65,13 +50,13 @@ MetricScore.propTypes = {
 // If current event same as past event but mutable
 
 const Team = ({ review, team, event, referrer }) => {
-  console.log({ event, team })
+  console.log({ review, team, event })
   const [expand, setExpand] = useState(false)
   const [scores, setScores] = useState([])
-  const [comment, setComment] = useState('')
+  const [comment, setComment] = useState({})
   const [success, setSuccess] = useState(false)
   const [existed, setExisted] = useState(false)
-  const [abstract, setAbstract] = useState('')
+  const [loader, setLoader] = useState(false)
 
   const hook = async () => {
     if (referrer === 3) {
@@ -98,10 +83,6 @@ const Team = ({ review, team, event, referrer }) => {
       })
     })
 
-    if (team.abstract) {
-      setAbstract(() => team.abstract)
-    }
-
     setScores(() => dat)
     if (response.status === 200 && response.data.metrics.length !== 0) {
       setExisted(() => true)
@@ -113,7 +94,7 @@ const Team = ({ review, team, event, referrer }) => {
       setScores(() => uniq)
     }
     if (response.status === 200 && response.data.comments && response.data.comments.commentBody) {
-      setComment(() => response.data.comments.commentBody)
+      setComment(() => response.data.comments)
     }
   }
 
@@ -133,8 +114,21 @@ const Team = ({ review, team, event, referrer }) => {
     setScores(() => copy)
   }
 
+  const handleCommentChange = (e) => {
+    setComment((prev) => {
+      return (
+        {
+          ...prev,
+          commentBody: e.target.value
+        }
+      )
+    })
+  }
+
   const submitScore = async () => {
-    const data = {
+    setLoader(() => true)
+    console.log(scores)
+    let data = {
       eventId: event.eventId,
       reviewNo: review,
       teamId: team.teamId,
@@ -147,14 +141,28 @@ const Team = ({ review, team, event, referrer }) => {
       response = await api('createScore', 'post', data, sessionStorage.getItem('token'), null)
     } else {
       // updatescore
-      response = await api('createScore', 'post', data, sessionStorage.getItem('token'), null)
-      // response = await api('updateScore', 'patch', data, sessionStorage.getItem('token'), null)
+      data = scores.map(score => {
+        return (
+          {
+            scoreId: score.scoreId,
+            teamId: score.teamId,
+            score: score.score,
+            metricId: score.metricId,
+            reviewId: score.reviewId
+          }
+        )
+      })
+      response = await api('updateTeamScore', 'patch', data, sessionStorage.getItem('token'), null)
+      if (response.status === 200) {
+        response = await api('updateTeamComment', 'patch', comment, sessionStorage.getItem('token'), null)
+      }
     }
     if (response.status === 200) {
       setSuccess(() => 'Scores updates successfully')
     } else {
       setSuccess(() => 'There was an error')
     }
+    setLoader(() => false)
   }
 
   useEffect(hook, [])
@@ -184,26 +192,44 @@ const Team = ({ review, team, event, referrer }) => {
                 />
               </div>
             </div>
-            <div className='review-body metrics-body'>
-              <Abstract abstract={abstract} />
-              {scores.map(m =>
-                <MetricScore key={m.metricId} metric={m} handler={handleScores} referrer={referrer} />
-              )}
-              <div className='review-comment'>
+            <div className='review-body'>
+              <ReviewTeamDetails team={team} />
+              <div className='scores-and-comments'>
+                <div className='metrics'>
+                  <h1 className='metrics-title'>
+                    Scores
+                  </h1>
+                  {scores.map(m =>
+                    <MetricScore key={m.metricId} metric={m} handler={handleScores} referrer={referrer} />
+                  )}
+                </div>
+                <div className='review-comment'>
+                  <h1>
+                    Comment
+                  </h1>
+                  {referrer === 0 && (
+                    <textarea value={comment.commentBody} className='comment-textarea' placeholder='Comment' onChange={handleCommentChange} />
+                  )}
+                  {referrer !== 0 && (
+                    <textarea value={comment.commentBody} className='comment-textarea' disabled placeholder='Comment' />
+                  )}
+                </div>
                 {referrer === 0 && (
-                  <textarea value={comment} onChange={(e) => setComment(() => e.target.value)} className='comment-textarea' placeholder='Comment' />
-                )}
-                {referrer !== 0 && (
-                  <textarea value={comment} className='comment-textarea' disabled placeholder='Comment' />
+                  <div className='submit-button-container'>
+                    <button onClick={submitScore} className='submit-review-button'>
+                      Submit
+                    </button>
+                  </div>
+
                 )}
               </div>
-              {referrer === 0 && (
-                <button onClick={submitScore} className='submit-review-button'>
-                  Submit
-                </button>
-              )}
             </div>
-            {success && (
+            {loader && (
+              <div className='review-score-success'>
+                Working...
+              </div>
+            )}
+            {!loader && success && (
               <div className='review-score-success'>
                 {success}
               </div>
