@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 
 const Members = ({ members }) => {
   return (
-    <div>
+    <div className='review-members-container'>
       <h1>
         Members
       </h1>
       {members.map(member => {
         return (
-          <li key={member.AuthAuthId}>
+          <div key={member.AuthAuthId} className='member-card'>
             {member.auth[0].name}
-          </li>
+          </div>
         )
       })}
     </div>
@@ -34,14 +34,12 @@ const Abstract = ({ abstract, link, members }) => {
       <Members members={members} />
       <div className='review-abstract'>
         <h1 className='review-abstract-title'>Abstract</h1>
-        <div className='review-abstract-body'>
-          {abstract}
-        </div>
+        <textarea value={abstract} disabled className='review-abstract-body comment-textarea'/>
       </div>
       <div className='review-link'>
         <h1 className='review-link-title'>Link</h1>
         <div>
-          <a>
+          <a className='review-link-actual' href={link} target='_blank' rel='noreferrer noopener'>
             {link}
           </a>
         </div>
