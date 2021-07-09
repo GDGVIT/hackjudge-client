@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ImBin2 } from 'react-icons/im'
 
 const CreateEventMetric = ({ metric, removeMetric }) => {
   const handleButtonClick = () => {
@@ -10,9 +11,9 @@ const CreateEventMetric = ({ metric, removeMetric }) => {
     <div className='metric'>
       <span className='metric-name'>{metric.metricName}</span>
       <span className='metric-score'>{metric.maxScore}</span>
-      <button onClick={handleButtonClick} className='remove-metric'>
-        X
-      </button>
+      <div onClick={handleButtonClick} className='remove-problem-statement'>
+        <ImBin2 />
+      </div>
     </div>
   )
 }

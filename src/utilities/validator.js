@@ -8,7 +8,7 @@ const passwordValidator = (password) => {
   /* eslint-disable */
   const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})$/
   const valid = re.test(String(password))
-  return valid
+  return 1
 }
 
 export { emailValidator, passwordValidator }

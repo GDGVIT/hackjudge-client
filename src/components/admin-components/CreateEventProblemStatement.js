@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { ImBin2 } from 'react-icons/im'
 
 const CreateEventProblemStatement = ({ problemStatement, removePs }) => {
   const handleButtonClick = () => {
@@ -11,7 +12,7 @@ const CreateEventProblemStatement = ({ problemStatement, removePs }) => {
       <div className='ps-text'>
         {problemStatement.ps}
       </div>
-      <button onClick={handleButtonClick} className='remove-problem-statement'>X</button>
+      <div onClick={handleButtonClick} className='remove-problem-statement'><ImBin2 /></div>
     </div>
   )
 }

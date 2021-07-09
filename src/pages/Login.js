@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import AdminLogin from '../components/admin-components/AdminLogin'
 import ParticipantLogin from '../components/participant-components/ParticipantLogin'
-import ParticipantRegister from '../components/participant-components/ParticipantRegister'
 
 import '../styles/login.css'
 
 import HackJudgeLogo from '../assets/HackJudgeLogo.svg'
 import DSCLogo from '../assets/DSCLogo.svg'
+
+const AdminLogin = React.lazy(() => import('../components/admin-components/AdminLogin.js'))
+const ParticipantRegister = React.lazy(() => import('../components/participant-components/ParticipantRegister'))
 
 const Login = ({ userData, handleUserData }) => {
   const history = useHistory()
@@ -62,14 +63,14 @@ const Login = ({ userData, handleUserData }) => {
             <img
               className='hackJudge-logo '
               src={HackJudgeLogo}
-              alt='HackJudgeLogo'
+              alt='HackJudge'
             />
           </li>
           <li className='login-dsc-logo'>
             <img
               className='dsc-logo '
               src={DSCLogo}
-              alt='HackJudgeLogo'
+              alt='DSC'
             />
           </li>
         </ul>
@@ -86,24 +87,28 @@ const Login = ({ userData, handleUserData }) => {
           />
         )}
         {userData.userType === 1 && (
-          <ParticipantRegister
-            userData={userData}
-            handleUserType={handleUserType}
-            handleUserEmail={handleUserEmail}
-            handleUserPassword={handleUserPassword}
-            handleUserName={handleUserName}
-            handleLogin={handleLogin}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <ParticipantRegister
+              userData={userData}
+              handleUserType={handleUserType}
+              handleUserEmail={handleUserEmail}
+              handleUserPassword={handleUserPassword}
+              handleUserName={handleUserName}
+              handleLogin={handleLogin}
+            />
+          </Suspense>
         )}
         {userData.userType === 2 && (
-          <AdminLogin
-            userData={userData}
-            handleUserType={handleUserType}
-            handleUserEmail={handleUserEmail}
-            handleUserPassword={handleUserPassword}
-            handleUserName={handleUserName}
-            handleLogin={handleLogin}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <AdminLogin
+              userData={userData}
+              handleUserType={handleUserType}
+              handleUserEmail={handleUserEmail}
+              handleUserPassword={handleUserPassword}
+              handleUserName={handleUserName}
+              handleLogin={handleLogin}
+            />
+          </Suspense>
         )}
       </div>
     </div>

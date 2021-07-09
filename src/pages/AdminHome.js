@@ -33,7 +33,6 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
     let newEvents = await getAllEvents(token)
     newEvents = newEvents.map(event => ({ ...event, dateOfEvent: Date.parse(event.dateOfEvent), endOfEvent: Date.parse(event.endOfEvent) }))
     const currDate = Date.now()
-    console.log(currDate)
     const currEvents = newEvents.filter(event => {
       return ((event.dateOfEvent <= currDate) && (event.endOfEvent > currDate))
     })
@@ -44,8 +43,6 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
       return (event.dateOfEvent > currDate)
     })
     setEvents({ currentEvents: currEvents, pastEvents: pasEvents, upcomingEvents: upcomEvents })
-    console.log(newEvents)
-    console.log(events)
   }
 
   useEffect(hook, [])
@@ -70,29 +67,31 @@ const AdminHome = ({ userData, currentRef, createRef, upcomingRef, pastRef }) =>
     }
   }
   return (
-    <div className='admin-home'>
-      {overlayType === 1 && (
-        <CreateEvent />
-      )}
-      {overlayType === 0 && events.currentEvents.length === 0 && (
-        <NoEvents />
-      )}
-      {overlayType === 0 && events.currentEvents.length !== 0 && (
-        <Events events={events.currentEvents} isAdmin referrer={overlayType} />
-      )}
-      {overlayType === 2 && events.pastEvents.length === 0 && (
-        <NoEvents />
-      )}
-      {overlayType === 2 && events.pastEvents.length !== 0 && (
-        <Events events={events.pastEvents} isAdmin referrer={overlayType} />
-      )}
-      {overlayType === 3 && events.upcomingEvents.length === 0 && (
-        <NoEvents />
-      )}
-      {overlayType === 3 && events.upcomingEvents.length !== 0 && (
-        <Events events={events.upcomingEvents} isAdmin referrer={overlayType} />
-      )}
-    </div>
+    <>
+      <div className='admin-home'>
+        {overlayType === 1 && (
+          <CreateEvent />
+        )}
+        {overlayType === 0 && events.currentEvents.length === 0 && (
+          <NoEvents />
+        )}
+        {overlayType === 0 && events.currentEvents.length !== 0 && (
+          <Events events={events.currentEvents} isAdmin referrer={overlayType} />
+        )}
+        {overlayType === 2 && events.pastEvents.length === 0 && (
+          <NoEvents />
+        )}
+        {overlayType === 2 && events.pastEvents.length !== 0 && (
+          <Events events={events.pastEvents} isAdmin referrer={overlayType} />
+        )}
+        {overlayType === 3 && events.upcomingEvents.length === 0 && (
+          <NoEvents />
+        )}
+        {overlayType === 3 && events.upcomingEvents.length !== 0 && (
+          <Events events={events.upcomingEvents} isAdmin referrer={overlayType} />
+        )}
+      </div>
+    </>
   )
 }
 

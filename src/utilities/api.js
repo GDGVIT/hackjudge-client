@@ -23,7 +23,14 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
     getMembers: `participantTeam/getMembers/${urlPath}`,
     addTeamMember: 'participantTeam/addTeamMember',
     removeMember: 'participantTeam/removeMember',
-    leaveTeam: 'participantTeam/leaveTeam'
+    leaveTeam: 'participantTeam/leaveTeam',
+    getUnevaluatedTeams: `team/getUnEvaluatedTeams/${urlPath}`,
+    allData: `review/allData/${urlPath}`,
+    allReviews: `review/allReviews/${urlPath}`,
+    createScore: 'scores/createTeamScore',
+    getScore: `scores/getTeamScore/${urlPath}`,
+    updateTeamScore: 'scores/updateTeamScore',
+    updateTeamComment: 'scores/updateTeamComment'
   }
 
   const config = {
@@ -44,7 +51,6 @@ const api = async (url, method, data = null, authorization = null, urlPath = nul
     const response = await axios(config)
     return response
   } catch (error) {
-    console.log(error.response)
     return error.response
   }
 }

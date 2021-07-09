@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 const ReviewTeamCard = ({ teamDetails }) => {
   const [expanded, setExpanded] = useState(false)
 
-  console.log(teamDetails)
   return (
     <>
       {expanded && (

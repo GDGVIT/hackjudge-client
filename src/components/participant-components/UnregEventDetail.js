@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-import EventRegister from './EventRegister'
+// import EventRegister from './EventRegister'
+import BackCross from '../../assets/BackCross.svg'
 
 const UnregEventsDetail = ({ event, close, registered }) => {
-  const [register, setRegister] = useState(false)
+  // const [register, setRegister] = useState(false)
 
   const hashPs = (ps) => {
     if (!ps) return 0
@@ -21,19 +22,32 @@ const UnregEventsDetail = ({ event, close, registered }) => {
   }
 
   return (
-    <div className='unreg-event-details'>
+    <div className='unreg-event-details' onClick={(e) => e.stopPropagation()}>
       <div className='unreg-event-details-topbar'>
         <div className='event-details-title'>
           <h1>{event.eventName}</h1>
         </div>
         <div onClick={close} className='unreg-event-detail-close'>
-          Back
+          <img
+            className='event-register-back-icon'
+            src={BackCross}
+            alt='Back'
+          />
         </div>
       </div>
       <div className='event-details-body'>
         <div className='event-details-description'>
           <h2>Description</h2>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio laboriosam perferendis nemo atque, dolore deleniti magnam mollitia veritatis maxime! Earum veritatis nulla magni laudantium dolores numquam, distinctio officiis iusto voluptas excepturi sint recusandae maxime nisi similique! Neque, quaerat dolorem quibusdam maxime omnis, ea assumenda voluptatum illum odit rem voluptate ullam!
+          {event.eventDesc && (
+            <>
+              {event.eventDesc}
+            </>
+          )}
+          {!event.eventDesc && (
+            <>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio laboriosam perferendis nemo atque, dolore deleniti magnam mollitia veritatis maxime! Earum veritatis nulla magni laudantium dolores numquam, distinctio officiis iusto voluptas excepturi sint recusandae maxime nisi similique! Neque, quaerat dolorem quibusdam maxime omnis, ea assumenda voluptatum illum odit rem voluptate ullam!
+            </>
+          )}
         </div>
         <div className='unreg-event-teamSize'>
           <h2>Team size</h2>
@@ -52,16 +66,16 @@ const UnregEventsDetail = ({ event, close, registered }) => {
           {event.metrics && event.metrics.map(metric => <li key={hashPs(metric.metricId)}>{metric.metricName}</li>)}
         </div>
       </div>
-      {!registered && (
+      {/* {!registered && (
         <div className='event-details-footer'>
           <button onClick={() => setRegister(!register)} className='ppt-event-primary-button'>
-            Register
+            Register Now
           </button>
         </div>
       )}
       {register && (
         <EventRegister event={event} close={() => setRegister(!register)} />
-      )}
+      )} */}
     </div>
   )
 }
@@ -71,7 +85,8 @@ UnregEventsDetail.propTypes = {
     eventName: PropTypes.string,
     maxTeamSize: PropTypes.number,
     problemStatements: PropTypes.array,
-    metrics: PropTypes.array
+    metrics: PropTypes.array,
+    eventDesc: PropTypes.string
   }),
   close: PropTypes.func,
   registered: PropTypes.bool
