@@ -34,7 +34,7 @@ const Abstract = ({ abstract, link, members }) => {
       <Members members={members} />
       <div className='review-abstract'>
         <h1 className='review-abstract-title'>Abstract</h1>
-        <textarea value={abstract} disabled className='review-abstract-body comment-textarea'/>
+        <textarea value={abstract} disabled className='review-abstract-body comment-textarea' />
       </div>
       <div className='review-link'>
         <h1 className='review-link-title'>Link</h1>

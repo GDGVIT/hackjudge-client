@@ -168,7 +168,7 @@
 }
 
 .review-link-actual {
-  color:rgb(139, 134, 187);
+  color: rgb(139, 134, 187);
 }
 
 .metrics {
@@ -184,7 +184,7 @@
   justify-content: space-between;
 }
 
-.metrics-title{
+.metrics-title {
   margin-bottom: 5px;
 }
 
