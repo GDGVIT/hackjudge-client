@@ -194,17 +194,17 @@ const Team = ({ review, team, event, referrer }) => {
               <ReviewTeamDetails team={team} />
               <div className='scores-and-comments'>
                 <div className='metrics'>
-                  <h1 className='metrics-title'>
+                  <h2 className='metrics-title'>
                     Scores
-                  </h1>
+                  </h2>
                   {scores.map(m =>
                     <MetricScore key={m.metricId} metric={m} handler={handleScores} referrer={referrer} />
                   )}
                 </div>
                 <div className='review-comment'>
-                  <h1>
+                  <h2>
                     Comment
-                  </h1>
+                  </h2>
                   {referrer === 0 && (
                     <textarea value={comment.commentBody} className='comment-textarea' placeholder='Comment' onChange={handleCommentChange} />
                   )}

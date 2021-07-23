@@ -20,8 +20,8 @@ const CreateEvent = () => {
     name: '',
     date: new Date(),
     endDate: new Date(),
-    minSize: 2,
-    maxMembers: 4,
+    minTeamSize: 2,
+    maxTeamSize: 4,
     reviews: 3,
     problemStatements: [],
     problemStatement: '',
@@ -34,10 +34,11 @@ const CreateEvent = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
+    console.log(eventDetails)
 
     if (
       eventDetails.name === '' ||
-      eventDetails.minSize < 1 ||
+      eventDetails.minTeamSize < 1 ||
       eventDetails.reviews < 1 ||
       eventDetails.problemStatements === [] ||
       eventDetails.metrics === [] ||
@@ -47,14 +48,13 @@ const CreateEvent = () => {
       setError('Invalid details')
       return
     }
-
     const response = await createEvent(sessionStorage.getItem('token'),
       eventDetails.name,
       eventDetails.problemStatements,
       eventDetails.metrics,
       eventDetails.date,
-      eventDetails.minsize,
-      eventDetails.maxMembers,
+      eventDetails.minTeamSize,
+      eventDetails.maxTeamSize,
       eventDetails.reviews,
       eventDetails.endDate,
       eventDetails.description)
@@ -76,16 +76,17 @@ const CreateEvent = () => {
 
   const handleMaxMembersChange = (event) => {
     if (event.target.value === '') {
-      setEventDetails({ ...eventDetails, maxMembers: '' })
+      setEventDetails({ ...eventDetails, maxTeamSize: '' })
     } else {
-      setEventDetails({ ...eventDetails, maxMembers: parseInt(event.target.value) })
+      setEventDetails({ ...eventDetails, maxTeamSize: parseInt(event.target.value) })
     }
   }
   const handleMinMembersChange = (event) => {
+    console.log(eventDetails.minTeamSize)
     if (event.target.value === '') {
-      setEventDetails({ ...eventDetails, minSize: '' })
+      setEventDetails({ ...eventDetails, minTeamSize: '' })
     } else {
-      setEventDetails({ ...eventDetails, minSize: parseInt(event.target.value) })
+      setEventDetails({ ...eventDetails, minTeamSize: parseInt(event.target.value) })
     }
   }
   const handleReviewsChange = (event) => {
@@ -162,13 +163,13 @@ const CreateEvent = () => {
             <label className='create-event-input-label'>
               Mininum Team Size
             </label>
-            <input type='number' min='1' max='100' value={eventDetails.minSize} onChange={handleMinMembersChange} className='create-event-input' />
+            <input type='number' min='1' max='100' value={eventDetails.minTeamSize} onChange={handleMinMembersChange} className='create-event-input' />
           </div>
           <div className='create-event-input-container'>
             <label className='create-event-input-label'>
               Maximum Team Size
             </label>
-            <input type='number' min='1' max='100' value={eventDetails.maxMembers} onChange={handleMaxMembersChange} className='create-event-input' />
+            <input type='number' min='1' max='100' value={eventDetails.maxTeamSize} onChange={handleMaxMembersChange} className='create-event-input' />
           </div>
           <div className='create-event-input-container'>
             <label className='create-event-input-label'>
@@ -178,7 +179,7 @@ const CreateEvent = () => {
           </div>
         </div>
         <div className='create-event-ps'>
-          <div className='create-event-input-container'>
+          <div className='create-event-input-container' id='watre'>
             <label className='create-event-input-label'>
               Problem Statements
             </label>
@@ -192,7 +193,7 @@ const CreateEvent = () => {
           </div>
         </div>
         <div className='create-event-metrics'>
-          <div className='create-event-input-container'>
+          <div className='create-event-input-container' id='watre'>
             <label className='create-event-input-label'>
               Metrics
             </label>

@@ -34,16 +34,23 @@
 
 .create-event-details {
   height: 100%;
-  border-right: 3px solid #406c95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* border-right: 3px solid #406c95; */
 }
 
 .create-event-input-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
 }
 
 .create-event-input-label {
-  width: 100%;
+  width: 80%;
   font-family: sans-serif;
   font-size: 1.2rem;
   margin: 10px 0;
@@ -66,7 +73,7 @@
 
 .react-datepicker__input-container > input,
 .create-event-input {
-  width: 60%;
+  width: 80%;
   background-color: #000;
   color: #fff;
   border: 2px solid #406c95;
@@ -81,7 +88,8 @@
 
 .create-event-ps {
   height: 100%;
-  border-right: 3px solid #406c95;
+
+  /* border-right: 3px solid #406c95; */
 }
 
 .ps-helper {
@@ -190,6 +198,7 @@
 
   .create-event-input-container {
     align-items: center;
+    width: auto;
   }
 
   .create-event-input-label {
@@ -250,6 +259,10 @@
     max-width: 90%;
   }
 
+  #watre {
+    width: auto;
+  }
+
   .create-event-input,
   .react-datepicker-wrapper,
   .create-event-textarea {
@@ -261,8 +274,19 @@
   .create-event-button {
     width: 72%;
   }
+
+  .create-event-input-container {
+    width: 90%;
+  }
 }
 
+.react-datepicker-wrapper {
+  width: 80%;
+}
+
+.react-datepicker__input-container > input {
+  width: 100%;
+}
 .react-datepicker-popper {
   z-index: 30;
 }

@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 const Members = ({ members }) => {
   return (
     <div className='review-members-container'>
-      <h1>
+      <h2>
         Members
-      </h1>
+      </h2>
       {members.map(member => {
         return (
           <div key={member.AuthAuthId} className='member-card'>
@@ -23,25 +23,44 @@ Members.propTypes = {
 }
 
 const Abstract = ({ abstract, link, members }) => {
-  if (!abstract) {
-    abstract = 'The team didn\'t submit an abstract.'
+  const [hasLink, setHasLink] = useState(true)
+  const hook = () => {
+    if (!abstract) {
+      abstract = 'The team didn\'t submit an abstract.'
+    }
+    if (!link) {
+      link = 'The team didn\'t submit a link.'
+      setHasLink(() => false)
+    } else {
+      const prefix = 'http://'
+      if (link.substr(0, prefix.length) !== prefix) {
+        link = prefix + link
+      }
+    }
   }
-  if (!link) {
-    link = 'The team didn\'t submit a link.'
-  }
+  useEffect(hook, [])
   return (
     <div className='team-details'>
       <Members members={members} />
       <div className='review-abstract'>
-        <h1 className='review-abstract-title'>Abstract</h1>
-        <textarea value={abstract} disabled className='review-abstract-body comment-textarea' />
+        <h2 className='review-abstract-title'>Abstract</h2>
+        <p className='review-abstract-body'>
+          {abstract}
+        </p>
       </div>
       <div className='review-link'>
-        <h1 className='review-link-title'>Link</h1>
+        <h2 className='review-link-title'>Link</h2>
         <div>
-          <a className='review-link-actual' href={link} target='_blank' rel='noreferrer noopener'>
-            {link}
-          </a>
+          {hasLink && (
+            <a className='review-link-actual' href={link} target='_blank' rel='noreferrer noopener'>
+              {link}
+            </a>
+          )}
+          {!hasLink && (
+            <p>
+              The team did not submit a link.
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ import Reviews from '../admin-components/Reviews'
 const Event = ({ event, isAdmin, referrer }) => {
   return (
     <div className='event'>
-      <span className='event-name'>{event.eventName} </span>
+      <h1 className='event-name'>{event.eventName} </h1>
       <Reviews event={event} referrer={referrer} />
     </div>
   )

@@ -42,6 +42,11 @@
   z-index: 20;
 }
 
+.review-teams-container > h1 {
+  text-align: left;
+  font-size: 1.8rem;
+}
+
 @media screen and (max-width: 844px) {
   .reviews-list {
     flex-direction: column;
@@ -67,7 +72,8 @@
 }
 
 @media screen and (max-width: 425px) {
-  .event {
+  .event-name {
+    width: 100%;
     text-align: center;
   }
 
@@ -85,6 +91,7 @@
   min-width: 100%;
   width: 100%;
   min-height: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.897);
   display: grid;
   place-items: center;
@@ -102,15 +109,12 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-content: space-around;
-}
-
-.review-card-small {
-  width: 60%;
-  height: 80%;
+  overflow: hidden;
 }
 
 .review-card-nav {
   display: flex;
+  height: 10%;
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 40px 0 40px;
@@ -136,7 +140,7 @@
 }
 
 .review-body {
-  height: 100%;
+  height: 90%;
   padding: 40px;
   padding-top: 20px;
   display: grid;
@@ -148,23 +152,27 @@
   height: 100%;
   flex-direction: column;
   justify-content: flex-start;
+  overflow: auto;
 }
 
 .scores-and-comments {
   padding: 0 50px 0 20px;
   width: 100%;
-  height: 100%;
-}
-
-.review-members-container {
-  height: 30%;
   overflow: auto;
 }
 
-.review-abstract-body {
-  margin-bottom: 20px;
-  min-width: 80% !important;
-  max-width: 85% !important;
+.review-members-container {
+  height: max-content;
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+.member-card {
+  margin: 5px 0;
+}
+
+.review-link-title {
+  margin-bottom: 10px;
 }
 
 .review-link-actual {
@@ -216,19 +224,30 @@
   width: 100%;
 }
 
-.comment-textarea {
-  max-width: 410px;
-  min-width: 200px;
-  min-height: 140px;
-  max-height: 140px;
-  margin-top: 10px;
+.review-abstract-title {
   margin-bottom: 10px;
+}
+
+.comment-textarea {
   padding: 6px;
   background-color: inherit;
   color: #fff;
   border: 2px solid #406c95;
   border-radius: 10px;
   font-size: 1.1rem;
+  max-width: 410px;
+  min-width: 200px;
+  min-height: 80px;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.review-abstract-body {
+  margin-bottom: 20px;
+  width: 80%;
+  font-style: italic;
+  text-align: left;
 }
 
 .comment-textarea::placeholder {
@@ -307,4 +326,89 @@
   text-align: center;
   transform: translateY(-20px);
   color: #406c95;
+}
+
+@media screen and (max-width: 1270px) {
+  .review-card {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 934px) {
+  .review-body {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .scores-and-comments,
+  .team-details {
+    overflow: initial;
+  }
+
+  .team-details {
+    justify-content: flex-start;
+  }
+
+  .review-members-container {
+    margin: 0 0 30px 0;
+  }
+
+  .member-card {
+    margin: 7px 0 7px 0;
+  }
+
+  .review-abstract {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    height: max-content;
+  }
+
+  .review-abstract-title {
+    text-align: left;
+    width: 100%;
+  }
+
+  .review-abstract-body {
+    border: 0;
+    min-height: max-content;
+    height: max-content;
+  }
+
+  .review-link {
+    margin-bottom: 30px;
+  }
+
+  .review-link-title {
+    margin-bottom: 10px;
+  }
+
+  .scores-and-comments {
+    overflow-y: initial;
+    margin-top: 10px;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 934px) {
+  .review-event-name {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 362px) {
+  .review-card-nav {
+    padding-top: 0;
+    height: 11%;
+    align-items: center;
+  }
+
+  .review-event-name {
+    padding: 0;
+  }
 }

@@ -47,7 +47,7 @@ const Review = ({ n, event, referrer }) => {
             <div className='review-body'>
               {teams !== null && teams.length === 0 && (
                 <p className='no-teams'>
-                  No teams to show, marketing team slakin, eh?
+                  No teams to show.
                 </p>
               )}
               {teams !== null && teams.length > 0 && (
