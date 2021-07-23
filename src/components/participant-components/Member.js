@@ -27,6 +27,7 @@ const Wishes = () => {
 }
 
 const Member = ({ event, member, isAdmin, isWaiting }) => {
+  console.log(member)
   const [wishes, setWishes] = useState(false)
   const [ad, setAd] = useState(false)
 
@@ -82,6 +83,7 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
     if (selfAuth === member.auth[0].authId) {
       setAd(() => true)
     }
+    console.log(ad)
   }
 
   useEffect(hook, [])
@@ -93,13 +95,13 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
           <button title='Add to Team' onClick={addToTeam} className='add-to-team'> <AiOutlineUserAdd /> </button>
         </IconContext.Provider>
       )}
-      {!isWaiting && (
+      {!isWaiting && isAdmin && (
         <button title='Future Endeavor' onClick={removeFromTeam} className='add-to-team'>
           <GiHighKick />
         </button>
       )}
       {member.auth[0].name}
-      {ad && (
+      {member.isLeader && (
         <IconContext.Provider value={{ size: '1.4em' }}>
           <span className='leader-tag'>
             <GiChessKing />

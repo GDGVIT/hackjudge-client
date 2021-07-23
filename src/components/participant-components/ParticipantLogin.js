@@ -39,6 +39,12 @@ const ParticipantLogin = ({
     setAnimationState(1)
 
     let response = await api('login', 'post', { email: userData.email, password: userData.password, isAdmin: false })
+    if (!response) {
+      setAnimationState(0)
+      setErrorMessage('Please check your internet connection')
+      setInvalid(true)
+      return
+    }
     if (response.status === 200) {
       setInvalid(false)
       response = response.data

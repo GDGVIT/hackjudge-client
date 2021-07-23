@@ -9,7 +9,7 @@ import WaitingMebmers from './WaitingMembers'
 import api from '../../utilities/api'
 // import isInTeam from '../../utilities/isInTeam'
 
-const ManageTeam = ({ event, close, notAdmin = false }) => {
+const ManageTeam = ({ event, close, isAdmin }) => {
   const [members, setMembers] = useState([])
   const [waitingMembers, setWaitingMembers] = useState([])
   const [code, setCode] = useState('')
@@ -76,19 +76,19 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
       </div>
       <div className='event-details-title manage-team-name'>
         <h1>{event.teamData.team.teamName}</h1>
-        {!notAdmin && (
+        {isAdmin && (
           <button onClick={deleteTeam} className='delete-team-button'>
             Delete Team
           </button>
         )}
-        {notAdmin && (
+        {!isAdmin && (
           <button onClick={leaveTeam} className='delete-team-button'>
             Leave Team
           </button>
         )}
       </div>
       <div className='manage-team-body'>
-        {!notAdmin && (
+        {isAdmin && (
           <div className='manage-team-code'>
             <div className='real-code'>
               {code}
@@ -103,8 +103,8 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
             Code copied successfully!
           </div>
         )}
-        <TeamMembers event={event} members={members} />
-        {!notAdmin && (
+        <TeamMembers event={event} members={members} isAdmin />
+        {isAdmin && (
           <WaitingMebmers event={event} members={waitingMembers} />
         )}
       </div>
@@ -115,6 +115,6 @@ const ManageTeam = ({ event, close, notAdmin = false }) => {
 ManageTeam.propTypes = {
   event: PropTypes.object,
   close: PropTypes.func,
-  notAdmin: PropTypes.bool
+  isAdmin: PropTypes.bool
 }
 export default ManageTeam

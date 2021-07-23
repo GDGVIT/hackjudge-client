@@ -10,7 +10,7 @@ const WaitingMembers = ({ members, event }) => {
       {members.length !== 0 && (
         <div className='members-container'>
           <div className='team-members-title'>
-            Current Members
+            Waiting Members
           </div>
           <div className='members-list'>
             {members.map((member, index) => {

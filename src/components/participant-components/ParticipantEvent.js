@@ -11,7 +11,6 @@ const ParticipantEvent = ({ event }) => {
   // eventType: 1 -> Registered and is leader
   // eventType: 2 -> Registered and does not have a team [unused]
   // eventType: 3 -> Registered and is a normal member of a team
-
   const [overlay, setOverlay] = useState(false)
   const [register, setRegister] = useState(false)
   const [submission, setSubmission] = useState(false)
@@ -70,12 +69,12 @@ const ParticipantEvent = ({ event }) => {
       )}
       {event.userStatus !== 0 && submission && (
         <div className='unreg-event-details-container' onClick={handleSubmission}>
-          <ManageSubmission event={event} close={handleSubmission} notAdmin={event.userStatus === 3} />
+          <ManageSubmission event={event} close={handleSubmission} isAdmin={event.userStatus === 1} />
         </div>
       )}
       {event.userStatus !== 0 && manageTeam && (
         <div className='unreg-event-details-container' onClick={handleTeam}>
-          <ManageTeam event={event} close={handleTeam} notAdmin={event.userStatus === 3} />
+          <ManageTeam event={event} close={handleTeam} isAdmin={event.userStatus === 1} />
         </div>
       )}
     </>

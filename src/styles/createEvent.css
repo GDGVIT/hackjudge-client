@@ -16,10 +16,16 @@
 
 .create-event-body {
   width: 100%;
-  height: 85%;
+  height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding-top: 40px;
+}
+
+.create-event-foooter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .create-event-body > div {
@@ -101,7 +107,7 @@
 .problem-statement,
 .metric {
   margin: 5px;
-  width: max-content;
+  max-width: 400px;
   padding: 7px;
   background-color: #000;
   color: #fff;
@@ -153,6 +159,12 @@
   color: #fff;
   display: grid;
   place-items: center;
+}
+
+.error-message {
+  margin: 15px;
+  color: red;
+  font-size: 1.4rem;
 }
 
 @media screen and (max-width: 1436px) {
@@ -247,7 +259,7 @@
   }
 
   .create-event-button {
-    width: 90%;
+    width: 72%;
   }
 }
 

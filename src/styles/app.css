@@ -33,6 +33,7 @@ body,
 .participants-home-container {
   height: 100%;
   background-color: #000;
+  background-image: url(../assets/Background.svg);
   overflow: auto;
 }
 
@@ -40,6 +41,7 @@ body {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(../assets/Background.svg);
   color: white;
 }
 

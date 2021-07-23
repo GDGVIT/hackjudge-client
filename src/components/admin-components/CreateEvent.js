@@ -15,10 +15,12 @@ import '../../styles/createEvent.css'
 
 const CreateEvent = () => {
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
   const [eventDetails, setEventDetails] = useState({
     name: '',
     date: new Date(),
     endDate: new Date(),
+    minSize: 2,
     maxMembers: 4,
     reviews: 3,
     problemStatements: [],
@@ -32,17 +34,36 @@ const CreateEvent = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault()
+
+    if (
+      eventDetails.name === '' ||
+      eventDetails.minSize < 1 ||
+      eventDetails.reviews < 1 ||
+      eventDetails.problemStatements === [] ||
+      eventDetails.metrics === [] ||
+      eventDetails.description === ''
+    ) {
+      setSuccess(() => false)
+      setError('Invalid details')
+      return
+    }
+
     const response = await createEvent(sessionStorage.getItem('token'),
       eventDetails.name,
       eventDetails.problemStatements,
       eventDetails.metrics,
       eventDetails.date,
+      eventDetails.minsize,
       eventDetails.maxMembers,
       eventDetails.reviews,
       eventDetails.endDate,
       eventDetails.description)
     if (response.status === 200) {
       setSuccess(() => true)
+      setTimeout(
+        () => window.location.reload(false),
+        1000
+      )
     }
   }
 
@@ -58,6 +79,13 @@ const CreateEvent = () => {
       setEventDetails({ ...eventDetails, maxMembers: '' })
     } else {
       setEventDetails({ ...eventDetails, maxMembers: parseInt(event.target.value) })
+    }
+  }
+  const handleMinMembersChange = (event) => {
+    if (event.target.value === '') {
+      setEventDetails({ ...eventDetails, minSize: '' })
+    } else {
+      setEventDetails({ ...eventDetails, minSize: parseInt(event.target.value) })
     }
   }
   const handleReviewsChange = (event) => {
@@ -132,7 +160,13 @@ const CreateEvent = () => {
           </div>
           <div className='create-event-input-container'>
             <label className='create-event-input-label'>
-              Max Members
+              Mininum Team Size
+            </label>
+            <input type='number' min='1' max='100' value={eventDetails.minSize} onChange={handleMinMembersChange} className='create-event-input' />
+          </div>
+          <div className='create-event-input-container'>
+            <label className='create-event-input-label'>
+              Maximum Team Size
             </label>
             <input type='number' min='1' max='100' value={eventDetails.maxMembers} onChange={handleMaxMembersChange} className='create-event-input' />
           </div>
@@ -180,7 +214,12 @@ const CreateEvent = () => {
       {success && (
         <div className='success-message'>
           Event Created Successfully.
-          Please reload the page.
+          The page will now be reloaded.
+        </div>
+      )}
+      {error && (
+        <div className='error-message'>
+          {error}
         </div>
       )}
     </div>

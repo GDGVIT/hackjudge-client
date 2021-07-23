@@ -50,7 +50,6 @@ MetricScore.propTypes = {
 // If current event same as past event but mutable
 
 const Team = ({ review, team, event, referrer }) => {
-  console.log({ review, team, event })
   const [expand, setExpand] = useState(false)
   const [scores, setScores] = useState([])
   const [comment, setComment] = useState({})
@@ -127,7 +126,6 @@ const Team = ({ review, team, event, referrer }) => {
 
   const submitScore = async () => {
     setLoader(() => true)
-    console.log(scores)
     let data = {
       eventId: event.eventId,
       reviewNo: review,
