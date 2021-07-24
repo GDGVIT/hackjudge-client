@@ -3,28 +3,19 @@ import PropTypes from 'prop-types'
 
 import Reviews from '../admin-components/Reviews'
 
-const Event = ({ event, isAdmin }) => {
+const Event = ({ event, isAdmin, referrer }) => {
   return (
-    <div>
-      {isAdmin && (
-        <div className='event'>
-          <span className='event-name'>{event.eventName} </span>
-          <Reviews event={event} />
-        </div>
-      )}
-
-      {!isAdmin && (
-        <div>
-          {event.name} [Register button]
-        </div>
-      )}
+    <div className='event'>
+      <h1 className='event-name'>{event.eventName} </h1>
+      <Reviews event={event} referrer={referrer} />
     </div>
   )
 }
 
 Event.propTypes = {
   event: PropTypes.object,
-  isAdmin: PropTypes.bool
+  isAdmin: PropTypes.bool,
+  referrer: PropTypes.number
 }
 
 export default Event

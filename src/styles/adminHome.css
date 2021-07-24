@@ -10,7 +10,7 @@
 .admin-home {
   width: 100%;
   height: 100%;
-  padding: 30px;
+  padding: 40px;
 }
 
 .event-name {
@@ -29,7 +29,7 @@
 }
 
 .review-button {
-  background-color: #171717;
+  background-color: #335677;
   outline: 0;
   margin: 5px;
   padding: 15px;
@@ -39,6 +39,24 @@
   color: #fff;
   font-size: 1rem;
   transition: all 500ms;
+  z-index: 20;
+}
+
+.review-teams-container > h1 {
+  text-align: left;
+  font-size: 1.8rem;
+}
+
+@media screen and (max-width: 844px) {
+  .reviews-list {
+    flex-direction: column;
+    width: max-content;
+  }
+
+  .review-button {
+    transform: scale(0.95);
+    margin: 5px 0;
+  }
 }
 
 .review-button:hover {
@@ -53,6 +71,19 @@
   margin-bottom: 2.7rem;
 }
 
+@media screen and (max-width: 425px) {
+  .event-name {
+    width: 100%;
+    text-align: center;
+  }
+
+  .reviews-list {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+
 .review-overlay {
   position: fixed;
   top: 0;
@@ -60,27 +91,33 @@
   min-width: 100%;
   width: 100%;
   min-height: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.897);
   display: grid;
   place-items: center;
+  z-index: 1000;
 }
 
 .review-card {
-  width: 80%;
+  width: 60%;
   height: 80%;
+  border: 2px solid #406c95;
+  border-radius: 7px;
   background-color: #171717;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-content: space-around;
+  overflow: hidden;
 }
 
 .review-card-nav {
   display: flex;
+  height: 10%;
   flex-direction: row;
-  justify-content: space-around;
-  padding-top: 10px;
+  justify-content: space-between;
+  padding: 10px 40px 0 40px;
   align-items: flex-end;
 }
 
@@ -88,33 +125,10 @@
   display: flex;
 }
 
-.collapse-review {
-  background-color: #383737;
-  height: max-content;
-  padding: 8px;
-  margin-top: 5px;
-  color: #fff;
-  border: 0;
-  width: 100px;
-  transition: all 500ms;
-}
-
-.collapse-review:hover {
-  cursor: pointer;
-  box-shadow: rgba(2, 8, 20, 0.1) 0 0.35em 1.175em, rgba(2, 8, 20, 0.08) 0.175em 0.5em;
-  background-color: #fff;
-  transform: scale(1.02);
-  color: #000;
-}
-
-.collapse-review:focus {
-  outline: none;
-  border: 0;
-}
-
 .review-event-name {
   font-family: 'Poppins', sans-serif;
   padding: 8px;
+  padding-left: 0;
 }
 
 .event-review-no {
@@ -126,7 +140,152 @@
 }
 
 .review-body {
+  height: 90%;
+  padding: 40px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.team-details {
+  display: flex;
   height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+.scores-and-comments {
+  padding: 0 50px 0 20px;
+  width: 100%;
+  overflow: auto;
+}
+
+.review-members-container {
+  height: max-content;
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+.member-card {
+  margin: 5px 0;
+}
+
+.review-link-title {
+  margin-bottom: 10px;
+}
+
+.review-link-actual {
+  color: rgb(139, 134, 187);
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.metrics-container {
+  width: 100%;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.metrics-title {
+  margin-bottom: 5px;
+}
+
+.metric-name {
+  font-family: 'Roboto', sans-serif;
+}
+
+.metric-input {
+  height: 2rem;
+  background-color: inherit;
+  border: 2px solid #406c95;
+  border-radius: 7px;
+  width: 14ch;
+  color: #fff;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.metric-input:focus {
+  outline: none;
+  border: 2px solid #2378c7;
+  box-shadow: 0 0 2px rgb(231, 231, 231);
+  color: #fff;
+}
+
+.review-comment {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.review-abstract-title {
+  margin-bottom: 10px;
+}
+
+.comment-textarea {
+  padding: 6px;
+  background-color: inherit;
+  color: #fff;
+  border: 2px solid #406c95;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  max-width: 100%;
+  width: 100%;
+  min-width: 200px;
+  min-height: 80px;
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.review-abstract-body {
+  margin-bottom: 20px;
+  width: 80%;
+  font-style: italic;
+  text-align: left;
+}
+
+.comment-textarea::placeholder {
+  color: rgb(173, 164, 164);
+}
+
+.comment-textarea:focus {
+  outline: none;
+}
+
+.submit-button-container {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.submit-review-button {
+  padding: 5px 60px;
+  margin-top: 6px;
+  background-color: inherit;
+  border: 2px solid #406c95;
+  width: 100%;
+  color: #fff;
+  border-radius: 9px;
+  font-size: 1.2rem;
+  transition: all 500ms;
+}
+
+.submit-review-button:hover {
+  background-color: rgb(37, 34, 71);
+  color: rgb(255, 255, 255);
+}
+
+.submit-review-button:focus {
+  background-color: rgb(37, 34, 71);
+  color: rgb(255, 255, 255);
+  outline: none;
 }
 
 .no-teams {
@@ -134,4 +293,123 @@
   text-align: center;
   margin: 100px;
   font-size: 2rem;
+}
+
+.teams-flex {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+.team-button {
+  padding: 10px;
+  height: max-content;
+  border: 2px solid #406c95;
+  background-color: #000;
+  border-radius: 8px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 500ms;
+}
+
+.team-button:hover,
+.team-button:focus {
+  transform: scaleX(1.04);
+  transform: translateY(-1.1px);
+}
+
+.review-score-success {
+  width: 100%;
+  text-align: center;
+  transform: translateY(-20px);
+  color: #406c95;
+}
+
+@media screen and (max-width: 1270px) {
+  .review-card {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 934px) {
+  .review-body {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .scores-and-comments,
+  .team-details {
+    overflow: initial;
+  }
+
+  .team-details {
+    justify-content: flex-start;
+  }
+
+  .review-members-container {
+    margin: 0 0 30px 0;
+  }
+
+  .member-card {
+    margin: 7px 0 7px 0;
+  }
+
+  .review-abstract {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    height: max-content;
+  }
+
+  .review-abstract-title {
+    text-align: left;
+    width: 100%;
+  }
+
+  .review-abstract-body {
+    border: 0;
+    min-height: max-content;
+    height: max-content;
+  }
+
+  .review-link {
+    margin-bottom: 30px;
+  }
+
+  .review-link-title {
+    margin-bottom: 10px;
+  }
+
+  .scores-and-comments {
+    overflow-y: initial;
+    margin-top: 10px;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 934px) {
+  .review-event-name {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 362px) {
+  .review-card-nav {
+    padding-top: 0;
+    height: 11%;
+    align-items: center;
+  }
+
+  .review-event-name {
+    padding: 0;
+  }
 }

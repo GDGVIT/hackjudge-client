@@ -21,7 +21,7 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
     }
 
     const token = sessionStorage.getItem('token')
-    if (token === 'null') {
+    if (!token) {
       history.push('/')
     }
 
@@ -32,6 +32,8 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
       unixEndTime: Date.parse(event.endOfEvent)
     }))
 
+    newEvents = newEvents.filter((entry) => !(entry.unixEndTime < Date.now()))
+
     setUnregistered(() => [])
     setRegistered(() => [])
 
@@ -39,7 +41,7 @@ const ParticipantHome = ({ currentRef, upcomingRef }) => {
       newEvents.forEach(async (thisevent) => {
         const response = await isInTeam(token, thisevent.eventId)
         if (response.status !== 200) {
-          console.log(response)
+          console.log('Hacker?')
         } else if (response.data.message === 'You are not in a team') {
           thisevent.userStatus = 0
           setUnregistered((oldState) => [...oldState, thisevent])

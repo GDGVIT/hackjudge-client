@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+import BackCross from '../../assets/BackCross.svg'
+
 import api from '../../utilities/api'
 
 const CreateTeam = ({ event, back }) => {
   const [error, setError] = useState('')
   const [teamname, setTeamname] = useState('')
   const [teamcode, setTeamcode] = useState('')
+  const [copysuccess, setCopySuccess] = useState(false)
 
   const handleNameChange = (event) => {
     setTeamname(() => event.target.value)
@@ -27,9 +30,7 @@ const CreateTeam = ({ event, back }) => {
       },
       eventId: event.eventId
     }
-    console.log(data)
     const response = await api('createTeam', 'post', data, token)
-    console.log(response)
     if (response.status === 200 && response.data.message !== 'team already exists') {
       setTeamcode(response.data.createdTeam.teamCode)
     } else {
@@ -41,37 +42,81 @@ const CreateTeam = ({ event, back }) => {
     window.location.reload(false)
   }
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(teamcode)
+    setCopySuccess(() => true)
+  }
+
   return (
-    <div className='jointeam-overlay'>
-      <div className='jointeam-container'>
-        <form onSubmit={handleSubmit} className='jointeam-form' created={teamcode}>
-          <label className='jointeam-label'>
-            Team Name
-            <input onChange={handleNameChange} value={teamname} className='jointeam-input' />
-          </label>
-        </form>
-        <div className='jointeam-buttons' created={teamcode}>
-          <button onClick={handleSubmit} className='jointeam-button'>
+    <div className='unreg-event-details-container' onClick={back}>
+      {teamcode === '' && (
+        <div className='unreg-event-details reg-formm' onClick={e => e.stopPropagation()}>
+          <div className='unreg-event-details-topbar'>
+            <div className='event-details-title'>
+              <h1>Create A Team</h1>
+            </div>
+            <div onClick={back} className='unreg-event-detail-close'>
+              <img
+                className='event-register-back-icon'
+                src={BackCross}
+                alt='Back'
+              />
+            </div>
+          </div>
+          <div className='reg-body'>
+            <form
+              className='reg-form'
+              onSubmit={
+                (e) => {
+                  e.preventDefault()
+                  handleSubmit()
+                }
+              }
+            >
+              <label className='reg-form-label'>
+                Team Name
+              </label>
+              <input value={teamname} onChange={handleNameChange} className='reg-form-input' />
+            </form>
+          </div>
+          <button onClick={handleSubmit} className='reg-button'>
             Create
           </button>
-          <button onClick={back} className='jointeam-back-button'>
-            Back
+          {error !== '' && (
+            <div className='jointeam-error'>
+              {error}
+            </div>
+          )}
+        </div>
+      )}
+      {teamcode !== '' && (
+        <div className='unreg-event-details reg-formm teamcode' onClick={(e) => e.stopPropagation()} teamcode={teamcode}>
+          <div className='unreg-event-details-topbar onlyback'>
+            <div onClick={refresh} className='unreg-event-detail-close'>
+              <img
+                className='event-register-back-icon'
+                src={BackCross}
+                alt='Back'
+              />
+            </div>
+          </div>
+          <div className='thattext'>
+            <span className='theteamname'>{teamname} </span>
+            was successfully created!
+            <br />
+            Here is your team code:
+          </div>
+          <div className='real-code'>{teamcode}</div>
+          {copysuccess && (
+            <div className='code-copy-success'>
+              Code copied successfully
+            </div>
+          )}
+          <button className='reg-button' onClick={handleCopy}>
+            Copy code
           </button>
         </div>
-        <div className='jointeam-error'>
-          {error}
-        </div>
-        {teamcode !== '' && (
-          <div className='teamcode' teamcode={teamcode}>
-            <h2>{teamname} was created!!</h2>
-            <h3>Here is your team code</h3>
-            <h2>{teamcode}</h2>
-            <button onClick={refresh} className='jointeam-back-button'>
-              Back
-            </button>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   )
 }

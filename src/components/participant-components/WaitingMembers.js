@@ -8,15 +8,17 @@ const WaitingMembers = ({ members, event }) => {
   return (
     <>
       {members.length !== 0 && (
-        <div className='waiting-members'>
-          <h2>
-            Join Requests
-          </h2>
-          {members.map((member, index) => {
-            return (
-              <Member key={index} event={event} member={member} isWaiting />
-            )
-          })}
+        <div className='members-container'>
+          <div className='team-members-title'>
+            Waiting Members
+          </div>
+          <div className='members-list'>
+            {members.map((member, index) => {
+              return (
+                <Member key={index} event={event} member={member} isWaiting />
+              )
+            })}
+          </div>
         </div>
       )}
     </>

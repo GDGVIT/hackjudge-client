@@ -11,13 +11,13 @@
 [![Discord Chat](https://img.shields.io/discord/760928671698649098.svg)](https://discord.gg/498KVdSKWR)
 
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE)
-  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
+  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://hackjudge-client-9wyo.pages.dev/)
 
 
 ## Features
 - [X]  Directory structure
-- [ ]  Backend Integration
-- [ ]  UI implementation
+- [X]  Backend Integration
+- [X]  UI implementation
 
 <br>
 
@@ -25,6 +25,8 @@
  - React
  - Axios
  - React PropTypes
+ - React Icons
+ - React Datepicker
 
 ## Running
 
@@ -38,7 +40,7 @@
  Directions to execute
 
 ```bash
-  npm start
+  yarn start
 ```
 
 ## Contributors

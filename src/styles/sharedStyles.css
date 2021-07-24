@@ -35,8 +35,136 @@
   align-items: center;
 }
 
+.header-brr {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0 25px;
+}
+
+.active-link {
+  color: #04d9ff;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #406c95;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3f83c2;
+}
+
+.header {
+  padding: 20px;
+  padding-top: 30px;
+}
+
+.unreg-event-detail-close {
+  border: none;
+  width: max-content;
+  aspect-ratio: 1/1;
+  padding: 10px;
+  transition: all 500ms;
+  cursor: pointer;
+}
+
+.event-register-back-icon {
+  max-width: 22px;
+  float: left;
+  cursor: pointer;
+}
+
+.mobile-links {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 60px;
+  right: 37px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.mobile-links > button {
+  padding: 5px;
+  border: 0;
+  margin: 4px;
+}
+
+.links > button:focus {
+  border: none;
+  outline: none;
+}
+
+button[hide="hide"],
+div[hide="hide"] {
+  display: none;
+}
+
+li[hide="show"] {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50px;
+  right: 37px;
+}
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+}
+
+.small-screen-links {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 60px;
+  right: 25px;
+  border-radius: 7px;
+  padding: 5px;
+  z-index: 500;
+  background-color: rgb(19, 15, 15);
+}
+
+.small-screen-button,
+.small-screen-logout {
+  background-color: #335677;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  padding: 15px 15px;
+  margin: 0 0 5px 0;
+  text-align: center;
+  font-family: 'Azonix', sans-serif;
+}
+
+.small-screen-logout {
+  margin-bottom: 0;
+}
+
+.small-screen-logout > a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .logout-button:hover,
-.logout-button > a:hover {
+.logout-button > a:hover,
+.small-screen-button > a:hover {
   color: #04d9ff;
   outline: none;
   cursor: pointer;
@@ -53,11 +181,18 @@
   transform: translateY(-3px) scale(1.05);
 }
 
-.links > button:focus {
-  border: none;
-  outline: none;
+.small-screen-button[show="hide"],
+.small-screen-logout[show="hide"] {
+  display: none;
 }
 
-.active-link {
-  color: #04d9ff;
+.events-text,
+.events-text-logo {
+  z-index: 0;
+}
+
+.events-text {
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }

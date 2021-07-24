@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, teamSize, reviews, endDate) => {
+const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, eventDate, minSize, teamSize, reviews, endDate, description) => {
   // Validate event details data
   newMetrics = newMetrics.map(m => ({ metricName: m.metricName, maxScore: m.maxScore }))
   newProblemStatements = newProblemStatements.map(ps => (ps.ps))
@@ -36,6 +36,7 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     errors.push('The maximum team size must be a number')
   }
 
+  reviews = parseInt(reviews)
   if (!(typeof (reviews) === 'number')) {
     errors.push('The no of reviews must be a number')
   }
@@ -51,8 +52,10 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
     metrics: newMetrics,
     dateOfEvent: eventDate,
     maxTeamSize: teamSize,
-    noOfReviews: reviews,
-    endOfEvent: endDate
+    minTeamSize: minSize,
+    numberOfReviews: reviews,
+    endOfEvent: endDate,
+    eventDesc: description
   }
 
   const config = {
@@ -65,7 +68,6 @@ const createEvent = async (ATOKEN, newEvent, newProblemStatements, newMetrics, e
   }
   console.log(config)
   const response = await axios(config)
-  console.log(response)
   return response
 }
 

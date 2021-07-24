@@ -36,6 +36,11 @@ const AdminLogin = ({ userData, handleUserEmail, handleUserPassword, handleUserT
       isAdmin: true
     }
     let response = await api('login', 'post', data)
+    if (!response) {
+      setAnimationState(0)
+      setErrorMessage('Please check your internet connection')
+      setInvalid(true)
+    }
     if (response.status === 200) {
       setInvalid(false)
       response = response.data

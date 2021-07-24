@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-import { RiUserAddLine } from 'react-icons/ri'
-import { GiHighKick } from 'react-icons/gi'
+import { IconContext } from 'react-icons'
+import { AiOutlineUserAdd } from 'react-icons/ai'
+import { GiHighKick, GiChessKing } from 'react-icons/gi'
 
 import api from '../../utilities/api'
 
@@ -26,7 +27,9 @@ const Wishes = () => {
 }
 
 const Member = ({ event, member, isAdmin, isWaiting }) => {
+  console.log(member)
   const [wishes, setWishes] = useState(false)
+  const [ad, setAd] = useState(false)
 
   const addToTeam = async () => {
     const data = {
@@ -35,11 +38,10 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
     }
     const token = sessionStorage.getItem('token')
     if (token === '') {
-      console.log('no token')
+      console.log('Hacker?')
       return
     }
     const response = await api('addTeamMember', 'post', data, token, null)
-    console.log(response)
     if (response.status === 200) {
       setWishes(() => true)
     }
@@ -66,29 +68,46 @@ const Member = ({ event, member, isAdmin, isWaiting }) => {
     }
     const token = sessionStorage.getItem('token')
     if (token === '') {
-      console.log('no token')
+      console.log('Hacker?')
       return
     }
-    console.log(data, 'is sent')
     const response = await api(url, 'post', data, token, null)
-    console.log(response)
 
     if (response.status === 200) {
       setWishes(() => true)
     }
   }
 
+  const hook = () => {
+    const selfAuth = sessionStorage.getItem('auth_id')
+    if (selfAuth === member.auth[0].authId) {
+      setAd(() => true)
+    }
+    console.log(ad)
+  }
+
+  useEffect(hook, [])
+
   return (
     <div>
       {isWaiting && (
-        <button title='Add to Team' onClick={addToTeam} className='add-to-team'> <RiUserAddLine /> </button>
+        <IconContext.Provider value={{ color: '#fff', className: 'make-white' }}>
+          <button title='Add to Team' onClick={addToTeam} className='add-to-team'> <AiOutlineUserAdd /> </button>
+        </IconContext.Provider>
       )}
-      {!isWaiting && (
+      {!isWaiting && isAdmin && (
         <button title='Future Endeavor' onClick={removeFromTeam} className='add-to-team'>
           <GiHighKick />
         </button>
       )}
       {member.auth[0].name}
+      {member.isLeader && (
+        <IconContext.Provider value={{ size: '1.4em' }}>
+          <span className='leader-tag'>
+            <GiChessKing />
+          </span>
+        </IconContext.Provider>
+      )}
       {wishes && (
         <Wishes />
       )}

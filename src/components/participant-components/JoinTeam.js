@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+import BackCross from '../../assets/BackCross.svg'
+import BigTick from '../../assets/BigTick.svg'
+
 import api from '../../utilities/api'
 
 const JoinTeam = ({ back }) => {
@@ -27,47 +30,70 @@ const JoinTeam = ({ back }) => {
       teamCode: teamcode
     }
     const response = await api('joinTeam', 'post', data, token)
-    console.log(response)
     if (response.status === 200) {
-      setSuccess('The team leader had been notified!')
+      setSuccess('Your team leader has been notified!')
     } else {
       setError('Are you sure the team code is correct?')
     }
   }
 
   return (
-    <div className='jointeam-overlay'>
-      <div className='jointeam-container' success={success}>
-        {success === '' && (
-          <>
-            <form className='jointeam-form'>
-              <label className='jointeam-label'>
-                Team Code
-                <input value={teamcode} onChange={handleCodeChange} className='jointeam-input' />
-              </label>
-            </form>
-            <div onClick={handleSubmit} className='jointeam-buttons'>
-              <button className='jointeam-button'>
-                Join
-              </button>
-              <button onClick={back} className='jointeam-back-button'>
-                Back
-              </button>
+    <div className='unreg-event-details-container' onClick={back}>
+      {success === '' && (
+        <div className='unreg-event-details reg-formm' onClick={e => e.stopPropagation()} success={success}>
+          <div className='unreg-event-details-topbar'>
+            <div className='event-details-title'>
+              <h1>Join A Team</h1>
             </div>
+            <div onClick={back} className='unreg-event-detail-close'>
+              <img
+                className='event-register-back-icon'
+                src={BackCross}
+                alt='Back'
+              />
+            </div>
+          </div>
+          <div className='reg-body'>
+            <form className='reg-form'>
+              <label className='reg-form-label'>
+                Team Code
+              </label>
+              <input value={teamcode} onChange={handleCodeChange} className='reg-form-input' />
+            </form>
+          </div>
+          <button onClick={handleSubmit} className='reg-button'>
+            Join
+          </button>
+          {error !== '' && (
             <div className='jointeam-error'>
               {error}
             </div>
-          </>
-        )}
-        {success !== '' && (
-          <div className='success-join-request'>
-            <h2>{success}</h2>
-            <button onClick={() => window.location.reload(false)} className='jointeam-back-button'>
-              Back
-            </button>
+          )}
+        </div>
+      )}
+      {success !== '' && (
+        <div className='unreg-event-details make-normal' success={success}>
+          <div className='manage-team-top'>
+            <div onClick={() => window.location.reload(false)} className='unreg-event-detail-close'>
+              <img
+                className='event-register-back-icon'
+                src={BackCross}
+                alt='Back'
+              />
+            </div>
           </div>
-        )}
-      </div>
+          <div className='success-container'>
+            <div className='success-join-request'>
+              <img
+                className='big-tick'
+                src={BigTick}
+                alt='Ok'
+              />
+              <div>{success}</div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

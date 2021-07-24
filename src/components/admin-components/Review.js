@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import Team from './Team'
+
+import BackCross from '../../assets/BackCross.svg'
+
 import getAllTeams from '../../utilities/getAllTeams'
 
-const Review = ({ n, event }) => {
+const Review = ({ n, event, referrer }) => {
   const [expanded, setExpanded] = useState(false)
   const [teams, setTeams] = useState([])
 
@@ -17,13 +21,12 @@ const Review = ({ n, event }) => {
   const handleButtonClick = () => {
     setExpanded(!expanded)
   }
-  console.log('n: ', n, '\nevent:\n', event)
   return (
     <span>
       <button className='review-button' onClick={handleButtonClick}>Review {n}</button>
-      {expanded && (
-        <div className='review-overlay'>
-          <div className='review-card'>
+      {expanded && (referrer === 0 || referrer === 2) && (
+        <div className='review-overlay' onClick={handleButtonClick}>
+          <div className='review-card' onClick={(e) => e.stopPropagation()}>
             <div className='review-card-nav'>
               <span>
                 <h2 className='review-event-name'>
@@ -33,19 +36,26 @@ const Review = ({ n, event }) => {
                   Review {n}
                 </div>
               </span>
-              <button className='collapse-review' onClick={handleButtonClick}>
-                Close
-              </button>
+              <div className='unreg-event-detail-close' onClick={handleButtonClick}>
+                <img
+                  className='event-register-back-icon'
+                  src={BackCross}
+                  alt='Back'
+                />
+              </div>
             </div>
             <div className='review-body'>
               {teams !== null && teams.length === 0 && (
                 <p className='no-teams'>
-                  No teams to show, marketing team slakin, eh?
+                  No teams to show.
                 </p>
               )}
               {teams !== null && teams.length > 0 && (
                 <div className='review-teams-container'>
-                  Teams
+                  <h1>Teams</h1>
+                  <div className='teams-flex'>
+                    {teams.map(team => <Team key={team.teamId} review={n} team={team} event={event} referrer={referrer} />)}
+                  </div>
                 </div>
               )}
             </div>
@@ -61,7 +71,8 @@ Review.propTypes = {
   event: PropTypes.shape({
     eventName: PropTypes.string.isRequired,
     eventId: PropTypes.string.isRequired
-  })
+  }),
+  referrer: PropTypes.number
 }
 
 export default Review
