@@ -179,7 +179,8 @@
   place-items: center;
   min-width: 100%;
   min-height: 100%;
-  overflow-y: auto;
+  height: 100%;
+  width: 100%;
 }
 
 /* ugly stuff for firefox users as a punishment */
@@ -225,7 +226,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow: hidden;
   align-items: baseline;
   gap: 10px;
 }
@@ -655,6 +655,8 @@
   z-index: 5;
   background-color: inherit;
   min-width: 100%;
+  height: 100%;
+  width: 100%;
   min-height: 100%;
   backdrop-filter: blur(10px);
   display: grid;

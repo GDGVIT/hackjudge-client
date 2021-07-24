@@ -7,11 +7,6 @@ import api from '../../utilities/api'
 
 import BackCross from '../../assets/BackCross.svg'
 
-// TODO:
-// Display team abstract, link and team members
-// Implement update scores route
-// Make tis responsive
-
 const MetricScore = ({ metric, handler, referrer }) => {
   const [score, setScore] = useState(metric.score)
 

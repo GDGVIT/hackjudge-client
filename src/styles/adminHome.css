@@ -235,7 +235,8 @@
   border: 2px solid #406c95;
   border-radius: 10px;
   font-size: 1.1rem;
-  max-width: 410px;
+  max-width: 100%;
+  width: 100%;
   min-width: 200px;
   min-height: 80px;
   height: auto;
